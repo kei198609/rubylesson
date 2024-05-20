@@ -235,3 +235,47 @@ function removeDuplicates(nums) {
   uniqueNums.forEach(num => nums.push(num));
   return nums.length  // 重複を削除した後の配列の長さを返す
 }
+
+
+
+// ********Rotate Array********
+// Example 1:
+
+// Input: nums = [1,2,3,4,5,6,7], k = 3
+// Output: [5,6,7,1,2,3,4]
+// Explanation:
+// rotate 1 steps to the right: [7,1,2,3,4,5,6]
+// rotate 2 steps to the right: [6,7,1,2,3,4,5]
+// rotate 3 steps to the right: [5,6,7,1,2,3,4]
+// Example 2:
+
+// Input: nums = [-1,-100,3,99], k = 2
+// Output: [3,99,-1,-100]
+// Explanation:
+// rotate 1 steps to the right: [99,-1,-100,3]
+// rotate 2 steps to the right: [3,99,-1,-100]
+
+function rotate(nums) {
+  k = k % nums.length;// k を配列の長さで割った余りに設定
+  const rotatePart = nums.splice(-k);// 配列の最後の k 要素を取得して削除
+  nums.unshift(...rotatePart);// 取得した要素を配列の先頭に追加
+}
+
+// k を配列の長さで割った余りに設定します。
+// これにより、k が配列の長さを超える場合でも適切な回転数に調整されます。
+
+// splice メソッドを使って、配列の最後の k 要素を切り出し、
+// それらを新しい配列 rotatedPart に格納します。同時に、元の配列からこれらの要素が削除されます。
+
+// unshift メソッドを使って、切り出した要素を元の配列 nums の先頭に追加します。
+// ... スプレッド構文を使って要素を展開し、一つ一つの要素として追加します。
+
+// 例1: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
+// k = 3 の場合、3 % 7 = 3 なので k はそのまま 3 です。
+// 最後の 3 要素 [5, 6, 7] を切り出して、配列 nums は [1, 2, 3, 4] になります。
+// 切り出した [5, 6, 7] を先頭に追加して、配列 nums は [5, 6, 7, 1, 2, 3, 4] になります。
+
+// 例2: nums = [-1, -100, 3, 99], k = 2
+// k = 2 の場合、2 % 4 = 2 なので k はそのまま 2 です。
+// 最後の 2 要素 [3, 99] を切り出して、配列 nums は [-1, -100] になります。
+// 切り出した [3, 99] を先頭に追加して、配列 nums は [3, 99, -1, -100] になります。
