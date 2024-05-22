@@ -1,7 +1,8 @@
 # クラスメソッド　インスタンスメソッド
 
 class User
-    def initialise(name)
+    # initializeメソッドはUser.newのようにnewメソッドを使うと呼び出される
+    def initialize(name)
         @name = name
     end
     #クラスメソッド
@@ -23,3 +24,24 @@ users = User.create_user(names)
 users.each do |user|
     puts user.hello
 end
+
+
+
+
+
+
+
+# attr_accessorメソッド
+class User
+    # @nameを読み書きするメソッドが自動的に定義される
+    attr_accessor :name
+    def initialise(name)
+        @name = name
+    end
+end
+user = User.new('Alice')
+
+# @nameを変更する
+user.name = 'Bob'
+# @nameを参照するとBobに変更されている。
+user.name #=>"Bob"
