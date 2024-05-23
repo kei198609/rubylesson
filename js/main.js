@@ -279,3 +279,27 @@ function rotate(nums) {
 // k = 2 の場合、2 % 4 = 2 なので k はそのまま 2 です。
 // 最後の 2 要素 [3, 99] を切り出して、配列 nums は [-1, -100] になります。
 // 切り出した [3, 99] を先頭に追加して、配列 nums は [3, 99, -1, -100] になります。
+
+
+
+// ********valの削除********
+// Example 1:
+// Input: nums = [3,2,2,3], val = 3
+// Output: 2, nums = [2,2,_,_]
+
+// Example 2:
+// Input: nums = [0,1,2,2,3,0,4,2], val = 2
+// Output: 5, nums = [0,1,4,0,3,_,_,_]
+function removeElement(nums, val) {
+  let i = 0; // 新しい配列のインデックス
+  for (let j = 0; j < nums.length; j++) {
+    if (nums[j] !== val) {
+      nums[i] = nums[j];
+      i++;
+    }
+  }
+  for (let k = i; k < nums.length; k++) {
+    nums[k] = '_'; // 削除された部分を '_' で置き換える
+  }
+  return i; // 削除後の新しい長さを返す
+}
