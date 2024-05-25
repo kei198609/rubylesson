@@ -171,6 +171,7 @@ end
 
 
 
+# 配列/文字列問題集
 
 # ********Rotate Array********
 # Example 1:
@@ -195,3 +196,26 @@ def rotate(nums)
 end
 # nums.rotate!(-k):
 # 配列を右に k ステップ回転させるために rotate! メソッドを使っています。引数に -k を指定することで、右に k ステップ移動させることができます。
+
+
+
+# ********58. Length of Last Word********
+# Example 1:
+# Input: s = "Hello World"
+# Output: 5
+# Explanation: The last word is "World" with length 5.
+
+# Example 2:
+# Input: s = "   fly me   to   the moon  "
+# Output: 4
+# Explanation: The last word is "moon" with length 4.
+
+# Example 3:
+# Input: s = "luffy is still joyboy"
+# Output: 6
+# Explanation: The last word is "joyboy" with length 6.
+
+def last_word(s)
+    words = s.strip.split('')
+    words.last.length
+end
