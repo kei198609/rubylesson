@@ -101,6 +101,11 @@ a & b #=>[3]
 # ()で囲む場合
 %w(apple melon orange)#=>["apple","melon","orange"]
 
+# 文字列を配列に変換
+'Ruby'.chars #=>["R", "u", "b", "y"]
+'Ruby,Java,Python'#=>["Ruby", "Java", "Python"]
+
+
 
 # mapメソッド
 # mapメソッドを使わない場合
