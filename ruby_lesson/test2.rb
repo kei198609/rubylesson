@@ -219,3 +219,46 @@ def last_word(s)
     words = s.strip.split('')
     words.last.length
 end
+
+# ********28. Find the Index of the First Occurrence in a String********
+# Example 1:
+# Input: haystack = "sadbutsad", needle = "sad"
+# Output: 0
+# Explanation: "sad" occurs at index 0 and 6.
+# The first occurrence is at index 0, so we return 0.
+# Example 2:
+# Input: haystack = "leetcode", needle = "leeto"
+# Output: -1
+# Explanation: "leeto" did not occur in "leetcode", so we return -1.
+
+def str(haystack, needle)
+    idx = haystack.index(needle)
+    idx.nil? ? -1 : idx
+end
+# `index` メソッドを使用して `needle` の最初の出現位置を探す
+# `needle` が `haystack` 内に存在しない場合、`index` メソッドは `nil` を返す
+# そのため、`nil` の場合は -1 を返し、そうでなければ実際のインデックスを返す
+
+# 例
+# haystack = "hello world"
+# needle = "world"
+# index = haystack.index(needle)  # 6を返す
+
+# この例では、"world"は"hello world"の6番目の位置（0から数えて）で最初に出現するので、indexは6を返します。
+
+
+
+# ********169. Majority Element********
+# Example 1:
+# Input: nums = [3,2,3]
+# Output: 3
+# Example 2:
+# Input: nums = [2,2,1,1,1,2,2]
+# Output: 2
+
+def majority_element(nums)
+    nums.max_by { |n| nums.count(n) }
+end
+# max_byメソッドはRubyのEnumerableモジュールに含まれるメソッドの一つで、
+# ブロックの評価結果が最大の要素を返します。max_byメソッドを使用すると、
+# 配列やハッシュなどの各要素に対してブロックを評価し、その評価結果が最大の要素を簡単に取得できる
