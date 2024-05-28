@@ -262,3 +262,51 @@ end
 # max_byメソッドはRubyのEnumerableモジュールに含まれるメソッドの一つで、
 # ブロックの評価結果が最大の要素を返します。max_byメソッドを使用すると、
 # 配列やハッシュなどの各要素に対してブロックを評価し、その評価結果が最大の要素を簡単に取得できる
+
+
+
+# Two Pointers
+# ********125. Valid Palindrome********
+# Example 1:
+# Input: s = "A man, a plan, a canal: Panama"
+# Output: true
+# Explanation: "amanaplanacanalpanama" is a palindrome.
+
+# Example 2:
+# Input: s = "race a car"
+# Output: false
+# Explanation: "raceacar" is not a palindrome.
+
+# Example 3:
+# Input: s = " "
+# Output: true
+# Explanation: s is an empty string "" after removing non-alphanumeric characters.
+# Since an empty string reads the same forward and backward, it is a palindrome.
+def is_palindrome(s)
+    filtered = s.gsub(/[^a-zA-Z0-9]/, '').downcase
+    filtered == filtered.reverse
+end
+
+# Hashmap
+# ********383. Ransom Note********
+# Example 1:
+# Input: ransomNote = "a", magazine = "b"
+# Output: false
+# Example 2:
+# Input: ransomNote = "aa", magazine = "ab"
+# Output: false
+# Example 3:
+# Input: ransomNote = "aa", magazine = "aab"
+# Output: true
+def ransom(ransomNote,magazine)
+    ransomNote.each_char.all? { |char| ransomNote.count(char) <= magazine.count(char) }
+end
+# each_charとは？
+# 例
+# "hello".each_char { |char| puts char }
+# このコードは以下の出力を生成します：
+# h
+# e
+# l
+# l
+# o
