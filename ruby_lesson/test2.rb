@@ -134,26 +134,7 @@ end
 
 
 
-# ********アナグラム********
-# Example 1:
 
-# Input: s = "anagram", t = "nagaram"
-# Output: true
-# Example 2:
-
-# Input: s = "rat", t = "car"
-# Output: false
-
-def anagram(s, t)
-    return false if s.length != t.length
-    s_count = s.each_char.tally
-    t_count = t.each_char.tally
-    s_count == t_count
-end
-
-# each_char.tallyメソッドを使って、各文字列の文字の出現回数をカウントします。
-# 最後に、s_count == t_countで、これら2つのハッシュが等しいかどうかを確認します。
-# これは、両方の文字列に同じ文字が同じ数だけ含まれているかどうかをチェックすることになります。
 
 
 # ********重複削除********
@@ -310,3 +291,45 @@ end
 # l
 # l
 # o
+
+
+# ********アナグラム********
+# Example 1:
+
+# Input: s = "anagram", t = "nagaram"
+# Output: true
+# Example 2:
+
+# Input: s = "rat", t = "car"
+# Output: false
+
+def anagram(s, t)
+    return false if s.length != t.length
+    s_count = s.each_char.tally
+    t_count = t.each_char.tally
+    s_count == t_count
+end
+
+# each_char.tallyメソッドを使って、各文字列の文字の出現回数をカウントします。
+# 最後に、s_count == t_countで、これら2つのハッシュが等しいかどうかを確認します。
+# これは、両方の文字列に同じ文字が同じ数だけ含まれているかどうかをチェックすることになります。
+
+
+# Binary Tree General
+# ********104. Maximum Depth of Binary Tree********
+def max_depth(root)
+    return 0 if root.nil?
+    left_depth = max_depth(root.left)
+    right_depth = max_depth(root.right)
+    [left_depth, right_depth].max + 1
+end
+# [left_depth, right_depth].max + 1は、
+# バイナリツリー内の特定のノードにおける左側の子ノードの最大深さ（left_depth）と
+# 右側の子ノードの最大深さ（right_depth）を比較して、より大きい方を選び、その数値に1を加えるという意味です。
+
+# return 0 if root.nil? の行は、再帰的な関数の基底条件として機能し、木が空（root が nil）の場合には深さ 0 を返します。
+# これは、木にノードが存在しないことを意味し、そのため深さも 0 です。
+# ここでの max_depth 関数は、木の各ノードを再帰的に訪問し、最大の深さを計算します。具体的には：
+# root が nil の場合、すなわち木が空の場合、深さは 0 です。
+# root が nil でない場合、関数は root.left と root.right （左の子と右の子）に対して自身を再帰的に呼び出し、それぞれの子の最大深さを計算します。
+
