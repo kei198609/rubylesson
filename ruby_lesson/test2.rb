@@ -317,6 +317,13 @@ end
 
 # Binary Tree General
 # ********104. Maximum Depth of Binary Tree********
+# Example 1:
+# Input: root = [3,9,20,null,null,15,7]
+# Output: 3
+# Example 2:
+# Input: root = [1,null,2]
+# Output: 2
+
 def max_depth(root)
     return 0 if root.nil?
     left_depth = max_depth(root.left)
@@ -333,3 +340,61 @@ end
 # root が nil の場合、すなわち木が空の場合、深さは 0 です。
 # root が nil でない場合、関数は root.left と root.right （左の子と右の子）に対して自身を再帰的に呼び出し、それぞれの子の最大深さを計算します。
 
+# ********100. Same Tree********
+# Example 1:
+# Input: p = [1,2,3], q = [1,2,3]
+# Output: true
+# Example 2:
+# Input: p = [1,2], q = [1,null,2]
+# Output: false
+# Example 3:
+# Input: p = [1,2,1], q = [1,1,2]
+# Output: false
+def same_tree(p, q)
+    return true if p.nil? && q.nil? # 両方のノードがnilであれば、同じと見なす
+    return false if p.nil? || q.nil? # 片方のノードのみがnilであれば、異なると見なす
+    return false if p.val != q.val # ノードの値が異なる場合、異なると見なす
+    # 左の子ノードと右の子ノードを再帰的に比較する
+    same_tree(p.left, q.left) && same_tree(p.right, q.right)
+end
+
+
+# Bit Manipulationビット操作
+# ********191. Number of 1 Bits********
+# この問題では、正の整数が与えられ、その整数の二進数表現における「1」の数を
+# 求める関数を実装することが求められています。以下に具体的な例を挙げて説明します。
+
+# 例 1:
+# 入力: n = 11
+# 処理: 11 を二進数に変換すると 1011 になります。
+# 出力: 1011 の中には「1」が3つ含まれています。したがって、出力は 3 です。
+# 例 2:
+# 入力: n = 128
+# 処理: 128 を二進数に変換すると 10000000 になります。
+# 出力: 10000000 の中には「1」が1つだけ含まれています。したがって、出力は 1 です。
+# 例 3:
+# 入力: n = 2147483645
+# 処理: 2147483645 を二進数に変換すると 1111111111111111111111111111101 になります。
+# 出力: 1111111111111111111111111111101 の中には「1」が30つ含まれています。したがって、出力は 30 です。
+def number_bit(n)
+    n.to_s(2).count(1)
+end
+# n.to_s(2)：このメソッドは整数 n を二進数形式の文字列に変換します。例えば、n = 11 の場合は "1011" という文字列になります。
+# .count('1')：変換された文字列の中で、文字 '1' の出現回数をカウントします。
+
+
+# ********136. Single Number********
+# Example 1:
+# Input: nums = [2,2,1]
+# Output: 1
+# Example 2:
+# Input: nums = [4,1,2,1,2]
+# Output: 4
+# Example 3:
+# Input: nums = [1]
+# Output: 1
+def single_number(nums)
+    single = 0
+    nums.each { |num| single ^= num }
+    single
+end
