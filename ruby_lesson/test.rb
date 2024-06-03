@@ -220,6 +220,7 @@ def greet(&hoge)
     puts text
     puts 'こんばんは'
 end
+# ブロック引数 text には、メソッド内で hoge.call('こんにちは') として渡された 'こんにちは' が入る
 greet do |text|
     text * 2
 end
@@ -227,3 +228,23 @@ end
 # おはよう
 # こんにちはこんにちは
 # こんばんは
+
+# ブロックを引数として受け取るメリットについて
+# 例えば、arityメソッドを使うとブロックパラメータの個数を確認することができる。
+def greet(&block)
+    text =
+        if block.arity == 1
+            yield 'こんにちは'
+        elsif block.arity == 2
+            yield 'こんに', 'ちは'
+        end
+    puts text
+end
+greet do |text|
+    text * 2
+end
+#=>こんにちはこんにちは
+greet do |text_1, text_2|
+    text_1 * 2 + text_2 * 2
+end
+#=>こんにこんにちはちは
