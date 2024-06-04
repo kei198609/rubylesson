@@ -248,3 +248,25 @@ greet do |text_1, text_2|
     text_1 * 2 + text_2 * 2
 end
 #=>こんにこんにちはちは
+
+
+
+# *********ハッシュ*********
+# 空のハッシュ
+{}
+# キーとの組み合わせ（要素）を3つ格納するハッシュ
+{キー1 => 値1, キー2 => 値2, キー3 => 値3}
+
+# 要素を追加する場合は、ハッシュ[] = 値 の構文を使う。
+currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
+currencies['italy'] = 'euro'
+currencies #=>{'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee', italy' => 'euro'}
+
+# すでにキーが存在している場合は上書きされる。
+currencies['japan'] = '円'
+currencies #=>{'japan' => '円', 'us' => 'dollar', 'india' => 'rupee', italy' => 'euro'}
+
+# ハッシュから値を取り出すには、ハッシュ[キー] のようにして書く。
+currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
+currencies['india'] #=> 'rupee'
+currencies['brazil'] #=> nil
