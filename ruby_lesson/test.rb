@@ -270,3 +270,39 @@ currencies #=>{'japan' => '円', 'us' => 'dollar', 'india' => 'rupee', italy' =>
 currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
 currencies['india'] #=> 'rupee'
 currencies['brazil'] #=> nil
+
+# ハッシュを使った繰り返し処理
+currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
+currencies.each do |key, value|
+    puts "#{key}:#{value}"
+end
+#=>
+# japan:yen
+# us:dollar
+# india:rupee
+
+# 要素の取得
+# sizeまたはlengthを使うとハッシュの要素の個数を調べられる
+{'x' => '1', 'y' => '2', 'z' => '3'}.size #=>3
+
+# 要素の削除
+currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
+currencies.delete('japan')
+currencies #=> {'us' => 'dollar', 'india' => 'rupee'}
+
+# *********シンボル*********
+# シンボルを作成するコード
+:apple
+:japan
+# シンボルは破壊的な変更は不可
+symbol = :apple
+symbol.upcase! #=>エラー
+
+#ハッシュのキーにシンボルを使うと、文字列よりも高速に値を取り出すことができる。
+currencies = {:japan => 'yen', :us => 'dollar', :india => 'rupee'}
+currencies[:japan] #=>'yen'
+
+# シンボルがキーになる場合、=>を使わずにシンボル: 値という記法が使える。
+{:japan => 'yen', :us => 'dollar', :india => 'rupee'}
+# 以下は上と同じ
+{japan: :yen, us: :dollar, india: :rupee}
