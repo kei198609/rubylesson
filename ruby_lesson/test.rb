@@ -306,3 +306,33 @@ currencies[:japan] #=>'yen'
 {:japan => 'yen', :us => 'dollar', :india => 'rupee'}
 # 以下は上と同じ
 {japan: :yen, us: :dollar, india: :rupee}
+
+# メソッドのキーワード引数とハッシュ
+# def メソッド名(キーワード引数1: デフォルト値1, キーワード引数2: デフォルト値2)
+
+# end
+def buy_burger(menu, drink: true, potato: true)
+    if drink
+        puts "ドリンクを購入しました"
+    end
+    if potato
+        puts "ポテトを購入しました"
+    end
+    puts "#{menu}バーガーを購入しました"
+end
+# キーワード引数を持つメソッドを呼び出す場合は、引数: 値の形式で引数を指定する。
+buy_burger('cheese', drink: true, potato: true)
+# 存在しないキーワード引数を指定した場合、エラーになる
+buy_burger('fish', salad: true) #=>エラー
+
+buy_burger('cheese')
+# この呼び出しでは、drink と potato が省略されているため、デフォルト値 true が使用され、以下の出力が得られます。
+# ドリンクを購入しました
+# ポテトを購入しました
+# cheeseバーガーを購入しました
+
+# デフォルト値を上書きする呼び出し
+buy_burger('cheese', drink: false, potato: true)
+# この呼び出しでは、drink が false、potato が true として扱われ、以下の出力が得られます。
+# ポテトを購入しました
+# cheeseバーガーを購入しました
