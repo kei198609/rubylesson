@@ -290,6 +290,7 @@ currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
 currencies.delete('japan')
 currencies #=> {'us' => 'dollar', 'india' => 'rupee'}
 
+
 # *********シンボル*********
 # シンボルを作成するコード
 :apple
@@ -336,3 +337,11 @@ buy_burger('cheese', drink: false, potato: true)
 # この呼び出しでは、drink が false、potato が true として扱われ、以下の出力が得られます。
 # ポテトを購入しました
 # cheeseバーガーを購入しました
+
+
+#*********ハッシュで使用頻度の高いメソッド*********
+# keysメソッドはハッシュのキーを配列として返す。
+currencies = { japan: 'yen', us: 'dollar', india: 'rupee' }
+currencies.keys #=> [:japan, :us, :india]
+
+
