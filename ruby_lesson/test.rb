@@ -344,4 +344,5 @@ buy_burger('cheese', drink: false, potato: true)
 currencies = { japan: 'yen', us: 'dollar', india: 'rupee' }
 currencies.keys #=> [:japan, :us, :india]
 
-
+# valuesメソッドはハッシュの値を配列として返す。
+currencies.values #=>['yen', 'dollar', 'rupee']
