@@ -346,3 +346,14 @@ currencies.keys #=> [:japan, :us, :india]
 
 # valuesメソッドはハッシュの値を配列として返す。
 currencies.values #=>['yen', 'dollar', 'rupee']
+
+# ハッシュの中に指定されたキーが存在するか確認するメソッド
+# has_key?（エイリアスメソッド key?,include?,member?）
+currencies.has_key?(:japan) #=>true
+currencies.has_key?(:italy) #=>false
+
+# **でハッシュ展開させる
+h = { us: 'dollar', india: 'rupee' }
+{ japan: 'yen', **h } #=>{ japan: 'yen', us: 'dollar', india: 'rupee' }
+# **のかわりにmergeメソッドを使っても同じ結果が得られる。
+{ japan: 'yen' }.merge(h) #=>{ japan: 'yen', us: 'dollar', india: 'rupee' }
