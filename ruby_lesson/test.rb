@@ -357,3 +357,11 @@ h = { us: 'dollar', india: 'rupee' }
 { japan: 'yen', **h } #=>{ japan: 'yen', us: 'dollar', india: 'rupee' }
 # **のかわりにmergeメソッドを使っても同じ結果が得られる。
 { japan: 'yen' }.merge(h) #=>{ japan: 'yen', us: 'dollar', india: 'rupee' }
+
+# メソッド呼び出し時の{}の省略
+buy_burger('fish',{'drink' => true, 'potato' => false})
+# 最後の引数がハッシュ{}であれば、{}は省略できる
+buy_burger('fish','drink' => true, 'potato' => false)
+# このルールは配列リテラルでも同様
+a = ['fish',{'drink' => true, 'potato' => false}]
+b = ['fish','drink' => true, 'potato' => false]
