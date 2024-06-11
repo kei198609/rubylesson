@@ -365,3 +365,13 @@ buy_burger('fish','drink' => true, 'potato' => false)
 # このルールは配列リテラルでも同様
 a = ['fish',{'drink' => true, 'potato' => false}]
 b = ['fish','drink' => true, 'potato' => false]
+
+
+
+# ハッシュはto_aメソッドを使って配列に変換できる。このメソッドを使うと
+# キーと値が1つの配列に入り、それが複数並んだ配列になって返る。
+currencies = { japan: 'yen', us: 'dollar', india: 'rupee' }
+currencies.to_a #=>[[japan: 'yen'], [us: 'dollar'], [india: 'rupee']]
+# 反対に、配列に対してto_hメソッドを呼ぶと、配列をハッシュに変換できる。
+currencies = [[japan: 'yen'], [us: 'dollar'], [india: 'rupee']]
+currencies.to_h #=>{ japan: 'yen', us: 'dollar', india: 'rupee' }
