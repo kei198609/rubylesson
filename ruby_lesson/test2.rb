@@ -453,3 +453,56 @@ end
 
 # nums2をnums1に連結するためにconcatメソッドを使用します。
 # 結合された配列をsort!メソッドでその場でソートします。
+
+
+# ********Intersection of Two Arrays II********
+
+# 問題:
+# 2つの整数配列 nums1 と nums2 が与えられます。両方の配列に共通する要素の配列を返してください。
+# 結果の各要素は、両方の配列に存在する回数だけ含まれている必要があります。結果の配列は順不同で構いません。
+
+# 例:
+# nums1 = [1, 2, 2, 1], nums2 = [2, 2]
+# 出力: [2, 2]
+
+# nums1 = [4, 9, 5], nums2 = [9, 4, 9, 8, 4]
+# 出力: [4, 9] または [9, 4]
+
+def intersect(nums1, nums2)
+
+    count1 = Hash.new(0)
+    count2 = Hash.new(0)
+    # nums1の要素の出現回数を数える
+    # nums2の要素の出現回数を数える
+    nums1.each { |num| count1[num] += 1 }
+    nums2.each { |num| count2[num] += 1 }
+
+    result = []
+    count1.each do |num, count|
+        if count2[num] > 0
+            [count,count2[num]].min.times { result << num }
+        end
+    end
+    result
+end
+
+# if count2[num] > 0 について
+
+# count2 に num が存在するかどうかをチェックします。
+# count2[num] > 0 は、nums2 に num が1回以上存在することを意味します。
+# もし nums2 にも num が存在する場合、この条件は真になります。
+
+
+# [count, count2[num]].min.times { result << num } について
+
+# count は nums1 における num の出現回数、count2[num] は nums2 における num の出現回数です。
+# [count, count2[num]].min は、num が両方の配列に現れる最小の回数を計算します。
+# min.times ループを使って、その最小回数だけ num を result 配列に追加します。
+
+
+
+
+
+
+
+# ********paiza********
