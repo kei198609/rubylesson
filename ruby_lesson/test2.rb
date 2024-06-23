@@ -1633,6 +1633,7 @@ puts damege[s]
 
 
 
+
 # ********辞書データの順序 paizaランク C********
 # n 人の人の名前 s_1, ..., s_n が与えられたのち、 m 回の「攻撃」に関する情報が与えられます。
 # 各行は “p_i a_i” というフォーマットで与えられ、
@@ -1682,3 +1683,187 @@ end
 # damage.keys は、ハッシュ damage のすべてのキー（名前）の配列を取得します。
 # damage.keys.sort は、取得したキー（名前）の配列をアルファベット順にソートします。
 # sort メソッドはデフォルトで昇順（アルファベット順）に並べ替えます。
+
+
+
+# ********シミュレーションの練習 paizaランク C********
+# パイザ君と霧島京子は最初どちらも数 1 をもっています。
+# パイザ君は自分の番が来ると、自分のもっている数の a 倍を霧島京子の数に足してあげます。
+# 霧島京子は自分の番が来ると、自分のもっている数を b で割った余りをパイザ君の数に足してあげます。
+# この手続きをパイザ君の番から始めて、霧島京子の数がnより大きくなるまで繰り返します。
+
+# 手続きが終わったときのパイザ君の操作回数を求めてください。
+
+# 入力される値
+# 入力は以下のフォーマットで与えられます。
+# n
+# a b
+# 1 行目には整数 n が与えられ、 2 行目には a, b が半角スペース区切りで与えられます。
+# 入力値最終行の末尾に改行が１つ入ります。
+# 文字列は標準入力から渡されます。
+
+# 期待する出力
+# 答えを行で出力してください。
+# 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+# 入力例1
+# 6
+# 3 2
+
+# 出力例1
+# 2
+
+# 入力例2
+# 10
+# 2 3
+
+# 出力例2
+# 3
+
+
+n = gets.chomp.to_i
+a, b =gets.chomp.split.map {|x|x.to_i}
+paiza = 1
+kirishima = 1
+count = 0
+while kirishima >= n #霧島京子の数がnより大きくなるまで繰り返します
+    # パイザ君の操作
+    kirishima += paiza * a #パイザ君は自分の番が来ると、自分のもっている数の a 倍を霧島京子の数に足してあげます。
+    count += 1
+    break if krishima > n # 霧島京子の数が n を超えたら終了
+
+    # 自分のもっている数を b で割った余りをパイザ君の数に足してあげます。
+    paiza += kirshima % b
+
+end
+puts count
+
+
+
+
+
+# ********構造体の作成********
+# クラスの学級委員である paiza 君は、クラスのみんなに次のような形式でアカウントの情報を送ってもらうよう依頼しました。
+
+# 名前 年齢 誕生日 出身地
+
+# 送ってもらったデータを使いやすいように整理したいと思った paiza 君はクラス全員分のデータを次の形式でまとめることにしました。
+
+# User{
+# nickname : 名前
+# old : 年齢
+# birth : 誕生日
+# state : 出身地
+# }
+
+
+# クラスメートの情報が与えられるので、それらを以上の形式でまとめたものを出力してください。
+
+# 入力される値
+# N
+# n_1 o_1 b_1 s_1
+# ...
+# n_N o_N b_N s_N
+
+
+# ・ 1 行目では、paiza君のクラスの人数 N が与えられます。
+# ・ 続く N 行のうち i 行目 (1 ≦ i ≦ N) では、 i 番の生徒の名前・年齢・誕生日・出身地を表す整数・文字列 n_i ,o_i ,b_i , s_i が順に半角スペース区切りで与えられます。
+
+# 入力値最終行の末尾に改行が１つ入ります。
+# 文字列は標準入力から渡されます。
+
+# 期待する出力
+# User{
+# nickname : n_1
+# old : o_1
+# birth : b_1
+# state : s_1
+# }
+# User{
+# nickname : n_2
+# old : o_2
+# birth : b_2
+# state : s_2
+# }
+# ...
+# User{
+# nickname : n_N
+# old : o_N
+# birth : b_N
+# state : s_N
+# }
+
+# 番号が若い順に各クラスメートの情報を以上の形式でを出力してください。
+
+
+# 入力例1
+# 1
+# koko 23 04/10 tokyo
+
+# 出力例1
+# User{
+# nickname : koko
+# old : 23
+# birth : 04/10
+# state : tokyo
+# }
+
+# 入力例2
+# 3
+# mako 13 08/08 nara
+# megumi 14 11/02 saitama
+# taisei 16 12/04 nagano
+
+# 出力例2
+# User{
+# nickname : mako
+# old : 13
+# birth : 08/08
+# state : nara
+# }
+# User{
+# nickname : megumi
+# old : 14
+# birth : 11/02
+# state : saitama
+# }
+# User{
+# nickname : taisei
+# old : 16
+# birth : 12/04
+# state : nagano
+# }
+
+
+n  = gets.chomp.to_i
+# クラスメートの情報を格納するための配列を初期化
+classmates = []
+# n行分のデータを読み取る
+n.times do
+    # 各行を読み取って、スペースで分割して配列に格納
+    data = gets.chomp.split
+    # ハッシュ形式で情報を格納
+    classmate = {
+        nickname: data[0],
+        old: data[1],
+        birth: data[2],
+        state: data[3]
+    }
+    classmates << classmate
+end
+
+# 途中の p classmates の出力は次のようになります
+# [
+#   {:nickname=>"koko", :old=>"23", :birth=>"04/10", :state=>"tokyo"},
+#   {:nickname=>"mako", :old=>"13", :birth=>"08/08", :state=>"nara"}
+# ]
+# 配列にハッシュを格納し、以下のように必要な形式で出力することができます。
+
+classmates.each do |x|
+    puts "User{"
+    puts "nickname : #{x[:nickname]}"#{x[:nickname]}の:nicknameはシンボル。
+    puts "old : #{x[:old]}"
+    puts "birth : #{x[:birth]}"
+    puts "state : #{x[:state]}"
+    puts "}"
+end
