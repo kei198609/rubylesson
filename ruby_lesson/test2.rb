@@ -1951,3 +1951,172 @@ students.each do |x|
         break
     end
 end
+
+
+# ********構造体の整列********
+# クラスの学級委員である paiza 君は、クラスのみんなに次のような形式でアカウントの情報を送ってもらうよう依頼しました。
+
+# 名前 年齢 誕生日 出身地
+
+# 送ってもらったデータを使いやすいように整理したいと思った paiza 君はクラス全員分のデータを次の形式でまとめることにしました。
+
+# User{
+#     nickname : 名前
+#     old : 年齢
+#     birth : 誕生日
+#     state : 出身地
+# }
+
+
+# この情報を扱いやすくするために、年齢が昇順になるようにデータを並び替えることにしました。
+# クラスメートの情報が与えられるので、並び替えた後のデータを出力してください。
+# 入力される値
+# N
+# n_1 o_1 b_1 s_1
+# ...
+# n_N o_N b_N s_N
+
+
+# ・ 1 行目では、paiza君のクラスの人数 N が与えられます。
+# ・ 続く N 行のうち i 行目 (1 ≦ i ≦ N) では、 i 番の生徒の名前・年齢・誕生日・出身地を表す整数・文字列 n_i ,o_i ,b_i , s_i が
+# 順に半角スペース区切りで与えられます。
+
+# 入力値最終行の末尾に改行が１つ入ります。
+# 文字列は標準入力から渡されます。
+
+# 期待する出力
+# n_1 o_1 b_1 s_1
+# ...
+# n_N o_N b_N s_N
+
+
+# 各クラスメートの情報を年齢が昇順になるように整列したのち、入力と同様の形式で出力してください。
+
+# 入力例1
+# 1
+# koko 23 04/10 tokyo
+
+# 出力例1
+# koko 23 04/10 tokyo
+
+# 入力例2
+# 3
+# mako 13 08/08 nara
+# taisei 16 12/04 nagano
+# megumi 14 11/02 saitama
+
+# 出力例2
+# mako 13 08/08 nara
+# megumi 14 11/02 saitama
+# taisei 16 12/04 nagano
+
+
+n = gets.chomp.to_i
+students = []
+n.times do
+    data = gets.chomp.split
+    student = {
+        nickname: data[0],
+        old: data[1].to_i,
+        birth: data[2],
+        state: data[3]
+    }
+    students << student
+end
+# 年齢でソート
+sort_students = students.sort_by { |x|x[:old] }
+# ソート後のデータを出力
+sort_students.each do |x|
+    puts "#{x[:nickname]} #{x[:old]} #{x[:birth]} #{x[:state]}"
+end
+
+
+
+# ********構造体の更新********
+# クラスの学級委員である paiza 君は、クラスのみんなに次のような形式でアカウントの情報を送ってもらうよう依頼しました。
+
+# 名前 年齢 誕生日 出身地
+
+# 送ってもらったデータを使いやすいように整理したいと思った paiza 君はクラス全員分のデータを次の形式でまとめることにしました。
+
+# User{
+#     nickname : 名前
+#     old : 年齢
+#     birth : 誕生日
+#     state : 出身地
+# }
+
+
+# 途中で名前が変わった際にいちいちデータを修正するのが面倒だと思ったあなたは、生徒の構造体と新しい名前を受け取り、その名前を修正する関数 changeName を作成し、それを用いて生徒の名前を更新することにしました。
+
+# クラスの人数と全員の情報、更新についての情報が与えられるので、入力に従って名前を更新した後のクラスのメンバーの情報を出力してください。
+
+# 入力される値
+# N K
+# n_1 o_1 b_1 s_1
+# ...
+# n_N o_N b_N s_N
+# a_1 nn_1
+# ...
+# a_K nn_K
+
+
+# ・ 1 行目では、paiza君のクラスの人数 N と名前更新の回数 K が与えられます。
+# ・ 続く N 行のうち i 行目 (1 ≦ i ≦ N) では、 i 番の生徒の名前・年齢・誕生日・出身地を表す整数・文字列 n_i ,o_i ,b_i , s_i が順に半角スペース区切りで与えられます。
+# ・ 続く K 行では、名前を更新する生徒の番号 a_i と、その人の新しい名前 nn_i が空白区切りで与えられます。
+
+# 入力値最終行の末尾に改行が１つ入ります。
+# 文字列は標準入力から渡されます。
+
+# 期待する出力
+# n_1 o_1 b_1 s_1
+# ...
+# n_N o_N b_N s_N
+
+
+# 名前の更新を全て終えた後の各クラスメートの情報を生徒番号の小さい順に入力と同様の形式でまとめたものを出力してください。
+
+# 入力例1
+# 1 1
+# koko 23 04/10 tokyo
+# 1 nana
+
+# 出力例1
+# nana 23 04/10 tokyo
+
+# 入力例2
+# 3 2
+# mako 13 08/08 nara
+# taisei 16 12/04 nagano
+# megumi 14 11/02 saitama
+# 2 taihei
+# 3 megu
+
+# 出力例2
+# mako 13 08/08 nara
+# taihei 16 12/04 nagano
+# megu 14 11/02 saitama
+
+n, k = gets.chomp.split.map {|x|x.to_i}
+students = []
+# クラスメイトのデータを取得して構造体に格納
+n.times do
+    data = gets.chomp.split
+    student = {
+        nickname: data[0],
+        old: data[1],
+        birth: data[2],
+        state: data[3]
+    }
+    students << student
+end
+# 名前変更の処理
+k.times do
+    index, new_name = gets.chomp.split
+    index = index.to_i - 1 # 配列のインデックスは0から始まるので調整
+    students[index][:nickname] = new_name
+end
+
+students.each do |x|
+    puts "#{x[:nickname]} #{x[:old]} #{x[:birth]} #{x[:state]}"
+end
