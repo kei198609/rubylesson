@@ -2120,3 +2120,130 @@ end
 students.each do |x|
     puts "#{x[:nickname]} #{x[:old]} #{x[:birth]} #{x[:state]}"
 end
+
+
+
+
+# ********クラスの作成********
+# エンジニアであり、社員を管理を管理する立場にあるあなたは、効率的に社員を管理するために、
+# 各社員の社員番号 number と名前 name を持ち、加えて情報を返す関数を持つような構造体、
+# すなわち次のようなメンバ変数とメンバ関数を持つ社員クラス class employee を作成することにしました。
+
+# メンバ変数
+
+# number : 整数
+# name : 文字列
+
+
+# メンバ関数
+# getnum(){
+#     return number;
+# }
+# getname(){
+#     return name;
+# }
+
+
+# 入力で make number name と入力された場合は変数に number , name を持つ社員を作成し、
+# getnum n と入力された場合は n 番目に作成された社員の number を、
+# getname n と入力された場合は n 番目に作成された社員の name を出力してください。
+
+
+
+# 入力される値
+# N
+# S_1
+# ...
+# S_N
+
+
+# ・ 1 行目では、与えられる入力の回数 N が与えられます。
+# 続く N 行では、次のいずれかの形式の入力が与えられます。
+# ・ make number name
+# ・ getnum n
+# ・ getname n
+
+# 入力値最終行の末尾に改行が１つ入ります。
+# 文字列は標準入力から渡されます。
+
+# 期待する出力
+# 入力に応じた出力をしてください。
+# 各入力に対する出力の末尾には改行を入れてください。
+
+# 入力例1
+# 3
+# make 1 nana
+# getnum 1
+# getname 1
+
+# 出力例1
+# 1
+# nana
+
+# 入力例2
+# 7
+# make 2742 mako
+# getnum 1
+# make 2782 taisei
+# getname 2
+# make 31 megumi
+# getname 1
+# getname 3
+
+# 出力例2
+# 2742
+# taisei
+# mako
+# megumi
+
+
+class Employee
+    attr_reader :number, :name
+
+    def initialize(number, name)
+        @number = number
+        @name = name
+    end
+
+    def getnum
+        @number
+    end
+
+    def getname
+        @name
+    end
+end
+
+n = gets.chomp.to_i
+employees = []
+
+n.times do
+    input = gets.chomp.split
+    command = input[0]
+
+    case command
+    when 'make'
+        number = input[1].to_i
+        name = input[2]
+        employees << Employee.new(number, name)
+    when 'getnum'
+        index = input[1].to_i - 1 #整数に変換して1を引きます（0ベースのインデックスに変換するため）
+        puts employees[index].getnum
+    when 'getname'
+        index = input[1].to_i - 1
+        puts employees[index].getname
+    end
+end
+
+
+
+# ユーザーが make number name という形式で入力すると、この入力は gets.chomp.split によって分割されます。
+# 例えば、"make number name" という入力は、input 配列として ["make", "number", "name"] になります。
+# command = input[0]   ここでは "make" が格納される
+# case 文で command が 'make' かどうかをチェックします。
+
+# input[1]は"number"
+# input[2]は"name"
+
+
+
