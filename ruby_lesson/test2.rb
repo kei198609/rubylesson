@@ -3825,3 +3825,89 @@ pust result
 
 # Math.sqrt(81) は 9 です。
 # したがって、出力は 9 になります。
+
+
+
+
+# メソッドの理解
+# ********RPGの攻撃シーンを作ろう********
+# RPGの攻撃シーンを表示するプログラムで、teamのメンバーが順番にattackメソッドを呼び出します。さらに、teamのメンバーが攻撃した後に、敵の体力(enemy_hp)を表示するようになっています。敵の最初の体力は標準入力によって入力されます。
+
+# ここに、teamのメンバーが攻撃した分だけ、敵の体力をマイナスするコードを追加してください。
+# teamのメンバーの攻撃力は、あらかじめteamに定義されています。
+# 敵の体力は、450以上とします。
+
+# プログラムを実行して、正しく出力されれば演習課題クリアです！
+
+def attack(person)
+    puts "#{person}はスライムを攻撃した"
+end
+
+def output_ememy_hp(enemy_hp)
+    puts "敵のHPは残り#{enemy_hp}です"
+end
+
+enemy_hp = gets.to_i
+team = {"勇者" => 200, "戦士" => 150, "魔法使い" => 100}
+team.each do |person, power|
+    attack(person)
+    # 以下に、敵の体力を減少させるコードを書く
+    enemy_hp = enemy_hp - power
+    output_ememy_hp(enemy_hp)
+end
+
+
+
+# ********メソッドの記法を理解しよう********
+def say_hello(msg)
+    puts("hello #{msg}")
+end
+
+name = "paiza"
+say_hello(name)
+# メソッド呼び出しとして使用するには変数を引数として渡す必要があります。
+# say_hello メソッドが name 変数の値 "paiza" を引数として受け取り、"hello paiza" を出力します。
+
+
+# ********RPGの戦闘シーン********
+# RPGの攻撃シーンを表示するプログラムで、enemiesの要素に順番に、「戦士はxxxと戦った」と表示するようになっています。
+enemies = ["スライム", "モンスター", "ドラゴン"]
+player = "勇者"
+
+enemies.each {|enemy|
+    puts "#{player}は、#{enemy}と戦った。"
+}
+
+puts "#{player}は、すべての敵を倒した。"
+
+# 出力値
+# 勇者は、スライムと戦った。
+# 勇者は、モンスターと戦った。
+# 勇者は、ドラゴンと戦った。
+# 勇者は、すべての敵を倒した。
+
+
+
+# ********引数のデフォルト値********
+# say_helloメソッドが、デフォルト値を持った引数として定義してあります。
+# このメソッドを呼び出して、「hello paiza」と表示させる。
+def say_hello(target = "paiza")
+    puts "hello #{target}"
+end
+say_hello()
+
+# say_hello("勇者")   # hello 勇者
+# say_hello()        # hello paiza
+
+
+# ********スコープ********
+# スコープとは、変数の有効範囲が決まっていることです。
+# Rubyでは、メソッド定義の中と外ではローカル変数は分離しています。同じ名前の変数があっても、独立して利用できます。
+
+
+msg = "paiza" # この外部の msg はメソッドの外で定義された変数で、メソッドの引数として渡されることで、メソッド内の msg として使用されます。
+def say_hello(msg)
+    puts "hello #{msg}"
+end
+
+say_hello(msg)
