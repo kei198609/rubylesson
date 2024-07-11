@@ -3954,3 +3954,48 @@ end
 end
 
 # 外側のループ (i) は段を表し、内側のループ (j) はその段の各要素を表します。
+
+
+
+
+# ********クラス********
+# ********インスタンスを実体化しよう********
+# インスタンス変数は、実体化したインスタンスが持つ変数です。インスタンス変数は、インスタンスがある限りデータが保持されます。
+
+class Greeting
+    def initialize(name)# 初期化メソッド
+        @name = name
+    end
+
+    def say_hello()
+        puts "hello #{@name}"
+    end
+end
+
+# この下に、インスタンスを実体化し、メソッド呼び出しを記述する
+hoge = Greeting.new("paiza") # オブジェクトを生成
+hoge.say_hello() # オブジェクトのメソッドを呼び出す
+
+
+
+
+# ********RPGの攻撃シーン********
+
+class Player
+    def initialize(name)
+        @name = name
+    end
+
+    def attack(enemy)
+        puts  "#{@name}は#{enemy}を攻撃した"
+    end
+end
+
+team = []
+team.push(Player.new("勇者"))
+team.push(Player.new("戦士"))
+team.push(Player.new("魔法使い"))
+
+team.each do |person|
+    person.attack("スライム")
+end
