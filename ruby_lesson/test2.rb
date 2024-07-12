@@ -3999,3 +3999,103 @@ team.push(Player.new("魔法使い"))
 team.each do |person|
     person.attack("スライム")
 end
+
+
+
+
+# ********クラスで、引数と戻り値のあるメソッドを作ろう********
+class Gakusei
+    def initialize(kokugo, sansu)
+        @kokugo = kokugo
+        @sansu = sansu
+    end
+
+    # この下に、合計得点を戻り値として返すsumメソッドを記述する
+    def sum()
+        @kokugo + @sansu
+    end
+end
+
+yamada = Gakusei.new(70, 43)
+puts "合計は#{yamada.sum()}点です"
+
+
+
+
+# ********あらかじめ用意されているメソッドを理解しよう********
+# 標準入力から文字列を取得して出力します。
+# この文字列をカンマで区切って配列として出力してください。
+# なお、次のメソッドを利用すると良いでしょう。
+
+# p ：指定されたテキストを出力する
+# chomp ：末尾の余分なコードを削除する
+# split(",") ：引数で指定した記号で文字列を分割して配列にする
+
+# 入力される値
+# スライム,モンスター,ドラゴン,魔王
+# 期待する出力値
+# ["スライム", "モンスター", "ドラゴン", "魔王"]
+line = gets
+p line.split(",")
+
+
+
+
+# ********クラスを継承する********
+# Greetingクラスにインスタンス変数@msgと@targetが定義されており、Greetingクラスを継承したHelloクラスが定義されています。
+# このコードでは、Helloクラスのsay_helloメソッドを呼び出していますが、メソッドが記述されていません。
+# 以下の変数でメッセージを表示するよう、say_hello()メソッドを追加してください。
+# 期待する出力値
+# hello paiza
+
+class Greeting
+    def initialize()
+        @msg = "hello"
+        @target = "paiza"
+    end
+end
+
+class Hello < Greeting
+    # この下に、say_helloメソッドを記述する
+    def say_hello()
+        puts "#{@msg} #{@target}"
+    end
+end
+
+player = Hello.new()
+player.say_hello()
+
+
+
+
+
+
+# ********メソッドをオーバーライドしよう********
+# Greetingクラスに、say_helloメソッドが定義されており、
+# Greetingクラスを継承したHelloクラスが定義されています。
+
+# このHelloクラスで、say_helloメソッドをオーバーライドして、メソッド呼び出しの引数をターゲットとして表示してください。
+# たとえば、引数に「ruby」を渡した場合、「hello ruby」と表示します。
+# 期待する出力値
+# hello ruby
+class Greeting
+    def initialize()
+        @msg = "hello"
+        @target = "paiza"
+    end
+
+    def say_hello()
+        puts "#{@msg} #{@target}"
+    end
+end
+
+class Hello < Greeting
+    # ここにオーバライドするメソッドを記述する
+    def say_hello(target)
+        puts "#{@msg} #{target}"
+    end
+
+end
+
+player = Hello.new()
+player.say_hello("ruby")
