@@ -4199,3 +4199,63 @@ player.say_hello()
 # スーパークラスのではなくサブクラスのメソッドの方が呼び出されますが、
 # オーバーライドされたメソッドの中で super と記述すると、
 # スーパークラスの同じ名前のメソッドを呼び出すことができます。
+
+
+
+
+# ********クラスメソッドを呼び出そう********
+
+class Greeting
+    def self.say_hello()
+        puts "hello paiza"
+    end
+end
+
+# この下で、クラスメソッドを呼び出す
+Greeting.say_hello()
+
+# クラスメソッドでは、メソッド名にselfを付けて定義します。
+# クラスメソッドを呼び出す時には、クラス名に続けて、メソッドを記述します。
+
+
+
+
+# ********モジュールのメソッドを呼び出す********
+
+module Greeting
+    def say_paiza()
+        puts "hello paiza"
+    end
+
+    module_function :say_paiza
+end
+
+# この下で、メソッドを呼び出す
+Greeting.say_paiza()
+
+
+
+
+
+# ********モジュールとMix-in********
+# Enemyクラスを定義して、slimeオブジェクトとして実体化しています。
+# このEnemyクラスにActionモジュールを組み込んでください。
+# 期待する出力値
+# スライムは、勇者を攻撃した！
+module Action
+    def attack(target)
+        puts "#{@name}は、#{target}を攻撃した！"
+    end
+end
+
+class Enemy
+    # この下にモジュールを組み込む
+    include Action
+
+    def initialize(name)
+        @name = name
+    end
+end
+
+slime = Enemy.new("スライム")
+slime.attack("勇者")
