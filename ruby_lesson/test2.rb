@@ -4320,3 +4320,29 @@ end
 
 number = "0.08"
 p number.to_f
+
+# ********
+# 数値を0から15まで表示する
+# while命令を使って、0から15まで、数値を一行ずつ表示するプログラムを作成してください。
+count = 0
+while count <= 15
+    puts count
+    count += 1
+end
+
+# ********
+# whileを使って、1から10までの偶数を一行ずつ表示するプログラムを作成してください。
+i = 2
+while i <= 10
+    puts i
+    i += 2
+end
+
+
+# ********
+# whileを使って、5から1まで、数値を一行ずつカウントダウン表示するプログラムを作成してください。
+count = 5
+while count >= 1
+    puts count
+    count -= 1
+end
