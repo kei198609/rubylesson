@@ -2377,7 +2377,6 @@ n.times do
         index = input[1].to_i - 1 #["change_num" "n" "newnum"] と入力される。[1]なのでn
         new_number = input[2].to_i
         employees[index].change_num(new_number)
-    end
     when 'change_name'
         index = input[1].to_i - 1  #["change_name" "n" "newname"] と入力される。[1]なのでn
         new_name = input[2]
@@ -2851,7 +2850,7 @@ end
 n, a, b = gets.chomp.split.map { |x|x.to_i }
 number = gets.chomp.split.map { |x|x.to_i }
 # 指定された範囲の和を計算する
-sum = number.[a - 1..b - 1].sum
+sum = number[a - 1..b - 1].sum
 puts sum
 
 
@@ -4345,4 +4344,87 @@ count = 5
 while count >= 1
     puts count
     count -= 1
+end
+
+
+
+# ********
+# 標準入力から整数が1つ与えられます。for inを使って、
+# その整数回分「スライムがあらわれた」と出力するプログラムを作成してください。
+
+# 入力される値
+# 8
+
+# 期待する出力値
+# スライムがあらわれた
+# スライムがあらわれた
+# スライムがあらわれた
+# スライムがあらわれた
+# スライムがあらわれた
+# スライムがあらわれた
+# スライムがあらわれた
+# スライムがあらわれた
+# 標準入力から整数を取得
+count = gets.chomp.to_i
+
+# for in を使って、その整数回分「スライムがあらわれた」と出力
+for i in 1..count
+    puts "スライムがあらわれた"
+end
+
+
+
+
+# ********
+# 標準入力で2つの整数が2行で与えられます。
+# 1つ目の数値から２つ目の数値までを、1ずつ増加させながら、
+# 1行ずつ順番に出力するプログラムを作成してください。たとえば、3と5という数値が与えられた場合、次のように出力します。
+
+# 3
+# 4
+# 5
+
+# 入力される値
+# 3
+# 5
+
+# 期待する出力値
+# 3
+# 4
+# 5
+
+# 1つ目の整数を取得
+start_num = gets.chomp.to_i
+
+# 2つ目の整数を取得
+end_num = gets.chomp.to_i
+
+# start_numからend_numまでを1ずつ増加させながら出力
+for i in start_num..end_num
+    puts i
+end
+
+
+
+# ********
+# 西暦年と昭和年の対応表を作成してください。
+# 対応表は、「西暦XXXX年は、昭和YY年です」と表示します。
+# なお、昭和年は、西暦1926年から西暦1988年までの期間で、「西暦年 - 1925」で求めることができます。
+
+# 期待する出力値
+# 西暦1926年は、昭和1年です。
+# 西暦1927年は、昭和2年です。
+# 西暦1928年は、昭和3年です。
+# ...
+# 西暦1988年は、昭和63年です。
+
+(1926..1988).each do |year|
+    showa_year = year - 1925
+    puts "西暦#{year}年は、昭和#{showa_year}年です。"
+end
+
+# for inで書く場合は以下
+for year in 1926..1988
+    showa_year = year - 1925
+    puts "西暦#{year}年は、昭和#{showa_year}年です。"
 end
