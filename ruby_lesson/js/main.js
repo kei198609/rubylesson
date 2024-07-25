@@ -66,7 +66,7 @@ reader.on('line', (line) => {
 
 
 
-
+// ********
 // 箱の中に 1~9 までのいずれかの数字が書かれている玉を取り出し、
 // その玉に書かれている数字から運勢を占います。玉に書かれている数字が 7 の時は大吉となります。
 // 占いで取り出した玉に書かれている数字が 1 つ与えられます。大吉かどうかを判定してください。
@@ -111,7 +111,7 @@ reader.on('line', (line) => {
 
 
 
-
+// ********
 // 正の整数 N が与えられます。
 // 1 ~ N の整数を 1 から順に改行区切りで出力してください。
 
@@ -150,7 +150,7 @@ reader.on('line', (line) => {
 
 
 
-
+// ********
 // 1 ~ 100 の整数に対して、3 と 5 の両方で割り切れるなら FizzBuzz を、 3 でのみ割り切れるなら Fizz 、5 でのみ割り切れるなら Buzz を改行区切りで出力してください。また、どちらでも割り切れない場合は、その数字を改行区切りで出力してください。
 
 // 1
@@ -186,7 +186,7 @@ for (let i = 1; i <= 100; i++) {
 }
 
 
-
+// ********
 // 1. 標準入力から文字列を 1 個受け取る
 // 2. その文字列が「Hello」に等しい場合、次のメッセージを表示する
 // こんにちは
@@ -207,3 +207,121 @@ if ( greeting == 'Hello') {
 }else {
     console.log(`${greeting}はHelloではない`); // 文字列での式展開はこう書く
 }
+
+
+
+
+// ********
+// 1. 標準入力から整数を 1 個受け取る
+// 2. 受け取った整数の回数分、以下のメッセージを表示する
+// Hello paiza
+
+
+// 入力される値
+// 3
+//  期待する出力値
+// Hello paiza
+// Hello paiza
+// Hello paiza
+
+//  標準入力で指定した回数繰り返す
+const readline = require('readline');
+
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  // 入力値を数値に変換
+  const count = Number(line.trim());
+
+  // 指定された回数だけメッセージを表示
+  for (let i = 0; i < count; i++) {
+    console.log("Hello paiza");
+  }
+
+  // リーダーを閉じる
+  reader.close();
+});
+
+
+
+// ********
+// 1. 標準入力から整数を 1 個受け取る
+// 2. 受け取った整数を表示する
+
+// 3. 受け取った整数回分、以下の処理を繰り返す
+
+// a. さらに標準入力から整数を 1 個受け取る
+// b. その整数が 0 の場合、以下のメッセージを表示する
+// AAAは0
+
+// c. その整数が 0 より大きい場合、以下のメッセージを表示する
+// AAAはプラス
+
+// d. それ以外の場合、以下のメッセージを表示する
+// AAAはマイナス
+
+// * AAA には、その整数を当てはめる
+
+
+// 入力される値
+// 1
+// 0
+// 期待する出力値
+// 1
+// 0は0
+
+
+// ゼロ・プラス・マイナスを繰り返し判定する
+let lines = require("fs").readFileSync("/dev/stdin", "utf8").split("\n");
+let count = lines[0];
+console.log(count);
+
+for (let i = 1; i <= count; i++) { // 配列のインデックスが1から始まるので、i=1 から開始
+  let number = Number(lines[i].trim()); // 数値として扱うために Number() を使う
+
+  if (number === 0) {
+    console.log(`${number}は0`);
+  } else if (number > 0) {
+    console.log(`${number}はプラス`);
+  } else {
+    console.log(`${number}はマイナス`);
+  }
+}
+
+
+
+// ********
+// 2 つの文字列 S, T が入力されます。S, T を改行区切りで出力してください。
+// 入力される値
+// S
+// T
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます
+// 期待する出力
+// 答えの文字列を 2 行で出力してください。
+
+// S
+// T
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lines = [];
+reader.on('line', (line) => {
+  lines.push(line);// line イベントで受け取った各行を lines 配列に追加します。これにより、全ての入力行を収集できます。
+});
+
+reader.on('close', () => {
+  const [s, t] = lines; // close イベントで入力が完了した後に、収集した lines 配列から各行を取り出し、改行区切りで出力します。
+  console.log(s);
+  console.log(t);
+});
