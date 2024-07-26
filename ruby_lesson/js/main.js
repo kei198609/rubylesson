@@ -294,6 +294,56 @@ for (let i = 1; i <= count; i++) { // 配列のインデックスが1から始�
 
 
 // ********
+// 10 個の文字列 S_1, S_2, S_3, ..., S_10 が改行区切りで与えられます。
+// これらの文字列をすべて、半角スペース区切りで出力してください。
+
+// 入力される値
+// S_1
+// S_2
+// S_3
+// ...
+// S_10
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 答えの文字列を 1 行で出力してください。
+
+// S_1 S_2 S_3 ... S_10
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// 各行の入力を lines 配列に追加します。
+let lines = [];
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+// reader.on('close', () => { ... }); で入力が完了した後、
+// lines 配列を join(' ') メソッドでスペース区切りの文字列に変換し、
+// それを console.log(result); で出力します。
+reader.on('close', () => {
+  // すべての文字列をスペース区切りで結合
+  const result = lines.join(' ');
+  console.log(result);
+});
+
+
+
+
+
+
+
+
+// ********
 // 2 つの文字列 S, T が入力されます。S, T を改行区切りで出力してください。
 // 入力される値
 // S
@@ -325,3 +375,46 @@ reader.on('close', () => {
   console.log(s);
   console.log(t);
 });
+
+
+
+
+
+// ********
+// 10 個の文字列 S_1, S_2, S_3, ..., S_10 が半角スペース区切りで与えられます。
+// これらの文字列をすべて、改行区切りで出力してください。
+// 入力される値
+// S_1 S_2 S_3 ... S_10
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 答えの文字列を 10 行で出力してください。
+
+// S_1
+// S_2
+// S_3
+// ...
+// S_10
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  // 半角スペースで区切られた文字列を配列に分割
+  const strings = line.split(' ');
+
+  // 配列の各要素を改行区切りで出力
+  strings.forEach(str => console.log(str));
+});
+
+// forEach は、JavaScript の配列メソッドで、
+// 配列の各要素に対して指定された関数を一度ずつ実行します。配列を順番に処理するための便利な方法です。
