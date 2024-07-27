@@ -418,3 +418,113 @@ reader.on('line', (line) => {
 
 // forEach は、JavaScript の配列メソッドで、
 // 配列の各要素に対して指定された関数を一度ずつ実行します。配列を順番に処理するための便利な方法です。
+
+
+
+
+
+
+// ********
+// 数値 N が入力されます。1 から N までの数値をすべて、改行区切りで出力してください。
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+var reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  const n = Number(line.trim());
+  for (let i = 1; i <= n; i++) {
+    console.log(i);
+  }
+});
+
+
+// ********
+// 3 つの文字列が改行区切りで与えられます。
+// これらの文字列をバーティカルライン | 区切りで出力してください。
+
+// 入力される値
+// S1
+// S2
+// S3
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 答えの数値を出力してください。
+
+
+// S1|S2|S3
+
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lines = [];
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  // バーティカルラインで区切って出力
+  console.log(lines.join('|'));
+});
+
+
+
+
+
+// ********
+// 10 個の数値が半角スペース区切りで与えられます。これらの数値すべて受け取り、そのまま出力してください。ただし、数値を出力した直後に必ずカンマを、末尾にはさらに改行も出力してください。
+
+// 入力される値
+// N1 N2 N3 ... N10
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 答えの数値を出力してください。
+
+
+// N1,N2,N3,...,N10,
+
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  // 入力の行をスペースで分割して配列にする
+  const numbers = line.trim().split(' ');
+
+  // 配列の要素をカンマで結合し、末尾にカンマを追加する
+  const result = numbers.join(',') + ',';
+
+  // 結果を出力
+  console.log(result);
+});
+
+
+
+
+// ********
