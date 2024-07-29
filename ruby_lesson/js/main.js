@@ -673,3 +673,151 @@ for (let i = 1; i<=n; i++) {
     console.log(row.join(' '));
 }
 });
+
+
+
+// ********
+// 偶数 N が入力されます。まず、 1 行目には 1 以上 N / 2 以下の数値を半角スペース区切りですべて出力してください。次に、 2 行目には N / 2 + 1 以上 N 以下の数値を半角スペース区切りですべて出力してください。
+// 各行の末尾には、半角スペースの代わりに改行を入れてください。
+
+// 入力される値
+// N
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます
+
+
+// 期待する出力
+// 答えの数値を出力してください。
+
+
+// 1 2 3 ... N/2
+// N/2+1 N/2+2 ... N
+
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+// 入力例1
+// 8
+
+// 出力例1
+// 1 2 3 4
+// 5 6 7 8
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+var reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  const n = Number(line.trim()); // 入力を整数に変換
+  const half = n / 2; // N の半分を計算
+
+  // 1 行目の数値を配列に追加
+  let firstRow = [];
+  for (let i = 1; i <= half; i++) {
+    firstRow.push(i);
+  }
+  console.log(firstRow.join(' ')); // 配列をスペース区切りの文字列に変換して出力
+
+  // 2 行目の数値を配列に追加
+  let secondRow = [];
+  for (let i = half + 1; i <= n; i++) {
+    secondRow.push(i);
+  }
+  console.log(secondRow.join(' ')); // 配列をスペース区切りの文字列に変換して出力
+});
+
+
+
+// ********
+// 自然数 N, M が与えられます。1 行目には 1 以上 N 以下の数値を半角スペース区切りで出力してください。また、2 行目には 1 以上 M 以下の数値を半角スペース区切りで出力してください。
+// さらに、各行の末尾には、半角スペースの代わりに改行を入れてください。
+
+// 入力される値
+// N M
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 答えの数値を出力してください。
+
+
+// 1 2 3 ... N
+// 1 2 3 ... M
+
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// 入力例1
+// 3 5
+
+// 出力例1
+// 1 2 3
+// 1 2 3 4 5
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+
+var reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+   // 入力値を分割して n と m に格納
+    const [n, m] = line.trim().split(' ').map(Number);
+
+   // 1 行目の数値を作成
+    let firstRow = [];
+    for (let i = 1; i <= n; i++) {
+        firstRow.push(i);
+    }
+   console.log(firstRow.join(' ')); // スペース区切りで出力
+
+   // 2 行目の数値を作成
+    let secondRow = [];
+    for (let i = 1; i <= m; i++) {
+        secondRow.push(i);
+    }
+   console.log(secondRow.join(' ')); // スペース区切りで出力
+});
+
+
+
+// ********
+// 自然数 N が与えられます。N が 3 けたになるよう数値の前に半角スペースを埋めて出力してください。
+
+// 入力される値
+// N
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 答えの数値を解答の形式に従った形で出力してください。
+// N
+
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+var reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  const n = Number(line.trim());
+
+  // 数値を文字列に変換し、3桁になるようにする
+  const formattedNumber = n.toString().padStart(3, ' ');
+
+  // 結果を出力
+  console.log(formattedNumber);
+});
+// Number(line.trim()) で、入力された値を数値として取得します。
+// n.toString() で数値を文字列に変換します。
+// padStart(3, ' ') メソッドを使って、文字列が3桁になるように、前にスペースを追加します。
+// padStart メソッドは、指定した長さになるまで、文字列の先頭に指定した文字を追加します。
