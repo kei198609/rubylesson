@@ -821,3 +821,227 @@ reader.on('line', (line) => {
 // n.toString() で数値を文字列に変換します。
 // padStart(3, ' ') メソッドを使って、文字列が3桁になるように、前にスペースを追加します。
 // padStart メソッドは、指定した長さになるまで、文字列の先頭に指定した文字を追加します。
+
+
+// ********
+// 入力される値
+// 以下の形式で標準入力によって与えられます。
+// 1 行目に 1 組の整数 a, bが与えられます。
+
+
+// a b
+
+// 期待する出力
+// a と b をそのまま出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// a b
+
+// 入力例1
+// 8 13
+
+// 出力例1
+// 8 13
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let line = '';
+
+// 標準入力からのデータを1行だけ取得
+reader.on('line', (input) => {
+  line = input;
+});
+
+// 入力が終了したときに処理を行う
+reader.on('close', () => {
+  console.log(line);
+});
+
+
+// ********
+// 入力される値
+// 以下の形式で標準入力によって与えられます。
+// 1 行目に整数 N が、 2 行目に文字列 s_1, ... , s_N が半角スペース区切りで与えられます。
+
+
+// N
+// s_1 ... s_N
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+
+// 期待する出力
+// s_1, ... , s_N を改行区切りで出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// s_1
+// ...
+// s_N
+
+
+// 入力例1
+// 5
+// paiza 813 paiza813 hello813 good
+
+// 出力例1
+// paiza
+// 813
+// paiza813
+// hello813
+// good
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lines = [];
+let numberOfLines = 0;
+
+// 標準入力からのデータを行ごとに取得
+reader.on('line', (line) => {
+  if (numberOfLines === 0) {
+    // 最初の行で N の値を取得
+    numberOfLines = parseInt(line.trim(), 10);
+  } else {
+    // 次の行で文字列を取得し、スペースで区切る
+    const data = line.trim().split(' ');
+    // スペースで区切られた文字列を lines 配列に格納
+    lines.push(...data);
+  }
+});
+
+// 入力が終了したときに処理を行う
+reader.on('close', () => {
+  // lines 配列に格納された文字列を改行で出力
+  lines.forEach(line => {
+    console.log(line);
+  });
+});
+
+// スプレッド構文について (...)
+// line.trim().split(' '): line をスペースで区切って配列に変換します。
+// 例えば、line が "paiza 813 paiza813 hello813 good" の場合、data は ["paiza", "813", "paiza813", "hello813", "good"] になります。
+
+// lines.push(...data): data 配列の要素を lines 配列に追加します。
+// ...data は、data 配列の各要素を個別の引数として展開します。
+// これにより、lines.push("paiza", "813", "paiza813", "hello813", "good") が実行され、lines 配列にこれらの要素が追加されます。
+
+
+
+
+// ********
+// 入力される値
+// 以下の形式で標準入力によって与えられます。
+// 1 行目に 1 組の整数 a, bが与えられます。
+
+
+// a b
+
+// 期待する出力
+// a と b をそのまま出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// a b
+
+// 入力例1
+// 8 13
+
+// 出力例1
+// 8 13
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lines = '';
+
+// 標準入力からのデータを1行だけ取得
+reader.on('line', (input) => {
+  lines = input;
+});
+
+// 入力が終了したときに処理を行う
+reader.on('close', () => {
+  console.log(lines);
+});
+
+
+
+
+// ********
+// 入力される値
+// 以下の形式で標準入力によって与えられます。
+// 1 行目に 整数 N
+// 2 行目から (N + 1) 行目に N 組の整数 a_i, b_i が N 行で与えられます。
+
+
+// N
+// a_1 b_1
+// ...
+// a_N b_N
+
+// 期待する出力
+// N 組の a_i と b_i を改行区切りで出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// a_1 b_1
+// ...
+// a_N b_N
+
+// 入力例1
+// 5
+// 813 813
+// 8 13
+// 81 1
+// 81 3
+// 8 813
+
+// 出力例1
+// 813 813
+// 8 13
+// 81 1
+// 81 3
+// 8 813
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lines = [];
+
+// 標準入力からのデータを行ごとに取得
+reader.on('line', (line) => {
+  lines.push(line.trim());
+});
+
+// 入力が終了したときに処理を行う
+reader.on('close', () => {
+  const n = parseInt(lines[0], 10); // 最初の行で N の値を取得
+  for (let i = 1; i <= n; i++) {
+    console.log(lines[i]);
+  }
+});
