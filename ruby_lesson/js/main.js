@@ -1045,3 +1045,172 @@ reader.on('close', () => {
     console.log(lines[i]);
   }
 });
+
+
+
+// ********
+// 入力される値
+// 1 行目に整数 N が与えられます。
+// 2 行目以降に N 行 3 列の行列が与えられます。
+// 以下の形式で標準入力によって与えられます。
+
+
+// N
+// a_{1,1} a_{1,2} a_{1,3}
+// ...
+// a_{N,1} a_{N,2} a_{N,3}
+
+// 期待する出力
+// N 行 3 列の行列をそのまま出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// a_{1,1} a_{1,2} a_{1,3}
+// ...
+// a_{N,1} a_{N,2} a_{N,3}
+
+// 入力例1
+// 2
+// 1 2 3
+// 8 1 3
+
+// 出力例1
+// 1 2 3
+// 8 1 3
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+// 自分の得意な言語で
+// Let's チャレンジ！！
+var lines = [];
+var reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+// 標準入力からのデータを行ごとに取得
+reader.on('line', (line) => {
+  lines.push(line.trim());
+});
+
+// 入力が終了したときに処理を行う
+reader.on('close', () => {
+  const n = parseInt(lines[0], 10); // 最初の行で N の値を取得
+  for (let i = 1; i <= n; i++) {
+    console.log(lines[i]);
+  }
+});
+
+
+// ********
+// 入力される値
+// 1 行目で整数 M が与えられます。
+// 2 行目以降で 3 行 M 列の行列が与えられます。
+// 以下の形式で標準入力によって与えられます。
+
+
+// M
+// a_{1,1} ... a_{1,M}
+// a_{2,1} ... a_{2,M}
+// a_{3,1} ... a_{3,M}
+
+// 期待する出力
+// 3 行 M 列の行列をそのまま出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// a_{1,1} ... a_{1,M}
+// a_{2,1} ... a_{2,M}
+// a_{3,1} ... a_{3,M}
+
+// 入力例1
+// 5
+// 1 2 3 4 5
+// 8 1 3 8 1
+// 813 138 381 183 831
+
+// 出力例1
+// 1 2 3 4 5
+// 8 1 3 8 1
+// 813 138 381 183 831
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+// 自分の得意な言語で
+// Let's チャレンジ！！
+var lines = [];
+var reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// 標準入力からのデータを行ごとに取得
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+// 入力が終了したときに処理を行う
+reader.on('close', () => {
+  const M = parseInt(lines[0], 10); // 最初の行で列数 M の値を取得
+  // 3 行 M 列の行列をそのまま出力
+  for (let i = 1; i < lines.length; i++) {
+    console.log(lines[i]);
+  }
+});
+
+
+
+// ********
+// 入力される値
+// 1 行目で整数 N と整数 M が与えられます。
+// 2 行目以降で N 行 M 列の行列が与えられます。
+// 以下の形式で標準入力によって与えられます。
+
+
+// N M
+// a_{1,1} ... a_{1,M}
+// ...      ...
+// a_{N,1} ... a_{N,M}
+
+// 期待する出力
+// N 行 M 列の行列をそのまま出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// a_{1,1} ... a_{1,M}
+// ...      ...
+// a_{N,1} ... a_{N,M}
+
+// 入力例1
+// 2 3
+// 1 2 3
+// 8 1 3
+
+// 出力例1
+// 1 2 3
+// 8 1 3
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lines = [];
+
+// 標準入力からのデータを行ごとに取得
+reader.on('line', (line) => {
+  lines.push(line.trim());
+});
+
+// 入力が終了したときに処理を行う
+reader.on('close', () => {
+  // 最初の行から N と M の値を取得（使用しませんが確認用）
+  const [N, M] = lines[0].split(' ').map(Number);
+
+  // 残りの行をそのまま出力
+  for (let i = 1; i < lines.length; i++) {
+    console.log(lines[i]);
+  }
+});
+
