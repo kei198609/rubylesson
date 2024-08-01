@@ -15,6 +15,9 @@ reader.on('line', (line) => {
   // 文字列 s を取得
   lines.push(line);
 });
+// 'line' は readline モジュールにおける標準のイベント名であり、名前を変更することはできません。
+// 他のイベント（例えば 'close' や 'error'）も同様に、モジュールの仕様に従って使う必要があります。
+
 
 // close イベントのリスナーを設定
 // 入力ストリームが終了すると、readline インターフェースは close イベントを発火します。
@@ -1214,3 +1217,97 @@ reader.on('close', () => {
   }
 });
 
+// ********
+// 変数 N を 10,000 で初期化する
+// N を A で割った商を N へ代入する
+// N を B で割った余りを N へ代入する
+// N を出力する
+
+// 入力される値
+// A B
+
+// 期待する出力
+// 計算結果 N を一行で出力してください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// N
+
+// 入力例1
+// 911 285
+
+// 出力例1
+// 10
+
+// 入力例2
+// 526 772
+
+// 出力例2
+// 19
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  const [a, b] = line.trim().split(' ').map(Number);
+  let n = 10000;
+  n = Math.floor(n / a);
+  n %= b;
+  console.log(n);
+});
+
+
+
+// ********
+// 要素数 N の数列 A と数値 M が与えられます。A の M 番目の値を出力してください。
+
+// 入力される値
+// N M
+// A_1 ... A_N
+
+// 期待する出力
+// A の M 番目の値を出力してください。
+// A_M
+
+// 入力例1
+// 5 2
+// 1 2 3 4 5
+
+// 出力例1
+// 2
+
+// 入力例2
+// 3 3
+// 7 8 9
+
+// 出力例2
+// 9
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.on('line',(line) => {
+  // 1 行目から N と M の値を取得
+  const [n, m] = line.trim().split(' ').map(Number);
+  // 2 行目以降から数列 A の値を取得
+  reader.once('line',(line) => {
+    const [a] = line.trim().split(' ').map(Number);
+    // M 番目の値を出力 (配列は 0 ベースなので M - 1 でインデックスを指定)
+    console.log(a[m - 1]);
+  });
+});
+
+// once の特徴
+// 一度だけの実行: once で登録したリスナーは、指定されたイベントが一度発生した後に自動的に削除されます。リスナーが再度実行されることはありません。
+// 使いどころ: 一度だけイベントを処理したい場合や、特定のイベントが発生した後にリスナーを削除したい場合に使います。例えば、設定や初期化が完了した後の処理に適しています。
+// on メソッドとの違い
+// on メソッド: イベントリスナーを複数回実行する場合や、イベントが発生するたびにリスナーを呼び出したい場合に使用します。
+// once メソッド: イベントリスナーを一度だけ実行し、その後は自動的に削除する場合に使用します。
