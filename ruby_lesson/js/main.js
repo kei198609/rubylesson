@@ -1,3 +1,21 @@
+// ********parseInt vs Number ********
+// const N = Number(line.trim()); も const N = parseInt(line.trim(), 10); も基本的には数値に変換するためのコードですが、それぞれのメソッドには違いがあります。以下にそれぞれの違いを説明します。
+
+// parseInt(value, radix):
+// value を指定された radix（基数）で整数に変換します。
+// 基数を指定することで、異なる進数表記の文字列（例えば、16進数の文字列）を整数に変換できます。
+// radix を 10 に設定することで、10進数として解釈します。
+// parseInt は文字列の先頭から数値として解釈できる部分を変換し、変換できない部分は無視します。例えば、parseInt("123abc", 10) は 123 になります。
+
+// Number(value):
+// value を数値に変換します。
+// Number は文字列全体が数値でなければ NaN（非数）を返します。例えば、Number("123abc") は NaN になります。
+// Number は文字列全体を変換するので、無効な部分を無視しません。
+// どちらを使うべきか
+// 入力が確実に整数であり、数値以外の文字が含まれないことがわかっている場合は、Number を使っても問題ありません。
+// 入力に数値以外の文字が含まれる可能性がある場合や、進数が指定される場合には、parseInt を使うと安全です。
+
+
 // ********コードで値が取得 ********
 // readline モジュールのセットアップ
 // readline モジュールを使用して、標準入力 (process.stdin) と
@@ -1311,3 +1329,124 @@ reader.on('line',(line) => {
 // on メソッドとの違い
 // on メソッド: イベントリスナーを複数回実行する場合や、イベントが発生するたびにリスナーを呼び出したい場合に使用します。
 // once メソッド: イベントリスナーを一度だけ実行し、その後は自動的に削除する場合に使用します。
+
+
+
+// ********
+// 0 以上 9 以下の整数が N 個与えられます。各数値の出現回数を求め、
+// 「0」の出現回数、「1」の出現回数、...「9」の出現回数、をこの順に半角スペース区切りで1行に出力してください。
+// 入力される値
+// N
+// A_1 A_2 ... A_N
+
+// 期待する出力
+// 「0」の出現回数 count0、「1」の出現回数 count1、...「9」の出現回数 count9 をこの順に、
+// 半角スペース区切りで1行に出力してください。
+// count0 count1 ... count9
+
+// 入力例1
+// 5
+// 1 2 3 3 6
+
+// 出力例1
+// 0 1 1 2 0 0 1 0 0 0
+
+// 入力例2
+// 10
+// 0 1 2 3 4 5 6 7 8 9
+
+// 出力例2
+// 1 1 1 1 1 1 1 1 1 1
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim()); // 入力の最初の行で N の値を取得（必要ないが、形式に合わせるために取得）
+
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number); // 数値の配列を取得
+    const count = Array(10).fill(0);// 0 から 9 までの出現回数をカウントする配列
+    // 数値の出現回数をカウント
+    numbers.forEach(num => {
+      if (num >= 0 && num <= 9) {
+        count[num]++;
+      }
+    });
+    console.log(count.join(' '));// 結果を半角スペース区切りで出力
+
+  });
+
+});
+
+// Array(10).fill(0); は、JavaScript の配列操作でよく使われるテクニックです。これについて詳しく説明します。
+
+// Array(10)
+// この部分は、Array コンストラクタを使って長さが 10 の配列を作成します。ただし、Array(10) のみでは、
+// 10 個の要素を持つ配列が生成されますが、要素は未定義（空）です。具体的には、配列の長さは 10 ですが、配列の中身は空で、初期化されていません。
+
+// .fill(0)
+// fill メソッドは、配列のすべての要素を指定した値で埋めるためのメソッドです。この場合、fill(0) は配列のすべての要素を 0 で埋めることを意味します。
+const array = Array(10).fill(0);
+console.log(array);
+// 出力: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+
+
+
+
+// ********
+// N 個の要素からなる数列 A と、整数 B が与えられます。
+// B が A に含まれているかどうかを判定してください。
+
+
+// 入力される値
+// N B
+// A_1 A_2 ... A_N
+
+// 期待する出力
+// B が A に含まれているなら「Yes」を、含まれていないなら「No」を出力してください。
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+// 入力例1
+// 5 4
+// 1 2 3 4 5
+
+// 出力例1
+// Yes
+
+// 入力例2
+// 5 6
+// 1 2 3 4 5
+
+// 出力例2
+// No
+
+// 入力例3
+// 1 100
+// 1
+
+// 出力例3
+// No
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+// 1行目でNとBを取得
+reader.once('line', (line) => {
+  const [N, B] = line.trim().split(' ').map(Number);
+  // 2行目で数列Aを取得
+  reader.once('line', (line) => {
+    const a =line.trim().split(' ').map(Number);
+    // BがAに含まれているかどうかを判定
+    if (a.includes(B)) {
+      console.log('Yes');
+    } else {
+      console.log('No');
+    }
+  });
+});
