@@ -1450,3 +1450,67 @@ reader.once('line', (line) => {
     }
   });
 });
+
+
+// ********
+// N 個の要素からなる数列 A が与えられます。数列 A は昇順にソートされています。
+// A の重複した要素を取り除いて昇順に出力してください。
+// 入力される値
+// N
+// A_1 A_2 ... A_N
+
+// 期待する出力
+// A の重複した要素を取り除き、半角スペース区切りで昇順に1行で出力してください。
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+// 入力例1
+// 6
+// 1 2 3 3 4 5
+
+// 出力例1
+// 1 2 3 4 5
+
+// 入力例2
+// 3
+// 1 1 1
+
+// 出力例2
+// 1
+
+// 入力例3
+// 3
+// 1 2 3
+
+// 出力例3
+// 1 2 3
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+    const result = Array.from(new Set(a)).sort((a, b) => (a - b));
+    console.log(result.join(' '));
+  });
+});
+
+// 走査
+// line.trim().split(' ').map(Number)は
+// line.trim() は、line から前後の空白を取り除きます。
+// split(' ') は、空白で文字列を分割して配列を作成します。
+// map(Number) は、各要素を数値に変換します。
+// 例えば、line が "1 2 3 3 4 5" の場合、これにより配列 [1, 2, 3, 3, 4, 5] が得られます。
+
+// new Set(a)は
+// new Set(a) は、配列 a から Set オブジェクトを作成します。
+// Set は重複を許さないため、配列の重複した要素が自動的に取り除かれます。
+// 例えば、[1, 2, 3, 3, 4, 5] という配列を Set に変換すると、重複を取り除いた {1, 2, 3, 4, 5} が得られます。
+
+// Array.from(new Set(a))は
+// Array.from は、Set から新しい配列を作成します。これにより、重複を取り除かれた要素を含む配列が得られます。
+// 例えば、{1, 2, 3, 4, 5} から Array.from を使うと、[1, 2, 3, 4, 5] という配列が得られます。
+
