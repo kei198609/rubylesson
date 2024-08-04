@@ -1514,3 +1514,222 @@ reader.once('line', (line) => {
 // Array.from は、Set から新しい配列を作成します。これにより、重複を取り除かれた要素を含む配列が得られます。
 // 例えば、{1, 2, 3, 4, 5} から Array.from を使うと、[1, 2, 3, 4, 5] という配列が得られます。
 
+
+// ********
+// 0 または 1 の整数 A と B が与えられます。 A OR B の結果を出力してください。
+// 入力される値
+// A B
+
+// 期待する出力
+// A OR B の結果を 0 または 1 で出力してください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+// ビット演算 OR
+// ビット演算の OR は、対応するビットのいずれかが 1 であれば 1 を返します。両方のビットが 0 の場合に限り 0 を返します。
+
+// 具体的には次のような演算です：
+
+// 0 OR 0 は 0
+// 0 OR 1 は 1
+// 1 OR 0 は 1
+// 1 OR 1 は 1
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const [A, B] = line.trim().split(' ').map(Number);
+  const result = A | B; // ビット演算 OR
+  console.log(result);
+  reader.close();
+});
+
+
+// ********
+// 0 または 1 の整数 A が与えられます。 NOT A の結果を出力してください。
+
+// 入力される値
+// A
+
+// 期待する出力
+// NOT A の結果を 0 または 1 で出力してください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// ビット演算 NOT
+// ビット演算の NOT は、ビットを反転させます。0 は 1 に、1 は 0 に変換されます。
+
+// 具体的には次のような演算です：
+
+// NOT 0 は 1
+// NOT 1 は 0
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const A = Number(line.trim());
+  const result = A ^ 1; // NOT A を計算
+  console.log(result);
+  reader.close();
+});
+
+
+// ********
+// 0 または 1 の整数 A と B が与えられます。 A XOR B の結果を出力してください。
+
+// 入力される値
+// A B
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// A XOR B の結果を 0 または 1 で出力してください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const [A, B] = line.trim().split(' ').map(Number);
+  const result = A ^ B; // XOR演算を行う
+  console.log(result);
+  reader.close();
+});
+
+
+
+
+// ********
+// 1 行で文字列 S が与えられるので、 S が "paiza" である時は "YES", そうでない時は "NO" を出力してください。
+
+// 入力される値
+// S
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます
+
+// 期待する出力
+// S が "paiza" である時は "YES", そうでない時は "NO" を 1 行で出力してください。
+
+// 入力例1
+// paiza
+
+// 出力例1
+// YES
+
+// 入力例2
+// PAIZA
+
+// 出力例2
+// NO
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  const s = line.trim();
+
+  if (s === 'paiza') {
+    console.log('YES');
+  } else {
+    console.log('NO');
+  }
+
+  // ストリームを閉じる
+  reader.close();
+});
+
+
+// ********
+// 1 行で文字列 S が与えられるので、 S の文字数を出力してください。
+// 入力される値
+// S
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// S の文字数を 1 行で出力してください。
+
+// 入力例1
+// paiza
+
+// 出力例1
+// 5
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  const s = line.trim();
+  console.log(s.length);
+
+  // ストリームを閉じる
+  reader.close();
+});
+
+
+
+// ********
+// 与えられる文字列の数 N と、 N 個の文字列が与えられるので、
+// それらを順に末尾に連結した文字列を出力してください。
+// 入力される値
+// N
+// S_1
+// ...
+// S_N
+
+// ・ 1 行目で与えられる文字列の数 N が与えられます。
+// ・ 続く N 行で連結する文字列 S_i (1 ≦ i ≦ N) が与えられます。
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// N 個の文字列を順に後ろに連結した文字列を 1 行で出力してください。
+
+// 入力例1
+// 2
+// pa
+// iza
+
+// 出力例1
+// paiza
+
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let n;
+const strings = [];
+
+// 最初の行で N の値を取得
+reader.once('line', (line) => {
+  // strings.length === n で n が未定義になる可能性があるため、確実に n をグローバルスコープに持つ必要があります。
+  n = parseInt(line.trim(), 10);
+});
+
+// N 個の文字列を取得
+reader.on('line', (line) => {
+  strings.push(line.trim());
+
+  if (strings.length === n) {
+    // すべての文字列が取得できたら連結して出力
+    const result = strings.join('');
+    console.log(result);
+    reader.close();
+  }
+});
