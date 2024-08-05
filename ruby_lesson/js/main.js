@@ -1733,3 +1733,105 @@ reader.on('line', (line) => {
     reader.close();
   }
 });
+
+
+
+// ********
+// 数値を表す文字列 S が与えられるので、 S - 813 の値を求めてください。
+// 入力される値
+// S
+
+
+// ・ 文字列 S が 1 行で与えられます。
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// S - 813 の値を 1 行で出力してください。
+
+// 入力例1
+// 813
+
+// 出力例1
+// 0
+
+// 入力例2
+// 12345
+
+// 出力例2
+// 11532
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const S = Number(line.trim());
+  const result = S - Number(813);
+  console.log(result.toString());
+});
+// console.log() は、渡された引数を自動的に文字列に変換して出力します。
+// そのため、数値に対して toString() を明示的に呼び出さなくても、出力は問題ありません。
+
+
+
+
+
+// ********
+// 数値 X , Y が与えられるので、X + Y の計算結果の先頭から N 文字目の数字を出力してください。
+// 例
+// ・ X = 813 , Y = 813 , N = 1 のとき
+// X + Y = 1626 の 1 文字目である 1 を出力してください。
+
+// ・ X = -813 , Y = 813 , N = 1 のとき
+// X + Y = 0 の 1 文字目である 0 を出力してください。
+
+// ・ X = 10000 , Y = -813 , N = 3 のとき
+// X + Y = 9187 の 3 文字目である 8 を出力してください。
+
+// 入力される値
+// X
+// Y
+// N
+// ・ 1 行目では数値 X が、 2 行目では数値 Y , 3 行目では数値 N が与えられます。
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 答えとなる数字を 1 行で出力してください。
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+// 入力値を格納する変数
+let X, Y, N;
+reader.once('line', (line) => {
+  X = Number(line.trim());
+});
+reader.once('line', (line) => {
+  Y = Number(line.trim());
+});
+reader.once('line', (line) => {
+  N = Number(line.trim());
+  const sum = X + Y;
+  const sumString = sum.toString();
+
+  if (N <= sumString.length) {
+    const result = sumString[N-1]; //sumString[N - 1] で N 番目の文字を取得します。N は 1 から始まるため、N - 1 を使ってインデックスを調整します。
+    console.log(result);
+  }else {
+    console.log('error');
+  }
+
+});
+// N <= sumString.length という条件で、N が文字列の長さ以内であることを確認します。
+// これにより、指定されたインデックスが有効であるかをチェックし、範囲外のインデックスによるエラーを防ぎます。
+
+// N が文字列の長さを超える場合、sumString[N - 1] のインデックスは存在しないため、
+// エラーが発生します。例えば、sumString が 12345 で長さが 5 の場合、N が 6 のときは、
+// sumString[5] のインデックスは存在しません。
