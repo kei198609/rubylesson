@@ -1835,3 +1835,175 @@ reader.once('line', (line) => {
 // N が文字列の長さを超える場合、sumString[N - 1] のインデックスは存在しないため、
 // エラーが発生します。例えば、sumString が 12345 で長さが 5 の場合、N が 6 のときは、
 // sumString[5] のインデックスは存在しません。
+
+
+
+
+
+// ********
+// 入力される値
+// S
+// T
+
+
+// ・ 1 行目に文字列 S , 2 行目に文字列 T が与えられます。
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+
+// 期待する出力
+// T が S の部分文字列ならば "YES" , そうでなければ "NO" を出力してください。
+
+
+// 入力例1
+// paiza
+// iza
+
+// 出力例1
+// YES
+
+// 入力例2
+// hellllllllllo
+// hellllllllllo
+
+// 出力例2
+// YES
+
+// 入力例3
+// abcdefg
+// abe
+
+// 出力例3
+// NO
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let S;
+let T;
+reader.once('line', (line)=> {
+  S = line.trim();
+});
+reader.once('line', (line)=> {
+  T = line.trim();
+  if (S.includes(T)) {
+    console.log('YES');
+  } else {
+    console.log('NO');
+  }
+});
+
+
+
+// ********
+// 文字列 S が与えられるので、 S が回文かどうかを判定してください。
+// なお、回文とは、前から読んでも後ろから読んでも同じ文字列になるような文字列のことをいいます。
+
+// 入力される値
+// S
+
+
+// ・ 文字列 S が 1 行で与えられます。
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// S が回文である場合 "YES" を、そうでない場合は "NO" を出力してください。
+
+// 入力例1
+// 1234321
+
+// 出力例1
+// YES
+
+// 入力例2
+// paizaazzap
+
+// 出力例2
+// NO
+
+// 入力例3
+// shinbunshi
+
+// 出力例3
+// NO
+
+// 入力例4
+// qpwoeirutyyturieowpq
+
+// 出力例4
+// YES
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line)=> {
+  S = line.trim();
+  const isPalindrome = S === S.split('').reverse().join('');
+  console.log(isPalindrome ? 'YES' : 'NO');
+});
+
+// S.split('') で ['1', '2', '3', '4', '3', '2', '1'] という配列に分割
+// .reverse() で ['1', '2', '3', '4', '3', '2', '1'] という逆順の配列に変換（この場合、逆順でも同じ）
+// .join('') で '1234321' という文字列に再結合
+
+
+
+// ********
+// 入力される値
+// S
+
+
+// ・ 文字列 S が 1 行で与えられます。
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// S を ',' で区切ったときに得られる各要素を順に改行区切りで出力してください。
+
+// 入力例1
+// a,b,c,d,e
+
+// 出力例1
+// a
+// b
+// c
+// d
+// e
+
+// 入力例2
+// 123,456,789
+
+// 出力例2
+// 123
+// 456
+// 789
+
+// 入力例3
+// 1,23,456,789,1011
+
+// 出力例3
+// 1
+// 23
+// 456
+// 789
+// 1011
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const S = line.trim().split(',');
+  S.forEach(element => {
+    console.log(element);
+  });
+
+});
