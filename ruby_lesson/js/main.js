@@ -16,6 +16,10 @@
 // 入力に数値以外の文字が含まれる可能性がある場合や、進数が指定される場合には、parseInt を使うと安全です。
 
 
+// const: 定数として一度だけ値を設定し、その後変更しない変数に使います。再代入が不要で、変数の参照が一定である場合に使用します。
+// let: 再代入可能な変数に使います。変数の値が変更される可能性がある場合に使用します。
+
+
 // ********コードで値が取得 ********
 // readline モジュールのセットアップ
 // readline モジュールを使用して、標準入力 (process.stdin) と
@@ -2006,4 +2010,41 @@ reader.once('line', (line) => {
     console.log(element);
   });
 
+});
+
+
+
+// ********
+// 入力される値
+// S
+
+
+// ・ 文字列 S が 1 行で与えられます。
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// S から数字の重複を取り除いたときにできる文字列を 1 行で出力してください。
+
+// 入力例1
+// 1234567890
+
+// 出力例1
+// 1234567890
+
+// 入力例2
+// 112123123412345
+
+// 出力例2
+// 12345
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const S = line.trim();
+  const result = Array.from(new Set(S)).join('');
+  console.log(result);
 });
