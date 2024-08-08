@@ -2048,3 +2048,87 @@ reader.once('line', (line) => {
   const result = Array.from(new Set(S)).join('');
   console.log(result);
 });
+
+// ********
+// 以下の数列の全要素を改行区切りで出力してください。
+
+// 5 1 3 4 5 12 6 8 1 3
+
+// 入力される値
+// 入力は与えられません。
+
+// 期待する出力
+// 数列の全要素を改行区切りで出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// 5
+// 1
+// 3
+// 4
+// 5
+// 12
+// 6
+// 8
+// 1
+// 3
+
+const numbers = "5 1 3 4 5 12 6 8 1 3";
+const elements = numbers.split(' ');
+
+elements.forEach(element => {
+  console.log(element);
+});
+
+
+
+// ********
+// 以下の数列の 4 番目の要素を出力してください。
+
+// 5 1 3 4 5 12 6 8 1 3
+
+// 入力される値
+// 入力は与えられません。
+
+// 期待する出力
+// 数列の 4 番目の要素を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// 4
+
+const number = "5 1 3 4 5 12 6 8 1 3";
+const element = numbers.split(' ');
+
+// インデックス 3 の要素を出力（4 番目の要素）
+console.log(element[3]);
+
+
+
+
+
+
+
+// ********
+// 入力される値
+// 整数 K が与えられます。
+// 以下の形式で標準入力によって与えられます。
+// K
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// 数列の K 番目の要素を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// a_K
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+const sequence = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+reader.once('line', (line) => {
+  const K = Number(line.trim());
+  console.log(sequence[K-1]);
+});
