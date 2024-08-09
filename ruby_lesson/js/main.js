@@ -2132,3 +2132,45 @@ reader.once('line', (line) => {
   const K = Number(line.trim());
   console.log(sequence[K-1]);
 });
+
+
+
+// ********
+// 入力される値
+// 1 行目に整数 K が与えられます。
+// 2 行目に 10 個の整数 a_i が半角スペース区切りで与えられます。
+// 以下の形式で標準入力によって与えられます。
+
+
+// K
+// a_1 ... a_10
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// K 番目の要素 a_K を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// a_K
+
+// 入力例1
+// 5
+// 8 1 3 1 3 8 3 8 1 1
+
+// 出力例1
+// 3
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let K;
+let num = [];
+reader.once('line', (line) => {
+  let K = Number(line.trim());
+});
+reader.once('line', (line) => {
+  let num = line.trim().split('').map(Number);
+  console.log(num[K-1]);
+});
