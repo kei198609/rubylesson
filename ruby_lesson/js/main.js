@@ -2174,3 +2174,137 @@ reader.once('line', (line) => {
   let num = line.trim().split('').map(Number);
   console.log(num[K-1]);
 });
+
+
+
+// ********
+// 以下のような配列があります。
+
+// 10 13 21 1 6 51 10 8 15 6
+
+// この中に、6 が含まれているなら Yes、含まれていないなら No を出力してください。
+
+// 入力される値
+// 入力は与えられません。
+
+// 期待する出力
+// 6 が含まれているなら Yes、含まれていないなら No を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+const arrays = [10, 13, 21, 1, 6, 51, 10, 8, 15, 6];
+const result = arrays.includes(6);//includes メソッドは、指定された値が配列に存在する場合に true を返す
+console.log(result ? "YES" : "NO");
+
+// ********
+// 整数 N が与えられます。
+// 以下の配列に、整数 N が含まれているなら Yes、含まれていないなら No を出力してください。
+
+// 5 12 6 84 14 25 44 3 7 20
+
+// 入力される値
+// 整数 N が与えられます。
+// 以下の形式で標準入力によって与えられます。
+// N
+
+// 期待する出力
+// N が含まれているなら Yes、含まれていないなら No を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+const a = [10, 13, 21, 1, 6, 51, 10, 8, 15, 6];
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  const result = a.includes(N);
+  console.log(result ? "YES" : "NO");
+});
+
+
+
+// ********
+// 1 行目に整数 N, M が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// 以下の形式で標準入力によって与えられます。
+
+
+// N M
+// a_1 a_2 ... a_N
+
+// 期待する出力
+// N 個の整数の中に、整数 M が含まれているなら Yes、含まれていないなら No を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+// 入力例1
+// 5 1
+// 1 2 3 4 5
+
+// 出力例1
+// Yes
+
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let b = [];
+let target = null;
+reader.once('line', (line) => {
+  const [N, M] = line.trim().split(' ').map(Number);
+  target = M;
+
+  reader.once('line', (line) => {
+    b = line.trim().split(' ').map(Number);
+    const result = b.includes(target) ? "YES" : "NO";
+    console.log(result);
+
+  });
+
+});
+
+// ********
+// 以下のような配列があります。
+// 1 10 2 9 3 8 4 7 5 6
+
+// この配列の中で、8 が左から何番目にあるか出力してください。
+// 左端を 1 番目とします。
+
+// 入力される値
+// 入力は与えられません。
+
+// 期待する出力
+// 8 が左から何番目にあるか出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// 6
+
+const array_1 = [1, 10, 2, 9, 3, 8, 4, 7, 5, 6];
+const target_1 = 8;
+const position = array_1.indexOf(target_1) + 1;
+console.log(position);
+// array.indexOf(N) で N の位置を 0 から始まるインデックスとして取得します。
+
+
+
+
+// ********
+// 以下のような配列があります。
+
+// 1 2 2 1 2 1 2 1 1 1
+
+// この中に含まれる 1 の個数を出力してください。
+
+// 入力される値
+// 入力は与えられません。
+
+// 期待する出力
+// 配列に含まれる 1 の個数を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// 6
+
+const array_2 = [1, 2, 2, 1, 2, 1, 2, 1, 1, 1];
+const countOne = array_2.filter(value => value === 1).length;
+console.log(countOne);
+// array.filter(value => value === 1) は、配列内の全要素をチェックし、値が 1 の要素だけを含む新しい配列を作成します。
