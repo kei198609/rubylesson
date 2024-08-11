@@ -2308,3 +2308,251 @@ const array_2 = [1, 2, 2, 1, 2, 1, 2, 1, 1, 1];
 const countOne = array_2.filter(value => value === 1).length;
 console.log(countOne);
 // array.filter(value => value === 1) は、配列内の全要素をチェックし、値が 1 の要素だけを含む新しい配列を作成します。
+
+
+
+// ********
+// 入力される値
+// 1 行目に整数 A, B, N が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// 以下の形式で標準入力によって与えられます。
+
+
+// A B N
+// a_1 a_2 ... a_N
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。
+
+// 期待する出力
+// N 個の整数の内、その数が A だった場合、B に書き換えてください。
+// 書き換えた N 個の整数を改行区切りで出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// a_1
+// a_2
+// ...
+// a_N
+
+// 入力例1
+// 3 1 5
+// 1 2 3 4 5
+
+// 出力例1
+// 1
+// 2
+// 1
+// 4
+// 5
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const [A, B, N] = line.trim().split(' ').map(Number);
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number);
+    const result = numbers.map(num => num === A ? B : num); //num は、numbers 配列の各要素を順に受け取る引数です。
+    result.forEach(num => console.log(num));
+  });
+
+});
+
+// 条件: num === A
+//   各要素 num が、指定された整数 A と等しいかどうかをチェックします。
+// 真の場合: B
+//   num が A と等しい場合、B に置き換えます。
+// 偽の場合: num
+//   num が A と等しくない場合、そのまま num を残します。
+
+
+
+// ********
+// 配列の要素の入れ替え
+
+// 入力される値
+// 1 行目に整数 A, B, N が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// 以下の形式で標準入力によって与えられます。
+// A B N
+// a_1 a_2 ... a_N
+
+// 期待する出力
+// N 個の整数の左から A 番目の数と B 番目の数の値を入れ替えて、改行区切りで出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+// 入力例1
+// 2 3 5
+// 1 2 3 4 5
+
+// 出力例1
+// 1
+// 3
+// 2
+// 4
+// 5
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const [A, B, N] = line.trim().split(' ').map(Number);
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number);
+    // 配列のインデックスは0から始まるので、A-1 と B-1 に変換
+    const indexA = A - 1;
+    const indexB = B - 1;
+    // A 番目と B 番目の要素を入れ替える
+    [numbers[indexA], numbers[indexB]] = [numbers[indexB], numbers[indexA]];
+    numbers.forEach(num => console.log(num));
+  });
+});
+
+
+
+// ********
+// 配列の連結
+
+// 1 行目に整数 N, M が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// 3 行目に M 個の整数 b_1, b_2, ..., b_M が与えられます。
+// N 個の整数 a_1, a_2, ..., a_N の後ろに M 個の整数 b_1, b_2, ..., b_M を連結させ、改行区切りで出力してください。
+// 入力例1
+// 2 3
+// 1 2
+// 3 4 5
+
+// 出力例1
+// 1
+// 2
+// 3
+// 4
+// 5
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const [N, M] = line.trim().split(' ').map(Number);
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+  });
+    reader.once('line', (line) => {
+      const b = line.trim().split(' ').map(Number);
+      const result = a.concat(b);
+      result.forEach(num => console.log(num));
+    });
+});
+
+
+
+// ********
+// 配列のソート
+// 1 行目に整数 N が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// N 個の整数を小さい順にソートし、改行区切りで出力してください。
+// 入力例1
+// 5
+// 5 4 3 2 1
+
+// 出力例1
+// 1
+// 2
+// 3
+// 4
+// 5
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  // 1行目から整数 N を取得
+  const N = Number(line.trim());
+
+  // 2行目から配列 a を取得
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+
+    // 配列 a をソート（小さい順）
+    a.sort((x, y) =>  x - y);
+
+    // 結果を改行区切りで出力
+    a.forEach(num => console.log(num));
+  });
+});
+
+
+
+// ********
+// 配列の反転
+// 1 行目に整数 N が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// N 個の整数の順番を反転させ、改行区切りで出力してください。
+// 入力例1
+// 5
+// 1 5 2 4 3
+
+// 出力例1
+// 3
+// 4
+// 2
+// 5
+// 1
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  // 1行目から整数 N を取得
+  const N = Number(line.trim());
+
+  // 2行目から配列 a を取得
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number);
+
+    // 配列 a を反転
+    numbers.reverse();
+
+    // 結果を改行区切りで出力
+    numbers.forEach(num => console.log(num));
+  });
+});
+
+// ********
+// 要素のカウント
+// 1 行目に整数 N, M が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// N 個の整数に含まれている M の個数を出力してください。
+// 入力例1
+// 5 1
+// 1 1 1 2 2
+
+// 出力例1
+// 3
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const [N, M] = line.trim().split(' ').map(Number);
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number);
+    const count = numbers.filter(num => num === M).length;
+    console.log(count);
+  });
+});
