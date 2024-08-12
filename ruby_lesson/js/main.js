@@ -2556,3 +2556,183 @@ reader.once('line', (line) => {
     console.log(count);
   });
 });
+
+
+
+// ********
+// 配列末尾への追加
+// 1 行目に整数 N, M が与えられます。
+// 2 行目に N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// N 個の整数の末尾に整数 M を挿入し、改行区切りで出力してください。
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const [N, M] = line.trim().split(' ').map(Number);
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+    a.push(M);// M を配列 a の末尾に追加
+    a.forEach(num => console.log(num));
+  });
+});
+
+// ********
+// 要素数の出力
+// 複数の文字列があります。文字列の数を出力してください。
+
+// Hello
+// paiza
+// 1234
+// pa13
+
+// 入力される値
+// 入力は与えられません。
+
+// 期待する出力
+// 文字列の数を出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// 4
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lines = [];
+// 行ごとにデータを読み取る
+reader.on('line', (line) => {
+  // 空行で終了
+  if (line.trim() === '' ) {
+    reader.close();
+    return;
+  }
+  lines.push(line.trim());
+});
+// 全ての入力が終了したら文字列の数を出力
+reader.on('close', () => {
+  console.log(lines.length);
+});
+
+
+
+// ********
+// 全要素の出力
+// 複数の文字列があります。すべての文字列を改行区切りで出力してください。
+
+// good
+// morning
+// paiza
+// 813
+// pa13
+
+// 入力される値
+// 入力は与えられません。
+
+// 期待する出力
+// すべての文字列を改行区切りで出力してください。
+// また、末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// good
+// morning
+// paiza
+// 813
+// pa13
+
+const string = [
+  "good",
+  "morning",
+  "paiza",
+  "813",
+  "pa13"
+];
+string.forEach(str => console.log(str));
+
+
+
+// ********
+// 文字列の配列の入力 2
+
+// 10 個の文字列 s_1, s_2, ..., s_10 が半角スペース区切りで与えられます。
+// すべての文字列を改行区切りで出力してください。
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const string = line.trim().split(' ');// 入力された文字列を半角スペースで分割して配列に変換
+  string.forEach(str => console.log(str));
+});
+
+
+
+// ********
+// 整数 N が与えられます。
+// 以下の文字列のうち、N 番目の文字列を出力してください。
+
+// good
+// morning
+// paiza
+// 813
+// pa13
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+const string_1 = [
+  'good',
+  'morning',
+  'paiza',
+  '813',
+  'pa13'
+];
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  console.log(string_1[N-1]);
+});
+
+
+
+// ********
+// i 番目の出力 2
+// 1 行目に整数 N が与えられます。
+// 2 行目に 5 個の文字列 s_1, s_2, ..., s_5 が半角スペース区切りで与えられます。
+// N 番目の文字列 s_N を出力してください。
+// 入力例1
+// 3
+// a b c d e
+
+// 出力例1
+// c
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+    reader.once('line', (line) => {
+      const string = line.trim().split(' ');
+      console.log(string[N-1]);
+    });
+});
+
+
+// ********
+// 重複の削除
+// 以下のような数列があります。
+
+// 1 3 5 1 2 3 6 6 5 1 4
+
+// この数列から数の重複をなくし、昇順にし改行区切りで出力してください。
+// 入力される値
+// 入力は与えられません。
+a = [1, 3, 5, 1, 2, 3, 6, 6, 5, 1, 4];
+const result_1 = Array.from(new Set(a)).sort((a, b) => (a - b));
+console.log(result_1.join(' '));
