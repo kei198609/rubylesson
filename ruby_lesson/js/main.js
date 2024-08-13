@@ -2736,3 +2736,36 @@ reader.once('line', (line) => {
 a = [1, 3, 5, 1, 2, 3, 6, 6, 5, 1, 4];
 const result_1 = Array.from(new Set(a)).sort((a, b) => (a - b));
 console.log(result_1.join(' '));
+
+
+
+// ********
+// 2 つの整数A、Bが与えられます。AとBが両方とも 10 以上の場合はYESを、そうではない場合はNOを出力してください。
+// 入力される値
+// A B
+
+// 入力例1
+// 12 10
+
+// 出力例1
+// YES
+
+// 入力例2
+// 8 15
+
+// 出力例2
+// NO
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const [A, B] = line.trim().split(' ').map(Number);
+  if (A>=10 && B >=10) {
+    console.log('YES');
+  } else {
+    console.log('NO');
+  }
+
+});
