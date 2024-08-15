@@ -2992,4 +2992,85 @@ reader.once('line', (line) => {
 
 
 
+// ********
+// 長さ N の数列 a (a_1, a_2, ..., a_N) と b (b_1, b_2, ..., b_N) が与えられます。
+// a の各要素から b の各要素を引いた結果 (a_1 - b_1, a_2 - b_2, ..., a_N - b_N) を、改行区切りで出力してください。
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+// b_1 b_2 ... b_N
+// 入力例1
+// 5
+// 1 2 3 4 5
+// 5 4 3 2 1
 
+// 出力例1
+// -4
+// -2
+// 0
+// 2
+// 4
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim()); // 数列の長さ N
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number); // 数列 a の読み込み
+    reader.once('line', (line) => {
+      const b = line.trim().split(' ').map(Number); // 数列 b の読み込み
+      // 各要素の引き算を行い、結果を出力
+
+      const result = a.map((value, index) => value - b[index]);
+      result.forEach( num => console.log(num));
+
+    });
+  });
+});
+// 以下のようにも書ける
+reader.once('line', (line) => {
+  const N = Number(line.trim()); // 数列の長さ N
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number); // 数列 a の読み込み
+    reader.once('line', (line) => {
+      const b = line.trim().split(' ').map(Number); // 数列 b の読み込み
+      // 各要素の引き算を行い、結果を出力
+
+      a.forEach((value, index) => {
+        console.log(value - b[index]);
+      });
+
+    });
+  });
+});
+
+
+// ********
+// 数列の和
+// 長さ N の数列 a (a_1, a_2, ..., a_N) が与えられます。
+// この数列の和を計算し、出力してください。
+
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+    const sum = a.reduce((acc, value) => acc + value, 0);
+    console.log(num);
+  });
+});
+// コールバック関数(acc, value)について、
+// 累積値（acc）: 前回の計算結果や初期値。最初の呼び出し時にはこの値が初期値になります。
+// 現在の値（value）: 現在処理している配列の要素。
+// また、reduce メソッドの第二引数として渡される 0 は、初期値
