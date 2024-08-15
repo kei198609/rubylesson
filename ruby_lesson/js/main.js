@@ -2769,3 +2769,227 @@ reader.once('line', (line) => {
   }
 
 });
+
+
+// ********
+// 長さ N の数列Aが与えられます。この数列に含まれる偶数の要素の個数と、奇数の要素の個数を答えてください。
+// 入力される値
+// N
+// A1 A2 ... AN
+
+// 偶数の要素の個数Eと、奇数の要素の個数Oを半角スペース区切りで出力してください。
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  reader.once('line', (line) => {
+    const A = line.trim().split(' ').map(Number);
+
+    let evenCount = 0;
+    let oddCount = 0;
+
+    // 数列を走査してカウントを更新する
+    A.forEach(num => {
+      if ( num % 2 === 0 ) {
+        evenCount ++;
+      } else {
+        oddCount ++;
+      }
+    });
+    console.log(`${evenCount} ${oddCount}`);
+
+  });
+
+});
+
+
+
+// ********
+// 曜日の判定
+// ある月の 1 日は日曜日、 2 日は月曜日...です。X日は何曜日でしょう。
+// 入力される値
+// X
+// 入力例1
+// 1
+
+// 出力例1
+// Sun
+
+// 入力例2
+// 11
+
+// 出力例2
+// Wed
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const X = Number(line.trim());
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayIndex = (X - 1) % 7;
+  console.log(daysOfWeek[dayIndex]);
+});
+
+
+
+// ********
+// けた数の測定
+// 整数Nが与えられます。Nのけた数を出力してください。
+
+// 入力される値
+// N
+
+// 期待する出力
+// N のけた数Dを出力してください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// D
+
+// 入力例1
+// 5
+
+// 出力例1
+// 1
+
+// 入力例2
+// 100
+
+// 出力例2
+// 3
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = line.trim();
+  const digitCount = N.length;  // 数字を文字列として扱い、その長さを取得
+  console.log(digitCount);
+});
+
+// line.trim().split(' ').map(Number): split(' ') は複数の値を処理する際に使いますが、
+// ここでは単一の整数 N の場合なので、split は不要です。trim() だけで十分です。
+
+
+
+
+// ********
+// 整数N, 2 つの数列A, B が与えられます。 1 ≦ i ≦ N を満たす整数 i のうち、A_i と B_i が等しくなるような i の個数を求めてください。
+
+// 入力される値
+// N
+// A_1 A_2 ... A_N
+// B_1 B_2 ... B_N
+
+// 期待する出力
+// A_i == B_iである要素の個数Cを求めてください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// C
+
+// 入力例1
+// 5
+// 1 2 3 4 5
+// 1 20 30 4 5
+
+// 出力例1
+// 3
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  reader.once('line', (line) => {
+    const A = line.trim().split(' ').map(Number);
+    reader.once('line', (line) => {
+      const B = line.trim().split(' ').map(Number);
+      let count = 0;
+      for (let i = 1; i<N; i++) {
+        if ( A[i] === B[i] ) {
+          count++;
+        }
+      }
+      console.log(count);
+    });
+  });
+});
+
+// ちなfor letの箇所は、forEachでも書ける↓
+A.forEach((value, index) => {
+  if (value === B[index]) {
+    count++;
+  }
+})
+// A.forEach((value, index) => {...}) を使って、配列 A の各要素とそのインデックスを取得します。
+// value は A の各要素、index はその要素のインデックスです。
+
+
+
+// ********
+// 直線上の道があり、最初は X = 0 の地点にいます。この道はX = T + 0.1 の地点で崖になっています。
+// また、 1 歩でX軸方向にK進むことができます。崖に落ちずにN歩進むことはできるでしょうか。
+
+// 入力される値
+// N K T
+
+// 期待する出力
+// 崖に落ちずにN歩進むことができる場合はYESを、そうではない場合はNOを出力してください。
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+// YES
+// または
+// NO
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const [N, K, T] = line.trim().split(' ').map(Number);
+  const finalPosition = N * K; //N 歩進んだ最終位置を計算します。
+  const cliffPosition = T + 0.1; //崖の位置を設定します。
+  if (finalPosition < cliffPosition) {
+    console.log('YES');
+  } else {
+    console.log('NO');
+  }
+});
+
+
+
+
+// ********
+// 長さ N の数列 a (a_1, a_2, ..., a_N) が与えられます。
+// この数列の中に 1 が何個あるか出力してください。
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+// ・ 1 行目に整数 N が与えられます。
+// ・ 2 行目に長さ N の数列 a が与えられます。
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim()); // Nは整数なのでNumberで変換
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number); // 数列を整数配列に変換
+    const count = numbers.filter(num => num === 1).length; // 1の個数をカウント
+    console.log(count); // 結果を出力
+  });
+});
+
+
+
+
