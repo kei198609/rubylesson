@@ -3074,3 +3074,81 @@ reader.once('line', (line) => {
 // 累積値（acc）: 前回の計算結果や初期値。最初の呼び出し時にはこの値が初期値になります。
 // 現在の値（value）: 現在処理している配列の要素。
 // また、reduce メソッドの第二引数として渡される 0 は、初期値
+
+
+
+// ********
+// 数列の値を全部 * 2 して出力
+// 長さ N の数列 a (a_1, a_2, ..., a_N) が与えられます。
+// この数列の全ての要素を 2 倍し、改行区切りで出力してください。
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+
+// 入力例1
+// 5
+// 1 2 3 4 5
+
+// 出力例1
+// 2
+// 4
+// 6
+// 8
+// 10
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+    a.forEach(num => console.log(num * 2));
+  });
+});
+
+
+
+// ********
+// 長さ N の数列 a (a_1, a_2, ..., a_N) と b (b_1, b_2, ..., b_N) が与えられます。
+// a の各要素から b の各要素を引いた結果 (a_1 - b_1, a_2 - b_2, ..., a_N - b_N) を、改行区切りで出力してください。
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+// b_1 b_2 ... b_N
+// 入力例1
+// 5
+// 1 2 3 4 5
+// 5 4 3 2 1
+
+// 出力例1
+// -4
+// -2
+// 0
+// 2
+// 4
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  // 数列の長さ N を取得
+  const N = Number(line.trim());
+
+  reader.once('line', (line) => {
+    // 数列 a の要素を取得
+    const a = line.trim().split(' ').map(Number);
+
+    reader.once('line', (line) => {
+      // 数列 b の要素を取得
+      const b = line.trim().split(' ').map(Number);
+
+      // 各要素の引き算を行い、結果を改行区切りで出力
+      a.forEach((value, index) => console.log(value - b[index]));
+
+    });
+  });
+});
