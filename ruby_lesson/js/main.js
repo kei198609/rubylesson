@@ -3152,3 +3152,156 @@ reader.once('line', (line) => {
     });
   });
 });
+
+
+// ********
+// 長さ N の数列 a (a_1, a_2, ..., a_N) が与えられます。
+// この数列の要素を逆順に、改行区切りで出力してください。
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+// 入力例1
+// 5
+// 1 2 3 4 5
+
+// 出力例1
+// 5
+// 4
+// 3
+// 2
+// 1
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  // 数列の長さ N を取得（ここでは実際に使用しない）
+  const N = Number(line.trim());
+
+  reader.once('line', (line) => {
+    // 数列 a の要素を取得し、逆順にして出力
+    const a = line.trim().split(' ').map(Number);
+    a.reverse().forEach(num => console.log(num));
+  });
+});
+
+
+// ********
+// 九九の 8 の段を半角スペース区切りで出力してください。
+// 入力される値
+// ・ 入力は与えられません。
+
+// 期待する出力
+// 九九の 8 の段を半角スペース区切りで出力してください。
+// 出力の末尾には改行を入れてください。
+// 8 16 24 32 40 48 56 64 72
+
+
+const result_2 = [];
+for(let i = 1; i <= 9; i++) {
+  result_2.push(8 * i);
+}
+console.log(result_2.join(' '));
+
+
+
+// ********
+// 九九の表示 2
+// 整数 N が与えられます。
+// 九九の N の段を半角スペース区切りで出力してください。
+// 入力される値
+// N
+// ・ 1 行目に整数 N が与えられます。
+
+// 期待する出力
+// 九九の N の段を半角スペース区切りで出力してください。
+// 出力の末尾には改行を入れてください。
+// N*1 N*2 ... N*9
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  const result = [];
+  for(let i = 1; i <= 9; i++) {
+    result.push(N * i);
+  }
+  console.log(result.join(' '));
+
+});
+
+
+
+// ********
+// 2 の累乗を表示
+// 整数 N が与えられます。
+// 2 の 1 乗から 2 の N 乗までを改行区切りで出力してください。
+
+// 入力される値
+// N
+
+// 期待する出力
+// 2 の 1 乗から 2 の N 乗までを改行区切りで出力してください。
+// 出力の末尾には改行を入れてください。
+// 2^1
+// 2^2
+// ...
+// 2^N
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  for(let i = i; i <= N; i++) {
+    console.log(2 ** i);
+  }
+
+});
+
+// ********
+// 数列の最大値
+// 長さ N の数列 a (a_1, a_2, ..., a_N) が与えられます。
+// この数列の最大値を出力してください。
+
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+
+// 入力例1
+// 5
+// 1 2 3 4 5
+
+// 出力例1
+// 5
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+    const maxValue = Math.max(...a);
+    console.log(maxValue);
+
+  });
+
+});
+// スプレッド構文 (...) は、配列やオブジェクトの要素を展開するために使用されます。
+// 配列での使用例
+// const numbers = [1, 2, 3];
+// const moreNumbers = [0, ...numbers, 4, 5];
+// console.log(moreNumbers); // [0, 1, 2, 3, 4, 5]
+
+// スプレッド構文と Math.max の組み合わせ
+// const numbers = [1, 2, 3, 4, 5];
+// const maxValue = Math.max(...numbers);
+// console.log(maxValue); // 5
