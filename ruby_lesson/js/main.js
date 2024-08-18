@@ -3305,3 +3305,68 @@ reader.once('line', (line) => {
 // const numbers = [1, 2, 3, 4, 5];
 // const maxValue = Math.max(...numbers);
 // console.log(maxValue); // 5
+
+
+
+
+// ********
+// 長さ N の数列 a (a_1, a_2, ..., a_N) が与えられます。
+// この数列の中に 1 が何個あるか出力してください。
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+    const count = a.filter(num => num === 1).length;
+    console.log(count);
+
+  });
+
+});
+
+
+// ********
+// 長さがわからない数列 a が入力されます。
+// -1 が入力されるまで、受け取った数を改行区切りで出力してください。
+// 入力される値
+// a_1 a_2 ... -1
+
+// 入力例1
+// 1 2 3 4 5 -1
+
+// 出力例1
+// 1
+// 2
+// 3
+// 4
+// 5
+// -1
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+const numbers_1 = [];
+reader.on('line', (line) => {
+  const a = line.trim().split(' ').map(Number);
+  // 入力が -1 の場合、処理を終了
+  if(a.includes(-1)) {
+    console.log(-1);
+    reader.close();
+    return;
+  }
+  // -1 が含まれていない場合は、数列を numbers 配列に追加
+  numbers_1.push(...a);
+
+});
+// 全ての入力が読み取られた後、数列を改行区切りで出力
+reader.on('close', () => {
+  numbers_1.forEach(num => console.log(num));
+});
