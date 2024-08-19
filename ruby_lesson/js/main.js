@@ -3370,3 +3370,122 @@ reader.on('line', (line) => {
 reader.on('close', () => {
   numbers_1.forEach(num => console.log(num));
 });
+
+
+
+// ********
+// 未知数個の文字列の受け取り
+// 複数の文字列が入力されます。文字列の数はわかりません。
+// EOF が入力されるまで、受け取った文字列を改行区切りで出力してください。
+
+// 入力される値
+// s_1 s_2 ... EOF
+// 入力例1
+// abc def ghi jkl EOF
+
+// 出力例1
+// abc
+// def
+// ghi
+// jkl
+// EOF
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+const string_2 = [];
+reader.on('line', (line) => {
+  const s = line.trim();
+  if(s === 'EOF') {
+    console.log('EOF');
+    reader.close();
+    return;
+  }
+  string_2.push(s);
+});
+
+reader.on('close', () => {
+  string_2.forEach(str => console.log(str));
+});
+
+
+
+// ********
+// 奇数だけ出力
+// N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// この N 個の整数のうち、a_1 から順に奇数か偶数か判定し、奇数の場合のみ改行区切りで出力してください。
+// また、N 個の整数には奇数が少なくとも 1 つ含まれています。
+
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+
+// 入力例1
+// 5
+// 1 2 3 4 5
+
+// 出力例1
+// 1
+// 3
+// 5
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim()); // 整数 N を取得
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number); // 数列 a を取得
+
+    // 奇数の数だけをフィルタリングして出力
+    numbers.forEach(num => {
+      if(number % 2 !== 0) {
+        console.log(num);
+      }
+    });
+
+  });
+});
+
+
+
+// ********
+// カウント変数を使った計算
+// N 個の整数 M_1, M_2, ..., M_N があります。
+// i 番目の M を M_i とするとき、M_i * i を改行区切りで出力してください。
+// 例えば、M_5 が 3 の場合、3 * 5 = 15 となります。
+// 入力される値
+// N
+// M_1 M_2 ... M_N
+// 入力例1
+// 5
+// 1 2 3 4 5
+
+// 出力例1
+// 1
+// 4
+// 9
+// 16
+// 25
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim()); // 数列の長さ N
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number); // 数列 M の読み込み
+
+    // 各要素 M_i とその位置 i の積を出力
+    numbers.forEach((num, index) => {
+      // index は 0-based なので、1-based に変換するために +1 する
+      console.log(num * (index + 1));
+    });
+  });
+});
