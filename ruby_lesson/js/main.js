@@ -3489,3 +3489,100 @@ reader.once('line', (line) => {
     });
   });
 });
+
+
+
+// ********
+// 2 で何回割れる？
+// 整数 N が与えられます。
+// N が何回 2 で割れるかを求め、出力してください。
+// 入力される値
+// N
+// 入力例1
+// 4
+
+// 出力例1
+// 2
+
+// 入力例2
+// 16
+
+// 出力例2
+// 4
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  let N = Number(line.trim());
+  let count = 0;
+
+  // Nが2で割り切れる間、カウントを増やす
+  while (N % 2 === 0 && N > 0) {
+    N /= 2;
+    count++;
+  }
+  console.log(count);
+
+});
+
+// N % 2 === 0: この条件は、N が 2 で割り切れるかどうかをチェックします。
+// N % 2 は N を 2 で割ったときの余りを計算します。
+// 余りが 0 であれば、N は 2 で割り切れるということです。
+
+// N > 0: この条件は、N が 0 より大きいことをチェックします。
+// N が 0 になった場合、無限ループに入るのを防ぐために追加されています。
+
+// 走査例
+// 初期状態: N = 24, count = 0
+// 24 % 2 === 0 なのでループに入ります。
+// N = 24 / 2 = 12
+// count は 1 に増えます。
+
+// 次のイテレーション: N = 12, count = 1
+// 12 % 2 === 0 なのでループに入ります。
+// N = 12 / 2 = 6
+// count は 2 に増えます。
+
+// さらに次のイテレーション: N = 6, count = 2
+// 6 % 2 === 0 なのでループに入ります。
+// N = 6 / 2 = 3
+// count は 3 に増えます。
+
+// ループ終了: N = 3, count = 3
+// 3 % 2 !== 0 なのでループを終了します。
+
+
+
+// ********
+// 10 進数から 2 進数に変換
+// 10 進数で表された整数 N が与えられます。
+// N を 2 進数に変換して出力してください。
+// 入力される値
+// N
+// 入力例1
+// 4
+
+// 出力例1
+// 100
+
+// 入力例2
+// 6
+
+// 出力例2
+// 110
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  const hoge = N.toString(2); //N.toString(2) で、整数 N を2進数表現の文字列に変換します。
+  console.log(hoge);
+
+});
