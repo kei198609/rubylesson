@@ -3586,3 +3586,52 @@ reader.once('line', (line) => {
   console.log(hoge);
 
 });
+
+
+
+// ********
+// N 個の整数 a_1, a_2, ..., a_N が与えられます。
+// a_1, a_2, ..., a_N のうち、1 がある位置を先頭から順に改行区切りで出力してください。
+// a_1 を 1 番目とし、a_1, a_2, ..., a_N には少なくとも 1 個は 1 が含まれます。
+
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+
+// 入力例1
+// 5
+// 5 3 1 3 5
+
+// 出力例1
+// 3
+
+// 入力例2
+// 5
+// 1 5 5 5 1
+
+// 出力例2
+// 1
+// 5
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+
+  reader.once('line', (line) => {
+    const a = line.trim().split(' ').map(Number);
+    a.forEach((value, index) => {
+      if (value === 1) {
+        console.log(index + 1);
+      }
+    });
+  });
+
+});
+
+
+
+
+
