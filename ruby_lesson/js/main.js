@@ -3634,4 +3634,81 @@ reader.once('line', (line) => {
 
 
 
+// ********
+// 構造体の作成
+// クラスの学級委員である paiza 君は、クラスのみんなに次のような形式でアカウントの情報を送ってもらうよう依頼しました。
 
+// 名前 年齢 誕生日 出身地
+
+// 送ってもらったデータを使いやすいように整理したいと思った paiza 君はクラス全員分のデータを次の形式でまとめることにしました。
+
+// User{
+// nickname : 名前
+// old : 年齢
+// birth : 誕生日
+// state : 出身地
+// }
+
+
+// クラスメートの情報が与えられるので、それらを以上の形式でまとめたものを出力してください。
+
+// 入力される値
+// N
+// n_1 o_1 b_1 s_1
+// ...
+// n_N o_N b_N s_N
+
+// 期待する出力
+// User{
+// nickname : n_1
+// old : o_1
+// birth : b_1
+// state : s_1
+// }
+// User{
+// nickname : n_2
+// old : o_2
+// birth : b_2
+// state : s_2
+// }
+// ...
+// User{
+// nickname : n_N
+// old : o_N
+// birth : b_N
+// state : s_N
+// }
+
+// 入力例1
+// 1
+// koko 23 04/10 tokyo
+
+// 出力例1
+// User{
+// nickname : koko
+// old : 23
+// birth : 04/10
+// state : tokyo
+// }
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+const users = [];
+reader.on('line', (line) => {
+  users.push(line.trim());
+});
+reader.on('close', () => {
+  const N = Number(users[0]);
+  for(let i = 1; i <= N; i++) {
+    const [nickname, old, birth, state] = users[i].split(' ');
+    console.log(`User{`);
+    console.log(`nickname : ${nickname}`);
+    console.log(`old : ${old}`);
+    console.log(`birth : ${birth}`);
+    console.log(`state : ${state}`);
+    console.log(`}`);
+  }
+
+});
