@@ -51,6 +51,25 @@ reader.on('close', () => {
 });
 
 
+// reader.once
+// 動作: イベントリスナーが一度だけ呼び出されるように設定します。
+// 使用例: イベントが一度だけ発生する場合や、初回のイベントだけを処理したいときに使用します。
+// 使用例
+reader.once('line', (line) => {
+  const N = Number(line.trim());
+  // N を処理するコード
+});
+
+
+// reader.on
+// 動作: イベントリスナーが複数回呼び出されるように設定します。
+// 使用例: イベントが複数回発生する場合や、継続的にイベントを処理したいときに使用します。
+// 使用例
+reader.on('line', (line) => {
+  // 各行が読み込まれるたびにこのコールバックが実行される
+  console.log(line);
+});
+
 // ********半角スペース区切りの 2 つの入力 ********
 // 入力される値
 // 以下の形式で標準入力によって与えられます。
@@ -1435,6 +1454,8 @@ console.log(array);
 
 // 出力例3
 // No
+
+// 数列 A が単一行で与えられる場合の書き方!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const readline = require('readline');
 const reader = readline.createInterface({
   input: process.stdin,
@@ -1454,6 +1475,39 @@ reader.once('line', (line) => {
     }
   });
 });
+
+// 数列 A が複数行にわたる場合の書き方!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+const A_1 = [];
+
+// 1行目でNとBを取得
+reader.once('line', (line) => {
+  let [N, B] = line.trim().split(' ').map(Number);
+});
+
+// 2行目以降で数列Aを取得
+reader.on('line', (line) => {
+  A_1.push(...line.trim().split(' ').map(Number));
+
+  // 全ての入力が読み取られた後の処理
+  if (A_1.length === N) {
+    if (A_1.includes(B)) {
+      console.log('Yes');
+    } else {
+      console.log('No');
+    }
+    reader.close(); // 入力の終了
+  }
+});
+
+
+
+
 
 
 // ********
@@ -3712,3 +3766,65 @@ reader.on('close', () => {
   }
 
 });
+
+
+
+
+// ********
+// 指定要素の検索
+// 長さ N の重複した要素の無い数列 A と整数 K が与えられるので、
+// A に K が含まれていれば "YES" を、そうでなければ "NO" を出力してください。
+
+// 入力される値
+// N K
+// A_1
+// ...
+// A_N
+// ・1 行目では、配列 A の要素数 N と検索する値 K が半角スペース区切りで与えられます。
+// ・続く N 行では、配列 A の要素が先頭から順に与えられます。
+
+// 入力例1
+// 3 5
+// 1
+// 3
+// 5
+
+// 出力例1
+// YES
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+const A = [];
+
+// 1行目でNとKを取得
+reader.once('line', (line) => {
+  const [N, K] = line.trim().split(' ').map(Number);
+
+  // N 行の数列Aの要素を取得
+  let linesRead = 0;
+  reader.on('line', (line) => {
+    A.push(Number(line.trim()));
+    linesRead++;
+
+    // 全ての入力が読み取られた後の処理
+    if (linesRead === N) {
+      if (A.includes(K)) {
+        console.log('YES');
+      } else {
+        console.log('NO');
+      }
+      reader.close(); // 入力の終了
+    }
+  });
+});
+
+// 解説
+// 読み取りと変換:
+// 最初の reader.once('line', ...) で N と K を取得します。
+// reader.on('line', ...) を使用して数列 A の要素を逐次的に読み込みます。
+
+// 数列の処理:
+// 各行で数列 A の要素を A 配列に追加します。
+// linesRead 変数で読み取った行数をカウントし、全ての行が読み取られた後に処理を行います。
