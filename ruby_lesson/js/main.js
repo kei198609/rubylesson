@@ -3924,9 +3924,9 @@ reader.on('line', (line) => {
   data_1.push(line.trim());
 });
 reader.on('close', () => {
-  const n = Number(data[0]);
-  const a = data[1].split(' ').map(Number);
-  const k = Number(data[2]);
+  const n = Number(data_1[0]);
+  const a = data_1[1].split(' ').map(Number);
+  const k = Number(data_1[2]);
 
   const position = a.indexOf(k);
   console.log(position === -1 ? 0 : position + 1);
@@ -3946,3 +3946,78 @@ reader.on('close', () => {
 // また。+1する理由は1-based インデックスとしたいから。
 // 配列やリストの最初の要素がインデックス 1 で始まるようにする。
 // 配列の最初の要素のインデックスは 1、次は 2 となります。
+
+
+
+
+// ********
+// 指定された値の位置 2
+// 整数 n と、数列 a_1, ... , a_n と、整数 k が与えられます。
+// 整数 k が数列の何番目にあるかを求めてください。なお、最初の要素 (a_1) を 1 番目とします。
+// ただし、数列に整数 k が含まれていない場合は、0 を出力してください。
+// また、数列に整数 k が複数含まれている場合は、数列を先頭から順に見たときに最後に現れる k が数列の何番目にあるかを求めてください。
+// 入力される値
+// n
+// a_1 a_2 ... a_n
+// k
+// ・ 1行目に、数列の長さを表す整数 n が与えられます。
+// ・ 2行目に、数列の値 a_i が半角スペース区切りで与えられます。
+// ・ 3行目に、整数 k が与えられます。
+
+// 入力例1
+// 5
+// -3 2 0 -1 2
+// 2
+
+// 出力例1
+// 5
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let data_2 = [];
+
+reader.on('line', (line) => {
+  data_2.push(line.trim());
+});
+
+reader.on('close', () => {
+  const n = Number(data_2[0]); // 数列の長さ
+  const sequence = data_2[1].split(' ').map(Number); // 数列を整数配列に変換
+  const k = Number(data_2[2]); // 検索する整数
+
+  // k の最後の出現位置を求める
+  const position = sequence.lastIndexOf(k);
+
+  // 出力位置は 1-based インデックス
+  console.log(position === -1 ? 0 : position + 1);
+});
+
+
+
+// ********
+// 2変数の最大最小
+// 2つの整数 a_1, a_2 が与えられます。
+// これらの最大値と最小値をこの順に半角スペース区切りで出力してください。
+// 入力される値
+// a_1 a_2
+// ・ 1行に、a_1, a_2 が半角スペース区切りで与えられます。
+// 入力例1
+// -11 10
+
+// 出力例1
+// 10 -11
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.on('line', (line) => {
+  const [a1, a2] = line.trim().split(' ').map(Number);
+  const maxVal = Math.max(a1, a2);
+  const minVal = Math.min(a1, a2);
+  console.log(`${maxVal} ${minVal}`);
+});
