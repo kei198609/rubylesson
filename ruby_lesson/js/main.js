@@ -4021,3 +4021,75 @@ reader.on('line', (line) => {
   const minVal = Math.min(a1, a2);
   console.log(`${maxVal} ${minVal}`);
 });
+
+
+
+// ********
+// 10変数の最大最小
+// 10 個の整数 a_1, a_2, ... , a_10 が与えられます。
+// これらの最大値と最小値をこの順に半角スペース区切りで出力してください。
+// 入力される値
+// a_1 a_2 ... a_10
+// ・ 1行に、a_1, a_2, ... , a_10 が半角スペース区切りで与えられます。
+// 入力例1
+// -11 10 0 9 6 -10 5 3 2 -8
+
+// 出力例1
+// 10 -11
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.on('line', (line) => {
+  const numbers = line.trim().split(' ').map(Number);
+  const maxVal = Math.max(...numbers);
+  const minVal = Math.min(...numbers);
+  console.log(`${maxVal} ${minVal}`);
+});
+
+
+
+// ********
+// 条件付き最大値
+// 整数 n と、数列 a_1, ... , a_n と、整数 k が与えられます。
+// 数列に含まれる値で、k 以下であるもののうち、値が最大のものを出力してください。
+// なお、k 以下である値が必ず数列に含まれていることが保証されています。
+
+// 入力される値
+// n
+// a_1 a_2 ... a_n
+// k
+// ・ 1行目に、数列の長さを表す整数 n が与えられます。
+// ・ 2行目に、数列の値 a_i が半角スペース区切りで与えられます。
+// ・ 3行目に、整数 k が与えられます。
+
+// 入力例1
+// 5
+// -5 11 3 -9 0
+// -4
+
+// 出力例1
+// -5
+const readline = require('readline');
+
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let data1 = [];
+reader.on('line', (line) => {
+  data1.push(line.trim());
+});
+reader.on('line', (line) => {
+  const n = Number(data[0]);// 数列の長さ
+  const a = data[1].split(' ').map(Number);// 数列を整数配列に変換
+  const k = Number(data[2]);// 整数 k
+  // k 以下の数値をフィルタリングし、その中で最大値を求める
+  const filtered = a.filter(num => num <= k);
+  const maxVal = Math.max(...filtered);
+  console.log(maxVal);
+});
+
