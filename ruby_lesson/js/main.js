@@ -4093,3 +4093,62 @@ reader.on('line', (line) => {
   console.log(maxVal);
 });
 
+
+// ********
+// 2番目に大きな値
+// 整数 n と、数列 a_1, ... , a_n が与えられます。
+// 数列に含まれる数のうち、2 番目に大きいものを出力してください。
+
+// 入力される値
+// n
+// a_1 a_2 ... a_n
+
+// ・ 1行目に、数列の長さを表す整数 n が与えられます。
+// ・ 2行目に、数列の値 a_i が半角スペース区切りで与えられます。
+
+// 入力例1
+// 5
+// -9 10 6 0 -3
+
+// 出力例1
+// 6
+
+const readline = require('readline');
+
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let data2 = [];
+// 入力の読み込み
+reader.on('line', (line) => {
+  data2.push(line.trim());
+});
+reader.on('close', () => {
+  const n = Number.data[0];
+  const numbers = data[1].split(' ').map(Number);
+  const uniqueNumbers = [...new Set(numbers)];//重複を取り除いたユニークな値の配列を作成します。
+  uniqueNumbers.sort((a, b) => b - a);//ユニークな値を降順にソート
+  if (uniqueNumbers.length > 1) {
+    console.log(uniqueNumbers[1]);
+  } else {
+    console.log('error');// ユニークな値が1つしかない場合のエラーメッセージ
+  }
+});
+// 例1: ユニークな値が2つ以上ある場合
+// 入力の数列が [10, 20, 30, 40, 50]だと、
+// ユニークな値は [10, 20, 30, 40, 50]なので。すべての値がユニーク。
+
+// ユニークな値を降順にソートされると [50, 40, 30, 20, 10]となり、
+
+// 2番目に大きな値の取得をしようとすると、
+// uniqueNumbers[1] は 40（インデックス1の値）
+// console.log(uniqueNumbers[1]); により、40 が出力される。
+
+// 例2: ユニークな値が1つしかない場合
+// 数列: [5, 5, 5, 5, 5]
+// ユニークな値: [5]（1つだけの値）
+// uniqueNumbers.length は 1（1つのユニークな値しかない）なので、
+// if (uniqueNumbers.length > 1) が false になるため、else 節が実行される。
+// なので、console.log('error')が出力される。
