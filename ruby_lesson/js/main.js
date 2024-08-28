@@ -4152,3 +4152,56 @@ reader.on('close', () => {
 // uniqueNumbers.length は 1（1つのユニークな値しかない）なので、
 // if (uniqueNumbers.length > 1) が false になるため、else 節が実行される。
 // なので、console.log('error')が出力される。
+
+
+
+// ********
+// 複数行の入力と出力
+// 改行区切りで自然数が n 個入力されるので、n 個の自然数をそのまま出力してください。
+
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// n
+// a_1
+// a_2
+// a_3
+// ...
+// a_n
+
+// 入力例2
+// 4
+// 382
+// 695
+// 928
+// 577
+
+// 出力例2
+// 382
+// 695
+// 928
+// 577
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let lineCount = 0;
+const data3 = [];
+
+reader.once('line', (line) => {
+  lineCount = Number(line.trim());
+});
+
+reader.on('line', (line) => {
+  data3.push(line.trim());
+
+  if (data3.length === lineCount){
+    data3.forEach(num => console.log(num));
+    reader.close();
+  }
+});
+
+// 配列でないとforEach を使用できないので、
+// data は配列として宣言し、全ての入力をその配列に保存している。
