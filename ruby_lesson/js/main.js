@@ -4223,3 +4223,52 @@ const numbers1 = [4, 0, 5, -1, 3, 10, 6, -8];
 const sum = numbers1.filter(num => num >= 5).reduce((acc, num) => acc + num, 0);
 console.log(sum);
 
+
+
+// ********
+// 文字列の出力
+// 整数 n が1行目、続く行で n 個の文字列が与えられるので、n 個の文字列をそのまま出力してください。
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// n
+// s_1
+// s_2
+// ...
+// s_i
+// ...
+// s_n
+
+// 入力例1
+// 3
+// AB
+// CD
+// EF
+
+// 出力例1
+// AB
+// CD
+// EF
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+const strings1 = [];
+let n_1;
+
+reader.once('line', (line) => {
+  // 最初の行から整数 N を取得
+  const n = Number(line.trim());
+});
+
+reader.on('line', (line) => {
+  // 文字列を配列に追加
+  strings1.push(line.trim());
+  if(strings1 === n_1) {
+    strings1.forEach(str => console.log(str));
+    reader.close();
+  }
+});
+
