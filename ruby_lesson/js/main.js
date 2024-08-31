@@ -4272,3 +4272,88 @@ reader.on('line', (line) => {
   }
 });
 
+
+
+// ********
+// 文字列の分割
+// 文字列がスペース区切りで2つ入力されるので、スペースで分割し、2行で出力してください。
+
+
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// s_1 s_2
+// 入力例1
+// Hello World
+
+// 出力例1
+// Hello
+// World
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const s = line.trim().split(' ');
+  s.forEach(str => console.log(str));
+  reader.close();
+});
+
+
+// ********
+// 足すか掛けるか
+// 2つの整数の組がn個与えられるので、各組の計算結果を足し合わせたものを出力してください。
+// 各組の計算結果は次の値です。
+// ・2つの整数の組を足し合わせたもの
+// ・ただし、2つの整数が同じ値だった場合は、掛け合わせたもの
+
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// n
+// a_1 b_1
+// ...
+// a_n b_n
+
+// nは与えられる整数の組の行数です。
+// a_iとb_iはそれぞれが整数です。
+
+// 入力例1
+// 5
+// 2 1
+// 3 6
+// 4 2
+// 4 4
+// 4 70
+
+// 出力例1
+// 108
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let totalSum = 0;
+
+reader.once('line', (line) => {
+  const n = Number(line.trim());
+
+  let count = 0;
+
+  reader.on('line', (line) => {
+    const [a, b] = line.trim().split(' ').map(Number);
+    if (a === b) {
+      totalSum += a * b;
+    } else {
+      totalSum += a + b;
+    }
+    count += 1;// 処理した行数を増加
+    if(count === n){
+      console.log(totalSum);
+      reader.close();
+    }
+  });
+});
+
