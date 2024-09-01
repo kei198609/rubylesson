@@ -70,6 +70,26 @@ reader.on('line', (line) => {
   console.log(line);
 });
 
+
+// 基本的なアロー関数
+
+//   基本構文
+//   const functionName = (parameters) => {
+//     // 関数の本体
+//   };
+
+//   引数が複数の場合は、丸括弧が必要です。
+//   const add = (a, b) => a + b;
+//   console.log(add(2, 3)); // 5
+
+//   引数が0個の場合は、空の丸括弧が必要です。
+//   const greet = () => 'Hello, World!';
+
+
+
+
+
+
 // ********半角スペース区切りの 2 つの入力 ********
 // 入力される値
 // 以下の形式で標準入力によって与えられます。
@@ -4357,3 +4377,104 @@ reader.once('line', (line) => {
   });
 });
 
+
+// ********
+// 文字列の長さ
+// 文字列が入力されるので、その長さを出力してください。
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+// s
+
+// 入力例1
+// input
+
+// 出力例1
+// 5
+
+// 入力例2
+// abc123
+
+// 出力例2
+// 6
+const readline = require('readline');
+
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  console.log(line.trim().length);
+  reader.close();
+});
+
+
+
+// ********
+// 文字列の１文字目
+// 文字列が入力されるので、1文字目を出力してください。
+
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// s
+
+// 入力例1
+// abc
+
+// 出力例1
+// a
+
+// 入力例2
+// 123
+
+// 出力例2
+// 1
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const s = line.trim();
+  console.log(s[0]);
+});
+
+
+
+// ********
+// あいだの整数
+// スペース区切りで2つの整数が入力されるので、その区間の整数を全て表示してください。
+
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// a b
+// 入力例1
+// 0 10
+
+// 出力例1
+// 0
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8
+// 9
+// 10
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const [a, b] = line.trim().split(' ').map(Number);
+  for(let i = a; i <= b; i++) {
+    console.log(i);
+    reader.close();
+  }
+});
