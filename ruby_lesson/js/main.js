@@ -275,6 +275,7 @@ if ( greeting == 'Hello') {
 
 
 
+const { stdin } = require('process');
 // ********
 // 1. 標準入力から整数を 1 個受け取る
 // 2. 受け取った整数の回数分、以下のメッセージを表示する
@@ -4478,3 +4479,58 @@ reader.once('line', (line) => {
     reader.close();
   }
 });
+
+
+
+// ********
+// 大文字にする
+
+// 1文字のアルファベット c が入力されるので、その文字を大文字にして出力してください。
+
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// c
+
+// 入力例1
+// a
+
+// 出力例1
+// A
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
+reader.once('line', (line) => {
+  const c = line.trim();
+  console.log(c.toUpperCase());
+  reader.close();
+});
+
+
+
+// ********
+// 配列（リスト）の要素の出力
+// 指定された配列（リスト）を定義し、配列（リスト）の要素をインデックス順に１行ずつ出力してください。
+
+// 入力される値
+// なし
+
+// "Nara", "Shiga", "Hokkaido", "Chiba"
+// を要素に持つ配列（リスト）をプログラムで定義し、使用すること。
+
+// 期待する出力
+// 配列（リスト）の要素をインデックス順に１行ずつ、全て表示してください。
+
+// Nara
+// Shiga
+// Hokkaido
+// Chiba
+
+// 最後は改行し、余計な文字、空行を含んではいけません。
+
+const list = ["Nara", "Shiga", "Hokkaido", "Chiba"];
+list.forEach(item => console.log(item));
