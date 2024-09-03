@@ -4502,7 +4502,7 @@ const readline = require('readline');
 const reader = readline.createInterface({
   input: process.stdin,
   output: process.stdout
-})
+});
 
 reader.once('line', (line) => {
   const c = line.trim();
@@ -4534,3 +4534,36 @@ reader.once('line', (line) => {
 
 const list = ["Nara", "Shiga", "Hokkaido", "Chiba"];
 list.forEach(item => console.log(item));
+
+
+
+// ********
+// 1文字ずつ出力
+// 文字列が入力されるので、それらの文字を、1文字ずつ出力してください。
+
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// s
+
+// 入力例1
+// input
+
+// 出力例1
+// i
+// n
+// p
+// u
+// t
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const s = line.trim();
+  const characters = Array.from(s);// 文字列を配列に変換。文字列 str を配列に変換する理由は、文字列に対して forEach メソッドを使用できるようにするため。
+  characters.forEach(char => console.log(char));
+  reader.close();
+});
