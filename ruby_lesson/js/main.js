@@ -89,6 +89,30 @@ reader.on('line', (line) => {
 
 
 
+// このコードは、Node.js の readline モジュールを使用して
+// 標準入力と標準出力を扱うための基本的な設定を行うもの。以下詳細。
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+const readline = require('readline');
+// Node.js の標準モジュール readline をインポートしています。
+// readline モジュールは、読み込みストリームと書き込みストリームを使って、
+// 標準入力やファイルから行単位でデータを読み書きするためのツールを提供します。
+// const reader = readline.createInterface({ input: process.stdin, output: process.stdout });
+
+// readline.createInterface メソッドを呼び出して、
+// readline インターフェースを作成しています。
+// input プロパティには process.stdin（標準入力）を、
+// output プロパティには process.stdout（標準出力）を指定しています。
+// この設定により、reader オブジェクトを使用して、
+// 標準入力からのデータの読み込みや、標準出力へのデータの書き込みを行うことができます。
+
+
+
+
+
 
 // ********半角スペース区切りの 2 つの入力 ********
 // 入力される値
@@ -4566,4 +4590,42 @@ reader.once('line', (line) => {
   const characters = Array.from(s);// 文字列を配列に変換。文字列 str を配列に変換する理由は、文字列に対して forEach メソッドを使用できるようにするため。
   characters.forEach(char => console.log(char));
   reader.close();
+});
+
+// ********
+// 昇順ソート出力
+// 1行目で整数 n が与えられ、2行目で n 個の整数が与えられます。
+// n 個の整数を昇順に出力してください。
+// 入力される値
+// 入力は以下のフォーマットで与えられます。
+
+// n
+// a_1 a_2 ... a_n
+
+// 入力例1
+// 8
+// 90 777 8888 121 333 4 29 2
+
+// 出力例1
+// 2
+// 4
+// 29
+// 90
+// 121
+// 333
+// 777
+// 8888
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.once('line', (line) => {
+  const n = Number(line.trim());
+  reader.once('line', (line) => {
+    const numbers = line.trim().split(' ').map(Number);
+    numbers.sort((a, b) => a - b);// 昇順にソート
+    numbers.forEach(num => console.log(num));
+    reader.close();
+  });
 });
