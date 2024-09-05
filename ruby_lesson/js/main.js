@@ -4629,3 +4629,51 @@ reader.once('line', (line) => {
     reader.close();
   });
 });
+
+
+// ********
+// アルファベットの順番
+
+// 英大文字の文字列が入力されます。
+// 文字列の先頭1文字が、末尾1文字よりもアルファベット順で先に出現するならば、
+// "true"を出力し、そうでなければ"false"を出力してください。
+
+// 入力される値
+// 1行の文字列が入力されます。
+// 入力例1
+// GINO
+
+// 出力例1
+// true
+
+// 入力例3
+// VIOLIN
+
+// 出力例3
+// false
+
+
+const readline = require('readline');
+const reader = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.once('line', (line) => {
+  const str = line.trim();
+  const firstChar = str[0];// 文字列の先頭の文字
+  const lastChar = str[str.length - 1];// 文字列の末尾の文字
+  if (firstChar < lastChar) {
+    console.log('true');
+  } else {
+    console.log('false');
+  }
+  reader.close();
+
+});
+
+// firstChar < lastCharは
+// 文字列の先頭と末尾の文字を比較することで、
+// アルファベット順において先頭文字が末尾文字よりも前に出現するかどうかを判断します。
+// 例えば、文字列 "GINO" の場合、'G' は 'O' よりも
+// アルファベット順で前に出現するため、'G' < 'O' は true になります。
