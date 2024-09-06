@@ -4677,3 +4677,47 @@ reader.once('line', (line) => {
 // アルファベット順において先頭文字が末尾文字よりも前に出現するかどうかを判断します。
 // 例えば、文字列 "GINO" の場合、'G' は 'O' よりも
 // アルファベット順で前に出現するため、'G' < 'O' は true になります。
+
+
+
+
+
+// ********
+// 連想配列（辞書）を使う
+
+// 次のような「ユーザー」と「ユーザーに対応する血液型」を連想配列（辞書）として定義して、それらのキーと値のペアを順に出力してください。
+
+
+// ユーザー	ユーザーに対応する血液型
+// Kyoko	B
+// Rio	O
+// Tsubame	A
+// KurodaSensei	A
+// NekoSensei	A
+
+// 入力される値
+// なし
+
+const bloodTypes = {
+  Kyoko: 'B',
+  Rio: 'O',
+  Tsubame: 'AB',
+  KurodaSensei: 'A',
+  NekoSensei: 'A'
+};
+for (const [user, bloodType] of Object.entries(bloodTypes)) {
+  console.log(`${user} ${bloodType}`);
+}
+
+// Object.entries(bloodTypes) が
+// [
+//   ['Kyoko', 'B'],
+//   ['Rio', 'O'],
+//   ['Tsubame', 'AB'],
+//   ['KurodaSensei', 'A'],
+//   ['NekoSensei', 'A']
+// ]
+// のような配列を返す。
+// ループが配列の各要素に対して for...of を適用する。
+// 各要素（['Kyoko', 'B'], ['Rio', 'O'], ...）が [user, bloodType] という変数に分割代入される。
+// 変数 user と bloodType を使って処理を行う。例えば、console.log で出力する。
