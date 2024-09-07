@@ -375,3 +375,20 @@ currencies.to_a #=>[[japan: 'yen'], [us: 'dollar'], [india: 'rupee']]
 # 反対に、配列に対してto_hメソッドを呼ぶと、配列をハッシュに変換できる。
 currencies = [[japan: 'yen'], [us: 'dollar'], [india: 'rupee']]
 currencies.to_h #=>{ japan: 'yen', us: 'dollar', india: 'rupee' }
+
+# ハッシュのデフォルト値
+h = {}
+h[:foo] #=> nil
+
+# nil以外の値を返したい時、Hash.newでハッシュを作成し、引数にデフォルト値となる値を指定する。
+h = Hash.new('hello')
+h[:foo] #=> "hello"
+
+# 注意 デフォルト値に対して破壊的なメソッドを実行すると他の変数の値も変わる
+a = h[:foo] #=>"hello"
+b = h[:bar] #=>"hello"
+a.upcase!
+a #=>"HELLO"
+b #=>"HELLO"
+
+
