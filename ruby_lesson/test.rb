@@ -406,3 +406,18 @@ name = 'Alice'
 
 # ハッシュを作成する際に文字列リテラル: 値 の形式で書いた場合も :文字列リテラル と同じように見なされ、キーがシンボルになる。
 hash = { 'abc': 123} #=> {:abc => 123}
+
+
+
+# %記法でシンボルやシンボルの配列を作成する
+# !を区切り文字に使う方法
+%s!ruby is fun! #=> :"ruby is fun"
+# ()を区切り文字に使う方法
+%s(ruby is fun) #=> :"ruby is fun"
+
+# シンボルの配列を作成する場合は%iを使うことができる。
+%i(apple orange melon) #=> [:apple, :orange, :melon]
+
+# 改行文字を含めたり式展開したりする場合は%Iを使います。
+name = 'Alice'
+%I(hello\ngood-bye #{name.upcase}) #=> [:"hello\ngood-bye", :ALICE]
