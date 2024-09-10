@@ -421,3 +421,16 @@ hash = { 'abc': 123} #=> {:abc => 123}
 # 改行文字を含めたり式展開したりする場合は%Iを使います。
 name = 'Alice'
 %I(hello\ngood-bye #{name.upcase}) #=> [:"hello\ngood-bye", :ALICE]
+
+
+
+
+
+
+# to_symメソッドを使うと文字列をシンボルに変換できる。
+string = 'apple'
+to_sym.string #=> :apple
+
+# 反対に、to_sメソッドを使うとシンボルを文字列に変換できる。
+symbol = :apple
+to_s.symbol #=> 'apple'
