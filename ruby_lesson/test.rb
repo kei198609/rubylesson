@@ -434,3 +434,20 @@ to_sym.string #=> :apple
 # 反対に、to_sメソッドを使うとシンボルを文字列に変換できる。
 symbol = :apple
 to_s.symbol #=> 'apple'
+
+
+
+# 国名に応じて通貨を返す
+def find_currency(country)
+    currency = { japan: 'yen', us: 'doller', india: 'rupee' }
+    currency[country]
+end
+# 指定された国の通貨を大文字で返す
+def show_currency(country)
+    currency = find_currency(country)
+    if currency
+        currency.upcase
+    end
+end
+
+puts show_currency(:japan) #=> "YEN"
