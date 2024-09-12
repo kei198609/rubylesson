@@ -451,3 +451,27 @@ def show_currency(country)
 end
 
 puts show_currency(:japan) #=> "YEN"
+
+
+
+
+
+limit ||= 10
+# このコードの意味は変数limitがnilまたはfalseであれば、10を代入する。それ以外はlimitの値をそのまま使う。
+limit = nil
+limit ||= 10
+limit #=>10
+
+limit = 20
+limit ||= 10
+limit #=> 20
+
+# このイディオムは変数にnil以外の値を入れておきたいという目的で使われることが多いいためnilガードと呼ばれる。
+# X ||= Aというコード見たら変数Xがnilまたはfalseなら、AをXに代入と読み替えるようにすること。
+
+
+
+
+
+
+
