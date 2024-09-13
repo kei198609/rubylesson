@@ -475,3 +475,67 @@ limit #=> 20
 
 
 
+# クラスを使う場合と、使わない場合の比較
+
+# 使わない場合
+users = []
+users << { first_name: 'Alice', last_name: 'Ruby',age: 20 }
+users << { first_name: 'Bob', last_name: 'Python',age: 30 }
+
+# 氏名を作成するメソッド
+def full_name(user)
+    "#{user[:first_name]} #{user[:last_name]}"
+end
+
+users.each do |user|
+    puts "氏名: #{full_name(user)}, 年齢: #{user[:age]}"
+end
+# => 氏名: Alice Ruby, 年齢: 20
+# => 氏名: Bob Python, 年齢: 30
+
+# ハッシュを使うとキータイプミスした場合nilが返ってしまう。
+# 間違ったキー指定をしてもエラーになれないので、不具合に気づかない。
+users[0][:first_name] #=>"Alice"
+users[0][:first_mame] #=>"nil"
+
+# 大きなプログラムになるとハッシュでは管理しきれなくなるので、
+# そこで登場するのがクラス
+
+# クラスを使う場合
+class User
+    attr_reader :first_name, :last_name, :age
+
+    def initialize(first_name, last_name, age)
+        @first_name = first_name
+        @last_name = last_name
+        @age = age
+    end
+
+    def full_name
+        "#{first_name} #{last_name}"
+    end
+end
+
+users = []
+users << User.new('Alice', 'Ruby', 20)
+users << User.new('Bob', 'Python', 30)
+
+users.each do |user|
+    puts "氏名: #{user.full_name} 年齢: #{user.age}"
+end
+# => 氏名: Alice Ruby, 年齢: 20
+# => 氏名: Bob Python, 年齢: 30
+
+# Userクラスを導入すると、タイプミスした時エラーが発生します。
+users[0].first_mame #=> undifined method
+
+# 新しく属性（データ項目）を追加したり、内容を変更したりすることも防止できます。
+# 勝手に属性を追加できない
+users[0].country = 'japan' #=> undifined method
+# 勝手にfirst_nameを変更できない
+users[0].first_name = 'Carol' #=> undifined method
+
+
+
+
+
