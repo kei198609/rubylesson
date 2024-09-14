@@ -539,3 +539,40 @@ users[0].first_name = 'Carol' #=> undifined method
 
 
 
+# クラスからオブジェクトを作成するときは以下のようにnewメソッドを使う。
+User.new
+# この時に呼び出させるのがinitializeメソッド。
+# インスタンスを初期化するために実行したい処理があれば、
+# このinitializeメソッドでその処理を実装する。（とくに必要がなければ定義しなくてもよい）
+# initializeメソッドは特殊なメソッドで、デフォルトでprivateメソッドになっているので、
+# 外部から呼び出すことはできません。
+# initializeメソッドに引数をつけると、newメソッドを呼び出す時にも引数が必要になります。
+class User
+    def initialize(name, age)
+        puts "name: #{name} age: #{age}"
+    end
+end
+# 引数を期待している initialize メソッドに対して、引数なしで User.new を呼び出すとエラーが発生します
+User.new #=> wrong number of arguments (given 0, expected 2)
+# 引数を指定すればエラーにならない。
+User.new('Alice', 20)
+
+
+
+
+
+# クラスと内部でメソッドを定義するとそのメソッドはインスタンスメソッドになる。
+# インスタンスメソッドはその名のとおり、そのクラスのインスタンスに対して呼び出すことができるメソッド。
+class User
+    def hello
+        "hello"
+    end
+end
+user = User.new
+user.hello #=> "hello"
+
+
+
+
+
+
