@@ -52,23 +52,23 @@ user.name #=>"Bob"
 # 変更
 a = [1, 2, 3]
 a[1] = 20
-a #=> [1, 20, 3]
+# a #=> [1, 20, 3]
 
 # 追加
 a = []
 a << 1
 a << 2
-a #=> [1, 2]
+# a #=> [1, 2]
 
 a = []
 a.push(1)
 a.push(2,3)
-a #=> [1, 2, 3]
+# a #=> [1, 2, 3]
 
 # 削除
 a = [1, 2, 3]
 a.delete_at(1)
-a #=> [1, 3]
+# a #=> [1, 3]
 
 # 配列の一部を抜き出す
 a = [1, 2, 3, 4, 5]
@@ -87,12 +87,12 @@ a[-2]#=>2
 
 # 配列の和集合、差集合、積集合
 a = [1, 2, 3]
-b = [3, 4, 5]
-a | b #=>[1, 2, 3, 4, 5]
+# b = [3, 4, 5]
+# a | b #=>[1, 2, 3, 4, 5]
 
-a - b #=>[1, 2]
+# a - b #=>[1, 2]
 
-a & b #=>[3]
+# a & b #=>[3]
 
 
 # %記法で文字列の配列を作成する
@@ -103,14 +103,14 @@ a & b #=>[3]
 
 # 文字列を配列に変換
 'Ruby'.chars #=>["R", "u", "b", "y"]
-'Ruby,Java,Python'#=>["Ruby", "Java", "Python"]
+# 'Ruby,Java,Python'#=>["Ruby", "Java", "Python"]
 
 # Arrayを使った配列作成
 a = Array.new(5)
-a #=>[nil, nil, nil, nil, nil]
+# a #=>[nil, nil, nil, nil, nil]
 
 a = Array,new(5, 0)
-a #=>[0, 0, 0, 0, 0]
+# a #=>[0, 0, 0, 0, 0]
 
 # *で配列同士を非破壊的に連結する
 a = [1, 2, 3]
@@ -124,13 +124,13 @@ a = [1, 2, 3]
 numbers = [1,2,3,4,5]
 new_numbers = []
 numbers.each {|n| new_numbers << n * 10}
-new_numbers #=> [10,20,30,40,50]
+# new_numbers #=> [10,20,30,40,50]
 # mapメソッドを使う場合、ブロックの戻り値が配列の要素となる新しい配列が作成されるため、
 # mapメソッドの戻り値をそのまま新しい変数に入れることができる。
 numbers = [1,2,3,4,5]
 new_numbers = []
 new_numbers = numbers.map {|n| n * 10}
-new_numbers #=> [10,20,30,40,50]
+# new_numbers #=> [10,20,30,40,50]
 
 
 
@@ -260,11 +260,11 @@ end
 # 要素を追加する場合は、ハッシュ[] = 値 の構文を使う。
 currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
 currencies['italy'] = 'euro'
-currencies #=>{'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee', italy' => 'euro'}
+# currencies #=>{'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee', italy' => 'euro'}
 
 # すでにキーが存在している場合は上書きされる。
 currencies['japan'] = '円'
-currencies #=>{'japan' => '円', 'us' => 'dollar', 'india' => 'rupee', italy' => 'euro'}
+# currencies #=>{'japan' => '円', 'us' => 'dollar', 'india' => 'rupee', italy' => 'euro'}
 
 # ハッシュから値を取り出すには、ハッシュ[キー] のようにして書く。
 currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
@@ -288,13 +288,13 @@ end
 # 要素の削除
 currencies = {'japan' => 'yen', 'us' => 'dollar', 'india' => 'rupee'}
 currencies.delete('japan')
-currencies #=> {'us' => 'dollar', 'india' => 'rupee'}
+# currencies #=> {'us' => 'dollar', 'india' => 'rupee'}
 
 
 # *********シンボル*********
 # シンボルを作成するコード
-:apple
-:japan
+# :apple
+# :japan
 # シンボルは破壊的な変更は不可
 symbol = :apple
 symbol.upcase! #=>エラー
@@ -363,8 +363,8 @@ buy_burger('fish',{'drink' => true, 'potato' => false})
 # 最後の引数がハッシュ{}であれば、{}は省略できる
 buy_burger('fish','drink' => true, 'potato' => false)
 # このルールは配列リテラルでも同様
-a = ['fish',{'drink' => true, 'potato' => false}]
-b = ['fish','drink' => true, 'potato' => false]
+# a = ['fish',{'drink' => true, 'potato' => false}]
+# b = ['fish','drink' => true, 'potato' => false]
 
 
 
@@ -385,35 +385,35 @@ h = Hash.new('hello')
 h[:foo] #=> "hello"
 
 # 注意 デフォルト値に対して破壊的なメソッドを実行すると他の変数の値も変わる
-a = h[:foo] #=>"hello"
-b = h[:bar] #=>"hello"
+# a = h[:foo] #=>"hello"
+# b = h[:bar] #=>"hello"
 a.upcase!
-a #=>"HELLO"
-b #=>"HELLO"
+# a #=>"HELLO"
+# b #=>"HELLO"
 
 
 # シンボルを作成する様々な方法
 # シンボルを作成する場合はコロンに続けて、変数名やクラス名、メソッド名の識別子として有効な文字列を書く。
-:apple
-:Apple
+# :apple
+# :Apple
 
 # シングルクオートで囲んでもシンボルとして有効になる
-:'12345' #=>:"12345"
+# :'12345' #=>:"12345"
 
 # シングルクオートの代わりにダブルクオートを使うと、式展開を使える。
 name = 'Alice'
 :"#{name.upcase}" #=> :ALICE
 
 # ハッシュを作成する際に文字列リテラル: 値 の形式で書いた場合も :文字列リテラル と同じように見なされ、キーがシンボルになる。
-hash = { 'abc': 123} #=> {:abc => 123}
+# hash = { 'abc': 123} #=> {:abc => 123}
 
 
 
 # %記法でシンボルやシンボルの配列を作成する
 # !を区切り文字に使う方法
-%s!ruby is fun! #=> :"ruby is fun"
+# %s!ruby is fun! #=> :"ruby is fun"
 # ()を区切り文字に使う方法
-%s(ruby is fun) #=> :"ruby is fun"
+# %s(ruby is fun) #=> :"ruby is fun"
 
 # シンボルの配列を作成する場合は%iを使うことができる。
 %i(apple orange melon) #=> [:apple, :orange, :melon]
@@ -428,7 +428,7 @@ name = 'Alice'
 
 
 # to_symメソッドを使うと文字列をシンボルに変換できる。
-string = 'apple'
+# string = 'apple'
 to_sym.string #=> :apple
 
 # 反対に、to_sメソッドを使うとシンボルを文字列に変換できる。
@@ -460,11 +460,11 @@ limit ||= 10
 # このコードの意味は変数limitがnilまたはfalseであれば、10を代入する。それ以外はlimitの値をそのまま使う。
 limit = nil
 limit ||= 10
-limit #=>10
+# limit #=>10
 
 limit = 20
 limit ||= 10
-limit #=> 20
+# limit #=> 20
 
 # このイディオムは変数にnil以外の値を入れておきたいという目的で使われることが多いいためnilガードと呼ばれる。
 # X ||= Aというコード見たら変数Xがnilまたはfalseなら、AをXに代入と読み替えるようにすること。
@@ -575,4 +575,72 @@ user.hello #=> "hello"
 
 
 
+
+# インスタンス変数はクラスの外部から参照することはできません。
+# rubyの場合、単純にインスタンス変数の内部を外部から読み書きするのであれば、
+# attr_accessorメソッドを使うことができます。
+class User
+    attr_accessor :name #@nameを読み書きするメソッドが自動的に定義される
+    def initialize(name)
+        @name = name
+    end
+end
+user = User.new('Alice')
+user.name = 'Bob'
+user.name #=> 'Bob'
+
+# 読み取り専用にしたい時は
+# attr_readerを使う。
+# この場合、@nameの参照はできるが、@nameの変更はできない。。
+
+# 書き込み専用にしたい時は、
+# attr_writerを使う。
+# この場合、@nameは変更できるが、@nameの参照はできない。
+
+
+
+# クラスメソッドの定義
+
+# まず、クラス構文内で単純にメソッドを定義するとインスタンスメソッドになります。
+# インスタンスメソッドはそのクラスのインスタンスに対して呼び出すことができるメソッドであり、
+# インスタンスに含まれるデータを読み書きする場合はインスタンスメソッドを定義します。
+class User
+    def initialize(name)
+        @name = name
+    end
+    def hello
+        "Hello, I am #{@name}"
+    end
+end
+user = User.new('Alice')
+user.hello #=> "Hello, I am Alice"
+
+# インスタンスによって内部のデータが異なるので、helloメソッドの結果も異なる。
+user = User.new('Bob')
+user.hello #=> "Hello, I am Bob"
+
+
+# 一方、そのクラスに関連は深いものの、ひとつひとつのインスタンスに含まれるデータは使わない
+# メソッドを定義したい場合もあります。そのような場合、クラスメソッドを定義した方が使い勝手が良い。
+
+# クラスメソッドを定義する方法1
+# メソッドの前にself.をつける
+
+# class クラス名
+#     def self.クラスメソッド
+#         #クラスメソッドの処理
+#     end
+# end
+
+# クラスメソッドを定義する方法2
+# class << selfからendの間にメソッドを書く。
+# クラスメソッドをたくさん定義したい場合に使う。selfを毎回つけなくて済むので。
+
+# class クラス名
+#     class << self
+#         def クラスメソッド
+#             #クラスメソッドの処理
+#         end
+#     end
+# end
 
