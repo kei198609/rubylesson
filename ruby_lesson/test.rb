@@ -644,3 +644,31 @@ user.hello #=> "Hello, I am Bob"
 #     end
 # end
 
+# 名前の配列を渡すと、Userクラスのインスタンスを配列に入れて返すcreate_usersメソッドを定義してみます。
+class User
+    def initialize(name)
+        @name = name
+    end
+    def self.create_users(names)
+        names.map do |name|
+            User.new(name)
+        end
+    end
+    def hello
+        "Hello, I am #{@name}."
+    end
+end
+
+names = ['Alice', 'Bob', 'Carol']
+users = User.create_users(names)
+users.each do |i|
+    puts i.hello
+end
+#=> Hello, I am Alice.
+#=> Hello, I am Bob.
+#=> Hello, I am Carol.
+
+
+
+
+
