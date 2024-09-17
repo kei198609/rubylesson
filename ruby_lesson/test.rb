@@ -672,3 +672,31 @@ end
 
 
 
+# クラスの継承
+
+# スーパークラス
+class Product
+    attr_reader :name, :price
+    def initialize(name, price)
+        @name = name
+        @price = price
+    end
+end
+
+# サブクラス
+
+# Productクラスを継承
+class DVD < Product
+    attr_reader :running_time #nameとpriceはスーパークラスでattr_readerが設定されているので定義不要
+    def initialize(name, price, running_time)
+        #スーパークラスのinitializeメソッドを呼び出す.superを使うとスーパークラスの同名メソッドを呼び出すことができる。
+        super(name, price)
+        @running_time = running_time
+    end
+end
+dvd = DVD.new('great movie', 1000, 120)
+dvd.name #=>'great movie'
+dvd.price #=> 1000
+
+
+
