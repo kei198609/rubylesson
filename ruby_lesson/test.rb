@@ -700,3 +700,75 @@ dvd.price #=> 1000
 
 
 
+# メソッドのオーバーライド
+
+# サブクラスではスーパークラスと同名のメソッドを定義することで、スーパークラスの処理を上書きすることができます。
+# これをメソッドのオーバーライドといいます。
+# ここで取り上げるのはto_sメソッドです。
+class Product
+    attr_reader :name, :price
+    def initialize(name, price)
+        @name = name
+        @price = price
+    end
+end
+class DVD < Product
+    attr_reader :running_time
+    def initialize(name, price, running_time)
+        super(name, price)
+        @running_time = running_time
+    end
+end
+
+product = Product.new('great movie', 1000)
+product.to_s #=> "#<Product:0x000000012da47e18>"
+
+dvd = DVD.new('great movie', 1000, 120)
+dvd.to_s #=> "#<DVD:0x000000012e10fef8>"
+
+# しかし、上記の通り、to_sメソッドは呼び出せるものの、文字列が変ですね。
+# そこでもう少しわかりやすい文字列が返ってくるようにProductクラスで
+# to_sメソッドをオーバーライドしてみましょう。
+
+class Product
+    attr_reader :name, :price
+    def initialize(name, price)
+        @name = name
+        @price = price
+    end
+    def to_s
+        "name: #{name}, price: #{price}"
+    end
+end
+product = Product.new('great movie', 1000)
+product.to_s #=> "name: great movie, price: 1000"
+
+dvd = DVD.new('great movie', 3000, 120)
+dvd.to_s #=>"name: great movie, price: 3000"
+
+# すいぶん良くなりました。DVDクラスのほうもスーパークラスのto_sメソッドが使われるので
+# 同じようにみやすくなっています。
+# しかしDVDクラスでは再生時間(running_time)が表示されていません。
+# 再生時間も表示されるように、DVDクラスでもto_sメソッドをオーバーライドすることにします。
+class DVD < Product
+    attr_reader :running_time
+    def initialize(name, price, running_time)
+        super(name, price)
+        @running_time = running_time
+    end
+    def to_s
+        "name: #{name}, price: #{price}, running_time: #{running_time}"
+        #name: #{name}, price: #{price}はスーパークラスのメソッドを呼び出した方がシンプルなので、
+        # 以下のようにも書ける。
+        # "#{super}, running_time: #{running_time}"
+    end
+end
+dvd = DVD.new('great movie', 3000, 120)
+dvd.to_s #=>"name: great movie, price: 3000, running_time: 120"
+# これで再生時間も表示されるようになりました。
+
+
+
+
+
+
