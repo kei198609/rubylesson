@@ -770,5 +770,45 @@ dvd.to_s #=>"name: great movie, price: 3000, running_time: 120"
 
 
 
+# メソッドの可視性
+
+# publicメソッド
+# publicメソッドはクラスの外部からでも自由に呼び出せるメソッド。
+# initializeメソッド以外のインスタンスメソッドはデフォルトでpublicメソッドになる。
+class User
+    #デフォルトはpublic
+    def hello
+        'Hello'
+    end
+end
+user = User.new
+# publicメソッドなのでクラスの外部から呼び出せる
+user.hello #=> 'Hello'
+
+
+
+
+
+# privateメソッドはサブクラスでも呼び出せる
+
+class Product
+    private
+    def name
+        'A great movie'
+    end
+end
+
+class DVD < Product
+    #nameはスーパークラスのprivateメソッド
+    def to_s
+        "name: #{name}"
+    end
+end
+
+dvd = DVD.new
+dvd.name #=>"name: A great movie"
+# この通り、サブクラスからでもスーパークラスのprivateメソッドを呼び出せます。
+
+
 
 
