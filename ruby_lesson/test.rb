@@ -811,4 +811,29 @@ dvd.name #=>"name: A great movie"
 
 
 
+# クラスメソッドをprivateにしたい場合
+class User
+    private
+    def self.hello
+        'Hello'
+    end
+end
+# クラスメソッドはprivateにならない。
+User.hello #=> "Hello"
+
+
+# クラスメソッドをprivateにしたい場合、class << selfの構文を使います。
+class User
+    class << self
+        private
+        def hello
+            'Hello'
+        end
+    end
+end
+
+
+
+
+
 
