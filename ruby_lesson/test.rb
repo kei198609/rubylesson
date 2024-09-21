@@ -836,4 +836,28 @@ end
 
 
 
+# メソッドの可視性を変える方法
+class User
+    # いったんpublicメソッドとして定義する
+    def foo
+        'foo'
+    end
+    def bar
+        'bar'
+    end
+
+    # fooとbarをprivateメソッドに変更する
+    private :foo, :bar
+
+    # bazはpublicメソッド
+    def baz
+        'baz'
+    end
+end
+
+user = User.new
+user.foo #=>NoMethodError
+user.bar #=>NoMethodError
+user.baz #=>baz
+
 
