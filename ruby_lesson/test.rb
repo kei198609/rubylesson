@@ -860,4 +860,28 @@ user.foo #=>NoMethodError
 user.bar #=>NoMethodError
 user.baz #=>baz
 
+# 上記の知識を応用すると、次のようにメソッド定義と同時にそのメソッドを
+# privateメソッドにすることが可能。
+
+class User
+    private def foo
+        'foo'
+    end
+end
+user = User.new
+user.foo #=>NoMethodError
+
+
+# また、アクセサメソッドをprivateにしたいときは、次のようにすることで可能。
+class User
+    private attr_accessor :name
+    def initialize(name)
+        @name = name
+    end
+end
+user = User.new('Alice')
+user.name #=>NoMethodError
+
+
+
 
