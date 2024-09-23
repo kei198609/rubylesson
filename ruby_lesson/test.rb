@@ -885,3 +885,79 @@ user.name #=>NoMethodError
 
 
 
+# protectedメソッド
+# protectedメソッドはprotectedメソッドを定義したクラス自身と、
+# そのサブクラスのインスタンスメソッドからレシーバ付きで呼び出せます。
+
+# 以下に名前と体重を持つUserクラスがあったとします。
+# 体重を後悔するのは恥ずかしいので外部から取得できるのは名前だけにします。
+class User
+    attr_reader :name #weightは外部に公開しない
+    def initialize(name, weight)
+        @name = name
+        @weight = weight
+    end
+end
+# しかし、何かの理由でユーザ同士の体重を比較しなければならなくなりました。
+# というわけで次のようなメソッドを定義します。
+class User
+    attr_reader :name #weightは外部に公開しない
+    def initialize(name, weight)
+        @name = name
+        @weight = weight
+    end
+    #自分の体重がother_userより重い場合はtrue
+    def heavier_than?(other_user)
+        other_user.weight < @weight
+    end
+end
+# しかし、このままだとother_userの体重(weight)が取得できないのでエラーになります。
+alice = User.new('Alice', 50)
+bob = User.new('Bob', 60)
+alice.heavier_than?(bob) #=> NoMethodError
+
+# なので、以下のようにする。
+class User
+    attr_reader :name #weightは外部に公開しない
+    def initialize(name, weight)
+        @name = name
+        @weight = weight
+    end
+    #自分の体重がother_userより重い場合はtrue
+    def heavier_than?(other_user)
+        other_user.weight < @weight
+    end
+
+    protected
+
+    def weight
+        @weight
+    end
+end
+
+alice = User.new('Alice', 50)
+bob = User.new('Bob', 60)
+# 同じクラスのインスタンスメソッド内であればweightを呼び出せる
+alice.heavier_than?(bob) #=> false
+bob.heavier_than?(alice) #=> true
+
+# クラスの外ではweightは呼び出せない
+alice.weight #=>NoMethodError
+# これで、体重の一般公開を避けつつ、同じクラスの中でのみ、他のオブジェクトに公開することができました。
+
+# インスタンス変数の内容を返すだけの単純なゲッターメソッドであれば、attr_readerを使って、
+# weightメソッドを定義した方がシンプル。次のようにメソッドの定義と同時に
+# protectedメソッドにすることができる。
+class User
+    attr_reader :name
+    protected attr_reader :weight
+    # 省略
+end
+
+
+
+
+
+
+
+
