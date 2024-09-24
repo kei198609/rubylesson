@@ -958,6 +958,23 @@ end
 
 
 
+# 定数について詳しく
+# 定数はクラスの外部から直接参照することも可能です。
+# クラスの外部から定数を参照する場合は次のような構文を使う。
+# クラス名::定数名
+class Product
+    DEFAULT_PRICE = 0
+end
+Product :: DEFAULT_PRICE #=> 0
+
+# 定数をクラスの外部から参照させたくない場合は、
+# private_constantで定数名を指定します。
+class Product
+    DEFAULT_PRICE = 0
+    private_constant :DEFAULT_PRICE
+end
+Product :: DEFAULT_PRICE #=> NameError
+
 
 
 
