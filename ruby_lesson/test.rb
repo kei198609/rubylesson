@@ -995,4 +995,27 @@ end
 
 
 
+# また、Rubyの定数定義(=を使った代入)はそれ自体が値を返します
+GREEN = 0 #=>0
+
+# この仕組みを利用すると、次のように配列を定数で定義しつつ、その要素も同時に定数として定義することも可能。
+class TrafficLight
+    # 配列COLORSを定数として定義し、その各要素も定数として同時に定義する
+    COLORS = [
+        GREEN = 0,
+        YELLOW = 1,
+        RED = 2
+    ]
+end
+TrafficLight :: GREEN #=>0
+TrafficLight :: YELLOW #=>1
+TrafficLight :: RED #=>2
+TrafficLight :: TrafficLight #=>[0, 1, 2]
+
+# 定数にはリテラルで作られる静的な値だけでなく、メソッドや条件分岐を使った動的な値も代入可能です。
+NUMNERS = [1, 2, 3].map {|n| n * 10}
+# NUMNERS #=>[10, 20, 30]
+
+
+
 
