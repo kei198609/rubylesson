@@ -1045,4 +1045,88 @@ end
 
 
 
+# エイリアスメソッドの定義
+s = 'hello'
+s.size #=> 5
+s.length #=> 5
+
+# 独自に作成したクラスでもエイリアスメソッドを定義することができます。
+# 定義するにはaliasキーワードを使います。
+# alias 新しい名前 元の名前
+
+# エイリアスメソッドを定義する場合は、aliasキーワードを呼び出すタイミングに注意。
+# aliasキーワードを呼び出す場合は先に元のメソッドを定義しておかないとエラーなります。
+# 以下はhelloメソッドのエイリアスメソッドとしてgreetメソッドを定義する例です。
+
+class User
+    def hello
+        'Hello!'
+    end
+    alias greet hello
+end
+user = User.new
+user.hello #=>Hello!
+user.greet #=>Hello!
+
+
+
+# メソッドの削除
+# 頻繁に使う機能ではないが、Rubyではメソッドの定義をあとから削除することもできる。
+undef 削除するメソッド名で可能。
+class User
+    undef freeze
+end
+user = User.new
+user.freeze #=>NoMethodError
+
+
+
+# 入れ子になったクラスの定義
+# class 外側のクラス
+#     class 内側のクラス
+
+#     end
+# end
+
+# クラスの内部に定義したクラスは次のように::を使って参照できます。
+class User
+    class BloodType
+        attr_reader :type
+
+        def initialize(type)
+            @type = type
+        end
+    end
+end
+blood_type = User :: BloodType.new('A')
+blood_type.type #=>"A"
+# この手法はクラス名の予期せぬ衝突を防ぐ名前空間を作る場合によく使われます。
+# ただし、名前空間を作る場合はクラスよりもモジュールが使われることが多いです。
+
+
+
+
+
+# equal?メソッド
+a = 'abc'
+b = 'abc'
+a.equal?(b) #=> false
+
+c = a
+a.equal?(c) #=> true
+
+# equal?メソッドはobject_idが等しい場合にtrueを返す。
+# つまりまったく同じインスタンスかどうかを判断する場合に使う。
+# この挙動が変わるとプログラムの実行に悪影響を及ぼす恐れがあるため、equal?メソッドは再定義してはいけない
+# 例えば、以下のように再定義した場合:
+class String
+    def equal?(other)
+        false # 常にfalseを返す
+    end
+end
+# 上記の再定義により、全ての文字列インスタンスで equal? メソッドが機能しなくなり、
+# プログラム全体に影響を与えることになります。
+
+
+
 
