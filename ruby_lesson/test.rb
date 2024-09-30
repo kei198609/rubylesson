@@ -1129,4 +1129,25 @@ end
 
 
 
+# オープンクラス
+# Rubyではクラスの継承に制限はありません。
+# StringクラスやArrayクラスなど、組み込みライブラリのクラスであっても
+# 継承して独自のクラスを定義することができます。
+
+class MyString < String
+    # Stringクラスを拡張するためのコードを書く
+end
+s = MyString.new('Hello')
+# s #=> "Hello"
+# s.class #=> MyString
+
+# Arrayクラスを継承した独自クラスを定義する
+class MyArray < Array
+    # Arrayクラスを拡張するためのコードを書く
+end
+a = MyArray.new()
+a << 1
+a << 2
+# a #=> [1, 2]
+# a.class #=> MyArray
 
