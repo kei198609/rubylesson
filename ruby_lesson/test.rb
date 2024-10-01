@@ -1151,3 +1151,24 @@ a << 2
 # a #=> [1, 2]
 # a.class #=> MyArray
 
+# それだけではなく、定義済みのクラスそのものにメソッドを追加したり、
+# メソッドの定義を上書きしたりすることもできます。
+# Rubyのクラスは変更に対してオープンなのでオープンクラスと呼ばれることもあります。
+# 以下はStringクラスにshuffleという独自のメソッドを追加する例です。
+
+
+def String
+    def shuffle
+        chars.chuffle.join
+    end
+end
+
+s = 'Hello, I am Alice.'
+s.shuffle #=> ""
+
+# 上記のコードの場合はa.shuffleでメソッドを呼び出していますが、String.newでインスタンスを作成する必要はないのか？については、
+# s = 'Hello, I am Alice.' で、s は既に String クラスのインスタンスです。
+# このため、String.new を使って新しいインスタンスを作成する必要はありません。
+# s に文字列を代入することで、s はすでに String のインスタンスとなっており、shuffle メソッドを直接呼び出すことができます。
+
+
