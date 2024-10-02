@@ -1172,3 +1172,29 @@ s.shuffle #=> ""
 # s に文字列を代入することで、s はすでに String のインスタンスとなっており、shuffle メソッドを直接呼び出すことができます。
 
 
+# 新しいメソッドを追加するだけでなく、既存のメソッドを上書きすることもできます。
+# 既存の実装を上書きして、自分が期待する挙動に変更することをモンキーパッチと呼びます。
+# 以下のUserクラスは外部ライブラリで定義されている想定
+class User
+    def initialize(name)
+        @name = name
+    end
+    def hello
+        "hello, #{@name}"
+    end
+end
+# モンキーパッチを当てる前の挙動を確認する
+user = User.new('Alice')
+user.hello #=> "hello, Alice"
+
+# helloメソッドにモンキーパッチをあてて独自の挙動を持たせる
+class User
+    def hello
+        "#{@name}さん、こんにちは"
+    end
+end
+user.hello #=>"Aliceさん、こんにちは"
+
+
+
+
