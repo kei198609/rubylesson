@@ -1198,3 +1198,29 @@ user.hello #=>"Aliceさん、こんにちは"
 
 
 
+# 特異メソッド
+# オープンクラスやモンキーパッチによって、既存のクラスを拡張したり挙動を変更したりすることができました。
+# さらにRubyではクラスの単位ではなく、オブジェクト単位で挙動を変えることもできます。
+alice = 'I am Alice'
+bob = 'I am Bob'
+
+# aliceオブジェクトにだけ、shuffleメソッドを定義する
+def alice.shuffle
+    chars.shuffle.join
+end
+alice.shuffle #=>"m le a. icIA"
+bob.shuffle #=>NoMethodError
+
+
+# なお、特異メソッドは以下のように定義することもできます。
+alice = 'I am Alice'
+class << alice
+    def shuffle
+        chars.shuffle.join
+    end
+end
+alice.shuffle #=>"m le a. icIA"
+
+
+
+
