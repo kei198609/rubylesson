@@ -1224,3 +1224,33 @@ alice.shuffle #=>"m le a. icIA"
 
 
 
+# ダックタイピング
+
+# display_nameメソッドは引数で渡されたオブジェクトがnameメソッドを持っていること（object.nameが呼び出せること）
+# を期待しています。それ以外のことは何も気にしません。なので以下のようにまったく別々のオブジェクトを渡すことができます。
+
+def display_name(object)
+    puts "Name is #{object.name}"
+end
+
+class User
+    def name
+        'Alice'
+    end
+end
+
+class Product
+    def name
+        'A great movie'
+    end
+end
+# UserクラスとProductクラスはお互いに無関係なクラスだが、display_nameメソッドは何も気にしない
+user = User.new
+display_name(user) #=> Name is Alice
+
+product = Product.new
+display_name(product) #=> Name is A great movie
+
+# このように、オブジェクトのクラスが何であろうと、そのメソッドが呼び出せれば良しとするプログラミングスタイルのことを
+# ダックタイピングと呼びます。
+
