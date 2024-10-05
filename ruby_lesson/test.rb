@@ -1254,3 +1254,38 @@ display_name(product) #=> Name is A great movie
 # このように、オブジェクトのクラスが何であろうと、そのメソッドが呼び出せれば良しとするプログラミングスタイルのことを
 # ダックタイピングと呼びます。
 
+# # 以下は別の例
+# 在庫の確認は商品の種類によって確認方法が異なるため、サブクラスでstock?メソッドを実装してもらうようにします。
+# スーパークラスのProductクラスではstock?メソッドを実装しません。
+class Product
+    def initialize(name, price)
+        @name = name
+        @price = price
+    end
+
+    def display_text
+        stock = stock? ? 'あり' : 'なし'
+        "商品名：#{@name} 価格：#{@price} 在庫:#{stock}"
+    end
+end
+
+class DVD < Product
+    def stock?
+        #データベースに問い合わせるなどの処理を書く必要があるがここでは省略
+    end
+end
+
+product = Product.new('A great film', 1000)
+product.display_text #=> NoMethodError
+
+dvd = DVD.new('An awesome file', 3000)
+dvd.display_text #=>"商品名：An awesome file 価格：3000 在庫:あり"
+
+# Productクラスではdisplay_textの呼び出しに失敗し、DVDクラスでは成功します。
+# Rubyが気にするのはあくまでのstock?メソッドが呼び出せるどうかです。
+# よって、stock?メソッドが呼び出せないProductクラスではエラーが発生し、
+# 呼び出せるDVDクラスでは正常にメソッドが実行できました。
+
+
+
+
