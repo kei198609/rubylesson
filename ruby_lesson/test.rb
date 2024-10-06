@@ -1288,4 +1288,24 @@ dvd.display_text #=>"商品名：An awesome file 価格：3000 在庫:あり"
 
 
 
+# メソッドの有無を調べるrespond_to?
+# オブジェクトに対して特定のメソッドが呼び出し可能か確認する場合はrespond_to?を使います。
+s = 'Alice'
+#Stringクラスはsplitメソッドを持つ（Rubyの文字列はすべて String クラスに属している）
+s.respond_to?(:split) #=> true
+# Stringクラスはnameメソッドは持たない。
+s.respond_to?(:name) #=> false
+
+# respond_to?メソッドを使えば、そのオブジェクトが呼び出したいメソッドを持っているかどうか条件分岐させることができます。
+def display_name(object)
+    if object.respond_to?(:name)
+        # nameメソッドが呼び出せる場合
+        puts "Name is #{object.name}"
+    else
+        puts "No name"
+    end
+end
+
+
+
 
