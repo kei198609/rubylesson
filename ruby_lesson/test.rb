@@ -1309,3 +1309,55 @@ end
 
 
 
+# モジュールの定義
+# モジュールは以下のような構文で定義します。
+# module モジュール名
+#     モジュールの定義（メソッドや定数など）
+# end
+
+# helloメソッドを持つGreetableモジュールを定義
+module Greetable
+    def hello
+        'hello'
+    end
+end
+# モジュールはクラスと違い次の特徴があります。
+# モジュールからインスタンスは作成することはできない。
+# ほかのモジュールやクラスを継承することはできない。
+# greetable = Greetable.new #=> NoMethodError
+
+# module AwesomeGreetable < Greetable
+# end
+#=> syntax error
+
+# 以下のコードは、メソッドが呼ばれたタイミングでログを残そうとする2つのクラスです。
+class Product
+    def title
+        log 'title is called'
+    end
+
+    private
+
+    def log(text)
+        puts "[LOG] #{text}"
+    end
+end
+
+class User
+    def name
+        log 'name is called'
+    end
+
+    private
+
+    def log(text)
+        puts "[LOG] #{text}"
+    end
+end
+
+product = Product.new
+product.title #=> [LOG] title is called
+
+user = User.new
+user.name #=> [LOG] name is called
+
