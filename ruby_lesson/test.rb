@@ -1361,3 +1361,36 @@ product.title #=> [LOG] title is called
 user = User.new
 user.name #=> [LOG] name is called
 
+# しかし、上のコードではログを出力する処理が重複しています。
+# コードが重複しているからといって安易に継承を使ったりしていはいけません。
+# 製品はユーザであるまたはユーザは製品であるという関係（is-aの関係）が成り立たないのであれば、
+# 継承の使用は避けるべきです。
+# 継承は使えないがログを出力するという共通の機能は持たせたい、そんなときに選択肢として挙がるのがモジュールです。
+
+module Loggable
+    def log(text)
+        puts "[LOG] #{text}"
+    end
+end
+
+class Product
+    include Loggable
+    def title
+        log 'title is called'
+    end
+end
+
+class User
+    include Loggable
+    def name
+        log 'name is called'
+    end
+end
+
+product = Product.new
+product.title #=> [LOG] title is called
+
+user = User.new
+user.name #=> [LOG] name is called
+
+
