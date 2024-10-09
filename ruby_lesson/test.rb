@@ -1394,3 +1394,31 @@ user = User.new
 user.name #=> [LOG] name is called
 
 
+# 上のコードでは、Loggableモジュールをincludeすることで、モジュールに定義したlogメソッドを
+# ProductクラスでもUserクラスでも呼び出すことができました。
+# ただ、このコードだとlogメソッドがpublicメソッドになり、クラス外から呼び出せてしまいます。
+# publicメソッドにする必要がなければ、モジュール側でprivateメソッドとして定義しておきましょう。
+# こうしておくとincludeしたクラスでもそのメソッドがprivateメソッドとして扱われます。
+
+module Loggable
+
+    private
+
+    def log(text)
+        puts "[LOG] #{text}"
+    end
+
+    class Product
+        include Loggable
+        def title
+            log 'title is called'
+        end
+    end
+end
+
+product = Product.new
+# logメソッドはprivateメソッドなので外部から呼び出せない
+product.log 'public?' #=>NoMethodError
+
+
+
