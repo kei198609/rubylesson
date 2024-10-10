@@ -1422,3 +1422,28 @@ product.log 'public?' #=>NoMethodError
 
 
 
+# include先のメソッドを使うモジュール
+# ダックタイピングでも説明した通り、Rubyは動的型付言語であるため、メソッドを実行する瞬間に
+# そのメソッドが呼び出せれば良いという考え方でプログラムが書けます。この考えはモジュールにも適用できます。
+module Taggable
+    def price_tag
+        "#{price}円"
+    end
+end
+class Product
+    include Taggable
+    def price
+        1000
+    end
+end
+product = Product.new
+product.price_tag #=> 1000円
+
+# Taggableモジュールのprice_tagメソッドはProductクラスのpriceメソッドと連携して
+# 目的の処理を実行することができました。
+
+
+
+
+
+
