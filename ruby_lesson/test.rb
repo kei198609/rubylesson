@@ -1471,3 +1471,33 @@ Product.log('Hello') #=> [LOG] Hello
 
 
 
+# includeされたモジュールの有無を確認する
+# あるクラスに特定のモジュールがincludeされているかどうか確認する方法はいくつかあります。
+module Loggable
+    # 省略
+end
+
+class Product
+    include Loggable
+    # 省略
+end
+
+# クラスオブジェクトに対してinclude?メソッドを呼ぶと、引数で渡したモジュールがincludeされているかどうかわかります。
+Product.include?(Loggable) #=>true
+# included_modulesメソッドを呼ぶと、includeされているモジュールの配列が返ります。
+Product.include_modules #=> [Loggable, Kernel]
+# ancestorsメソッドを使うと、モジュールだけでなくスーパークラスの情報も配列になって返ってきます。
+Product.ancestors #=>[Product, Loggable, Object, Kernel, BasicObject]
+
+# クラスのインスタンスからもincludeされているモジュールの情報は取得できます。
+# たとえばclassメソッドを使うと自分が属しているクラスのクラスオブジェクトが取得できるため、
+# そこからinclude?メソッドやincluded_modulesメソッドを呼び出すことができます。
+product = Product.new
+# product.classはProductクラスを返す
+product.class.include?(Loggable) #=> true
+product.class.include_modules #=> [Loggable, Kernel]
+
+
+
+
+
