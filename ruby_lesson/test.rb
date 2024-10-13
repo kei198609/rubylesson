@@ -1501,3 +1501,28 @@ product.class.include_modules #=> [Loggable, Kernel]
 
 
 
+#Enumerableモジュール
+# Enumerableモジュールは配列やハッシュ、範囲(Range)など、何かしらの繰り返し処理ができるクラスに
+# includeされているモジュールです。Enumerableモジュールがincludeされていることは、以下のような
+# クラスに対してinclude?メソッドを呼び出すとわかります。
+Array.include?(Enumerable) #=>true
+Hash.include?(Enumerable) #=>true
+Range.include?(Enumerable) #=>true
+
+# Enumerableモジュールをincludeしているクラスであれば代表的な以下のメソッドを呼び出すことが可能です。
+# map select find count
+
+[1, 2, 3].map {|i|i * 10} #=> [10, 20, 30]
+{ a: 1, b: 2, c: 3 }.map { |k, v| [k, v * 10] } #=> [[a:, 10], [b:, 20], [c:, 30]]
+(1..3).map { |n| n * 10 } #=> [10, 20, 30]
+[1, 2, 3].count #=>3
+{ a: 1, b: 2, c: 3 }.count #=>3
+(1..3).count #=>3
+
+# Enumerableモジュールをincludeして、モジュールに定義されたメソッドを使えるようにする条件は、
+# include先のクラスでeachメソッドが実装されていること。
+# eachメソッドさえ実装していれば、Enumerableモジュールをincludeするだけで、このモジュールに
+# 定義された50を超えるメソッドが一気に手に入る。
+
+
+
