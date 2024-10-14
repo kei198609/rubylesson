@@ -1526,3 +1526,162 @@ Range.include?(Enumerable) #=>true
 
 
 
+# Comparableモジュールと<=>演算子
+# Comparableモジュールは比較演算を可能にする。このモジュールをincludeすると以下メソッド（演算子）が使えるようになる。
+# <, <=, ==, >, >=, between?
+# Comparableモジュールのメソッドを使えるようにするための条件は、include先のクラスで<=>演算子を実装しておくことです。
+
+# a <=> bが次のような結果を返すように実装する必要があります。
+# ・aがbよりも大きいなら正の整数
+# ・aとbが等しいなら0
+# ・aがbよりも小さいなら負の整数
+# ・aとbが比較できない場合はnil
+
+# 文字列や数値を使って、実際に<=>演算子の戻り値を見てみましょう
+# 2 <=> 1 #=>1
+# 2 <=> 2 #=>0
+# 1 <=> 2 #=>-1
+# a <=> 'abc' #=>nil
+
+# 'xyz' <=> 'abc' #=>1
+# 'abc' <=> 'abc' #=>0
+# 'abc' <=> 'xyz' #=>-1
+# 'abc' <=> '123' #=>nil
+
+# Comparableモジュールを独自のクラスにincludeして使うこともできます。
+class Tempo
+    include Comparable
+
+    attr_reader :bpm
+
+    def initialize(bpm) #bpmは音楽の速さを表す単位
+        @bpm = bpm
+    end
+
+    def <=>(other)
+        # bpm を持つ Tempo オブジェクト同士を比較します。
+        # other が Tempo クラスのオブジェクトである場合、bpm の値を比較し、その結果を返します。
+        # other が Tempo クラスのオブジェクトでない場合は比較できないのでnilを返す
+        other.is_a?(Tempo) ? bpm <=> other.bpm : nil
+    end
+
+    # irb上で結果を見やすくするためにinspectメソッドをオーバーライド
+    def inspect
+        "#{bpm}bpm"
+    end
+
+end
+
+t1 = Tempo.new(120)
+t2 = Tempo.new(140)
+
+puts t1 < t2    # => true
+puts t1 == t2   # => false
+puts t2 > t1    # => true
+
+
+
+#クラスやモジュール自身もオブジェクトについて
+
+class User
+end
+# Userクラス自身のクラスはClassクラス
+User.class #=>Class
+# ClassクラスのスーパークラスはModuleクラス
+Class.superclass #=>Module
+
+module Loggable
+end
+# Loggableモジュール自身のクラスはModuleクラス
+Loggable.class #=>Module
+# ModuleクラスのスーパークラスはObjectクラス
+Module.class #=> Object
+
+# また、クラス構文やモジュール構文内部ではselfがクラス自身やモジュール自身を指しています。
+class User
+    p self #=> User
+    p self.class #=> Class
+end
+module Loggable
+    p self #=> Loggable
+    p self.class #=> Module
+end
+
+
+
+
+
+# モジュールとインスタンス変数
+# モジュール内で定義したメソッドの中でインスタンス変数を読み書きすると、
+# include先のクラスのインスタンス変数を読み書きしたことと同じになります。
+module NameChangeable
+    #include先のクラスのインスタンス変数を変更する
+    def change_name
+        @name = 'ありす'
+    end
+end
+
+class User
+    include NameChangeable
+    attr_reader :name
+    def initialize(name)
+        @name = name
+    end
+end
+
+user = User.new('alice')
+user.name #=>"alice"
+
+user.change_name
+user.name #=>"ありす"
+
+# ただし、上のコードは、モジュールがミックスイン先のクラスでインスタンス変数を
+# 直接参照するのは良い設計ではありません。
+# なぜなら、インスタンス変数は任意にのタイミングで新しく定義したり、
+# 未定義のインスタンス変数を参照したりできてしまうからです。
+# 変数名のタイプミスによって意図せずこうした現象を引き起こしてしまうこともあります。
+# 一方、メソッドであれば未定義のメソッドを呼び出したときにエラーが発生します。
+# なので、ミックスイン先のクラスと連携する場合は、特定のインスタンス変数の存在を前提とするより、
+# 特定のメソッドの存在を前提とするほうが安全です。
+# 例えば、先ほどのコードは次のようにセッターメソッド経由でデータを変更するようにした方が安全性が高いです。
+
+module NameChangeable
+    #セッターメソッド経由でデータを変更する
+    #(ミックスイン先のクラスでセッターメソッドが未定義であれば、エラーが発生して実装上の問題に気づける)
+    def change_name
+        self.name = 'ありす'
+    end
+end
+
+class User
+    include NameChangeable
+
+    # ゲッターメソッドとセッターメソッドを用意する
+    attr_accessor :name
+
+    def initialize(name)
+        @name = name
+    end
+end
+
+user = User.new('alice')
+user.change_name
+user.name #=>"ありす"
+
+
+
+
+# クラス以外のオブジェクトにextendする
+# モジュールをextendする先はクラスが多いいですが、クラスだけでなく個々のオブジェクトにextendすることができます。
+# 以下のコードは文字列オブジェクトの特異メソッドとしてモジュールをextendする例です。
+module Loggable
+    def log(text)
+        puts "[LOG] #{text}"
+    end
+end
+
+s = 'abc'
+s.log('hello') #=>NoMethodError
+
+s.extend Loggable
+s.log('hello') #=>[LOG] hello
