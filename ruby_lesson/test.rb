@@ -1685,3 +1685,54 @@ s.log('hello') #=>NoMethodError
 
 s.extend Loggable
 s.log('hello') #=>[LOG] hello
+
+
+# モジュールを利用した名前空間の作成
+# 名前空間を分けて名前の衝突を防ぐ
+# 大規模なプログラムや外部に公開するライブラリを作ったりするときはクラス名の重複が問題になることがあります。
+# 例えば、ある人が野球の二塁手という意味でSecondクラスを定義したとします。
+class Second
+    def initialize(player, uniform_number)
+        @player = player
+        @uniform_number = uniform_number
+    end
+end
+
+class Second
+    def initialize(digits)
+        @digits = digits
+    end
+end
+
+# なんらかの理由でこれの2つのクラスを同時に使う必要が出てきた場合、どうやって区別すればいいでしょうか？
+# 二塁手のAliceを作成したいが区別ができない
+Second.new('Alice', 13)
+# 時計の13秒を作成したいが区別ができない
+Second.new(13)
+
+# こんな時に登場するのが名前空間（ネームスペース）としてのモジュールです。
+# モジュール構文の中にクラス定義を書くと「そのモジュールに属するクラス」という意味になるため、
+# 同名のクラスがあっても外部のモジュール名さえ異なっていれば名前の衝突は発生しなくなります。
+module Baseball
+    # Baseballモジュールに属するSecondクラス
+    class Second
+        def initialize(player, uniform_number)
+            @player = player
+            @uniform_number = uniform_number
+        end
+    end
+end
+
+module Clock
+    # Clockモジュールに属するSecondクラス
+    class Second
+        def initialize(digits)
+            @digits = digits
+        end
+    end
+end
+
+# モジュールに属するクラスを参照する際は、モジュール名::クラス名のように::でモジュール名とクラス名を区切ります。
+Baseball::Second.new('Alice', 13)
+Clock::Second.new(13)
+
