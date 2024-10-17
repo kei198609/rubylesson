@@ -1757,3 +1757,23 @@ end
 
 
 
+# 入れ子なしで名前空間付きのクラスを定義する
+# 名前空間として使うモジュールがすでにどこかで定義されている場合は、モジュール構文やクラス構文を入れ子にしなくても
+# モジュール名::クラス名のような形でクラスを定義することもできます。
+
+# すでにBaseballモジュールが定義されている
+module Baseball
+end
+
+# モジュール名::クラス名の形でクラスを定義できる
+class Baseball::Second
+    def initialize(player, uniform_number)
+        @player = player
+        @uniform_number = uniform_number
+    end
+end
+
+
+
+
+
