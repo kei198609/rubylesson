@@ -1777,3 +1777,45 @@ end
 
 
 
+# トップレベルの同名クラスを参照する
+# ClockモジュールのSecondクラスが、トップレベルのSecondクラスを参照したいというケースを想定します。
+
+# トップレベルのSecondクラス
+class Second
+    def initialize(player, uniform_number)
+        @player = player
+        @uniform_number = uniform_number
+    end
+end
+
+module Clock
+    # ClockモジュールのSecondクラス
+    class Second
+        def initialize(digits)
+            @digits = digits
+            # トップレベルのSecondクラスをnewしたい
+            @baseball_second = Second.new('Alice', 13)
+        end
+    end
+end
+# このままだとコードがClockモジュールの内部にあるため、
+# Clock::Secondクラス（つまり自分と同じクラス）を参照していることになります。
+# initializeメソッド内のSecond.newの呼び出しに失敗する
+Clock::Second.new(13) #=>ArgmentError
+
+# 明示的にトップレベルのクラスやモジュールを指定するためには、クラス名やモジュール名の前に::をつけます。
+module Clock
+    class Second
+        def initialize(digits)
+            @digits = digits
+            # クラス名の前に::を付けるとトップレベルのクラスを指定したことになる
+            @baseball_second = ::Second.new('Alice', 13)
+        end
+    end
+end
+
+
+
+
+
+
