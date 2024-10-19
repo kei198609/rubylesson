@@ -1819,3 +1819,86 @@ end
 
 
 
+# 入れ子の有無によって参照されるクラスが異なるケース
+# 名前空間付きでクラスを定義する場合は次の2通りの書き方があります。
+
+# モジュール構文とクラス構文を入れ子にして書く場合
+module Baseball
+    class Second
+        #省略
+    end
+end
+
+# ::を使ってフラットに書く場合（入れ子なし）
+class Baseball::Second
+    #省略
+end
+# 基本的にどちらの書き方でも良いのですが、ほかのクラスを参照する場合は入れ子の有無で
+# 挙動が変わるため注意が必要です。たとえば、Baseballモジュール（名前空間）にスコアを記録するための
+# Fileクラスがどこかで定義されていたとします。
+
+module Baseball
+    class file
+        # 省略
+    end
+end
+
+# このとき、入れ子の有無によって参照されるFileクラスが異なります。
+# 次のコードで確かめてみましょう。
+
+module Baseball
+    class Second
+        def file_with_nesting
+            # 入れ子ありのクラス定義でFileクラスを参照する
+            puts File
+        end
+    end
+end
+
+class Baseball::Second
+    def file_without_nesting
+        # 入れこなしのクラス定義でFileクラスを参照する
+        puts File
+    end
+end
+
+second = Baseball::Second.new
+second.file_with_nesting #=> Baseball::File
+second.file_without_nesting #=> File
+
+# ご覧の通り、入れ子ありの場合は、Baseball::File、なしの場合はFileと表示されました。
+# 実はスコアを記録するために作ったFileクラスは前者のBaseball::Fileです。
+# 後者のFileはRubyに最初から組み込みライブラリとして用意されているFileクラスです。
+
+
+# もし、入れこなしのクラス定義で「スコアを記録するためのFileクラス」を参照したい場合は、
+# 明示的にBaseball::Fileと書く必要があります。
+class Baseball::Second
+    def file_without_nesting
+        # 入れこなしのクラス定義では明示的に名前空間を付ける必要がある
+        puts Baseball::File
+    end
+end
+second = Baseball::Second.new
+second.file_without_nesting #=>Baseball::File
+
+# 一方、入れ子ありのクラス定義で「組み込みライブラリのFileクラス」を参照したい場合は、
+# クラス名の前に::を付けます。
+module Baseball
+    class Second
+        def file_with_nesting
+            puts ::File
+        end
+    end
+end
+second = Baseball::Second.new
+second.file_with_nesting #=> File
+
+
+
+
+
+
+
+
+
