@@ -1932,3 +1932,51 @@ Loggable.log('Hello') #=> [LOG] Hello
 
 
 
+# module_functionメソッド
+# モジュールではミックスインとして使えて、なおかつモジュールの特異メソッドとしても使える
+# 一石二鳥なmodule_functionメソッドを定義することもできます。
+module Loggable
+    def log(text)
+        puts "[LOG] #{text}"
+    end
+    # module_functionは対象のメソッドの定義よりも下で呼び出すこと
+    # logメソッドをミックスインとしても、モジュールの特異メソッドとしても使えるようにする
+    module_function :log
+end
+
+# モジュールの特異メソッドとしてlogメソッドを呼び出す
+Loggable.log('Hello') #=> [LOG] Hello
+
+
+# Loggableモジュールをincludeしたクラスを定義する
+class Product
+    include Loggable
+    def title
+        # includeしたLoggableモジュールのlogメソッドを呼び出す
+        log 'title is called'
+    end
+end
+# ミックスインとしてlogメソッドを呼び出す
+product = Product.new
+product.title #=> [LOG] title is called
+# このように、ミックスインとしてもモジュールの特異メソッドとしても使えるメソッドのことを
+# モジュール関数と呼びます。
+# ちなみに、module_functionでモジュール関数となったメソッドは、自動的にprivateメソッドになります。
+product = Product.new
+product.log 'Hello' #=> NoMethodErrorになる。logメソッドはprivateなので外部からは呼び出せない
+
+# また、module_functionメソッドを引数なしで呼び出した場合は、
+# そこから下に定義されたメソッドがすべてモジュール関数になります。
+module Loggable
+    # ここから下のメソッドはすべてモジュール関数
+    module_function
+
+    def log(text)
+        puts "[LOG] #{text}"
+    end
+end
+
+
+
+
+
