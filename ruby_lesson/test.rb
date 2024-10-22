@@ -1980,3 +1980,18 @@ end
 
 
 
+# モジュールに定数を定義する
+# クラスに定数を定義できたように、モジュールにも定数を定義できます。
+module Loggable
+    PREFIX = '[LOG]'
+
+    def log(text)
+        puts "#{PREFIX} #{text}"
+    end
+end
+# 定数を参照する
+Loggable::PREFIX #=> "[LOG]"
+
+
+
+
