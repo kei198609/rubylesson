@@ -1995,3 +1995,26 @@ Loggable::PREFIX #=> "[LOG]"
 
 
 
+# モジュール関数や定数をモジュールの例
+# モジュール関数や定数を持つ、代表的なRubyの組み込みライブラリはMathモジュールです。
+# Mathモジュールのメソッドはモジュール関数になっているため、モジュールの特異メソッドとしても、
+# ミックスインとしても利用することができます。
+
+# モジュールの特異メソッドとしてsqrt(平方根)メソッドを利用する
+Math.sqrt(2) #=>1.41421.....
+
+class Calculator
+    include Math
+
+    def calc_sqrt(n)
+        # ミックスインとしてMathモジュールのsqrtメソッドを使う
+        sqrt(n)
+    end
+end
+calculator = Calculator.new
+calculator.calc_sqrt(2) #=> #=>1.41421.....
+
+
+
+
+
