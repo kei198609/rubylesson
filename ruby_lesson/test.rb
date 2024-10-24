@@ -2018,3 +2018,50 @@ calculator.calc_sqrt(2) #=> #=>1.41421.....
 
 
 
+# 状態を保持するモジュールの作成
+
+# AwesomeApiはなんらかのWeb APIを利用するライブラリという想定
+module AwesomeApi
+    # 設定値を保持するクラスインスタンス変数を用意する
+    @base_url = ''
+    @debug_mode = false
+
+    # クラスインスタンス変数を読み書きするための特異メソッドを定義する
+    class << self
+        def base_url=(value)
+            @base_url = value
+        end
+
+        def base_url
+            @base_url
+        end
+
+        def debug_mode=(value)
+            @debug_mode = value
+        end
+
+        def debug_mode
+            @debug_mode
+        end
+    end
+end
+# 設定値を保存する
+AwesomeApi.base_url = 'https://example.com'
+AwesomeApi.debug_mode = true
+# 設定値を参照する
+AwesomeApi.base_url #=> 'https://example.com'
+AwesomeApi.debug_mode #=> true
+
+
+# 上ではわかりやすくするために明示的にメソッドを定義したが、本来は以下の1行で済む
+# 以下のように書くことで、base_urlとdebug_modeのゲッターとセッターが自動的に定義されます。
+class << self
+    attr_accessor :base_url, :debug_mode
+end
+# これにより、手動でdefを使ってメソッドを定義する必要がなくなりますが、内部的には同じ動作をします。
+
+
+
+
+
+
