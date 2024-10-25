@@ -2065,3 +2065,62 @@ end
 
 
 
+# メソッド探索ルールを理解する
+# Rubyでは様々な方法でメソッドを定義することができます。
+# そのため、Fooクラスのbarメソッドが定義されているのは絶対にここ、と言い切ることは困難です。
+# たとえば、to_sというメソッド1つを呼び出すにしても、
+# ・そのクラス自身にto_sメソッドが定義されている場合
+# ・そのスーパークラスにto_sメソッドが定義されている場合
+# ・ミックスインとしてto_sメソッドが定義(include)されている場合
+# と、実に様々です。
+# そんなとき、Rubyはどのようにして呼び出すメソッドを決定するのでしょうか？
+
+# 例えば以下のようなモジュールやクラスがあったとします。
+module A
+    def to_s
+        "<A> #{super}"
+    end
+end
+
+module B
+    def to_s
+        "<B> #{super}"
+    end
+end
+
+class Product
+    def to_s
+        "<Product> #{super}"
+    end
+end
+
+class DVD < Product
+    include A
+    include B
+
+    def to_s
+        "<DVD> #{super}"
+    end
+end
+
+dvd = DVD.new
+dvd.to_s #=>"<DVD> <B> <A> <Product> #<DVD:0x00000012e1b6708"
+# この出力結果を見ると、次のような順番でto_sメソッドが呼び出されたことがわかります。
+#  ・DVDクラス自身のto_sメソッド(<DVD>)
+#  ・2番目にincludeしたモジュールBのto_sメソッド(<B>)
+#  ・最初にincludeしたモジュールAのto_sメソッド(<A>)
+#  ・スーパークラスであるProductクラスのto_sメソッド(<Product>)
+#  ・ProductクラスのスーパークラスであるObjectクラスのto_sメソッド(#<DVD:0x00000012e1b6708")
+
+# 呼び出し順のルールは暗記しなくても良いです。
+# ancestorsメソッドを呼び出せば、クラスやモジュールがどの順番でメソッド探索されるか確認できます。
+DVD.ancestors #=>[DVD, B, A, Product, Object, Kernel, BasicObject]
+# ancestorsメソッドは最後はBasicObjectクラスを探索します。もし、最後のBasicObjectクラスでも
+# メソッドが見つからなければNoMethodErrorが発生します。
+
+
+
+
+
+
+
