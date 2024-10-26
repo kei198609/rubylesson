@@ -2123,4 +2123,32 @@ DVD.ancestors #=>[DVD, B, A, Product, Object, Kernel, BasicObject]
 
 
 
+# モジュールのほかにもモジュールをincludeする
+# includeはクラスだけでなく、モジュールに対しても呼び出すことができます。
+module Greetable
+    def hello
+        'hello'
+    end
+end
+
+module Aisatu
+    include Greetable
+
+    def konnichiwa
+        'こんにちは'
+    end
+end
+
+class User
+    include Aisatu
+end
+user = User.new
+user.konnichiwa #=>こんにちは
+user.hello #=>hello
+# Userクラスに対してancestorsメソッドを呼び出してみると、Aisatuモジュールだけでなく、
+# Greetableモジュールもメソッド探索の対象になっていることがわかります。
+User.ancestors #=>[User, Aisatu, Greetable, Object, Kernel, BasicObject]
+
+
+
 
