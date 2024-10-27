@@ -2152,3 +2152,35 @@ User.ancestors #=>[User, Aisatu, Greetable, Object, Kernel, BasicObject]
 
 
 
+# prependでモジュールをミックスインする
+# モジュールで定義されたメソッドをインスタンスメソッドとしてミックスインする場合はincludeを
+# 使うのが一般的です。もう一つの方法としてprependという方法でモジュールをミックスインすることもできます。
+# prependの特徴は同名のメソッドがあったときに、ミックスインしたクラスよりも先にモジュールのメソッドが呼ばれるところです。
+module A
+    def to_s
+        "<A> #{super}"
+    end
+end
+
+class Product
+    prepend A
+
+    def to_s
+        "<Product> #{super}"
+    end
+end
+
+product = Product.new
+product.to_s #=> "<A> <Product>"
+
+# prependを使った場合、モジュールのメソッドがクラスのメソッドよりも先に呼ばれます。
+# この例では、まずモジュールAのto_sメソッドが実行され、
+# その中でsuperが呼ばれることでクラスProductのto_sメソッドが次に実行されます。
+# しかし、Productクラス内でもsuperが呼ばれているため、さらに上のクラスであるObjectのto_sが呼ばれます。
+# この結果、出力は"<A> <Product>"となります。
+
+
+
+
+
+
