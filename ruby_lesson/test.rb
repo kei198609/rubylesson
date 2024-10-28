@@ -2184,3 +2184,50 @@ product.to_s #=> "<A> <Product>"
 
 
 
+# prependで既存のメソッドを置き換える
+
+# このコードは外部ライブラリで定義されているため、直接コードを書き換えることはできないものとします。
+class Product
+    def name
+        'A great file'
+    end
+end
+product = Product.new
+product.name #=> "A great file"
+
+# 上のクラスのnameメソッドを拡張して、"<<A great film>>"のような装飾が入るようにしてみましょう。
+
+module NameDecorator
+    def name
+        # prependするとsuperはミックスインした先のクラスのnameメソッドが呼び出される
+        "<<#{super}>>"
+    end
+end
+# このモジュールをProductクラスにprependします。
+class Product
+    prepend NameDecorator
+end
+# こうすれば、Productクラスのnameメソッドを直接書き換えることなく、
+# なおかつ元の実装を活かしながら振る舞いを変更することができます。
+product = Product.new
+product.name #=> <<A great file>>
+
+
+# また、この方法であれば、ほかのクラスに対しても簡単に同じ変更を適用することができます。
+# nameメソッドを持つクラスがあったとします。
+class User
+    def name
+        'Alice'
+    end
+end
+class User
+    prepend NameDecorator
+end
+user = User.new
+user.name #=> "<<Alice>>"
+
+
+
+
+
+
