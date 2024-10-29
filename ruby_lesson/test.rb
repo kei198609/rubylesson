@@ -2231,3 +2231,49 @@ user.name #=> "<<Alice>>"
 
 
 
+# 有効範囲を限定できるrefinements
+# オープンクラスやモンキーパッチで説明したとおり、Rubyは標準ライブラリや外部ライブラリ(gem)であっても
+# あとからオーバーライドしたり、独自のメソッドを追加したりできます。
+# とはいえ、広範囲に使われるクラスを独自に変更すると、予期せぬ不具合に遭遇するリスクが高まります。
+# refinementsを使うと独自の変更の有効範囲(スコープ)を限定することができます。
+
+# ここでは例として、refinementsを使ってStringクラスに文字列の中身をランダムに入れ替えるshffuleメソッドを
+# 追加してみます。まず、refinementsを使う準備としてモジュールを作成します。モジュール内では
+# refineメソッドを使ってrefinementsを適用するクラスを指定し、そのブロックの中に今回追加する
+# shuffleメソッドの定義を書きます。
+module StringShuffle
+    # refinementsが目的なので、refineメソッドを使う
+    refine String do
+        def shuffle
+            chars.shuffle.join
+        end
+    end
+end
+# refinementsを有効にするためにはusingというメソッドを使います。
+# 以下のようにすると、Userクラスの内部においてのみ、shuffleメソッドが有効になります。
+
+class User
+    using StringShuffle
+
+    def initialize(name)
+        @name = name
+    end
+    def shuffled_name
+        # Userクラスの内部であればStringクラスのshuffleメソッドが有効になる
+        @name.shuffle
+    end
+end
+# Userクラス内ではshuffleメソッドが有効になっている
+user = User.new
+user.shuffled_name #=> "cliAe"
+
+# Userクラスを経由しない場合はshuffleメソッドは使えない
+'Alice'.shuffle #=>NoMethodError
+
+# ご覧のとおり、Userクラスの内部だけshuffleメソッドが使えるようになりました。
+# このようにrefinementsを使うと既存のクラスに対する変更の有効範囲が限定できるため、
+# 予期せぬバグやエラーに遭遇するリスクを低減することができます。
+
+
+
+
