@@ -2277,3 +2277,22 @@ user.shuffled_name #=> "cliAe"
 
 
 
+# 二重コロンとドットの違い
+module Sample
+    class User
+        NAME = 'Alice'
+        def self.hello(name = NAME)
+            "Hello i am #{name}"
+        end
+    end
+end
+Sample::User::NAME #=> "Alice"
+Sample::User.hello #=> "Hello i am Alice"
+
+# しかし、メソッドを呼び出しに関しては二重コロンを使うことができます。
+Sample::User::hello #=> "Hello i am Alice"
+
+
+
+
+
