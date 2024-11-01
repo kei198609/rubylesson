@@ -2333,3 +2333,56 @@ end
 
 
 
+# クラスを指定して捕捉する例外を限定する
+# 例外には多くの種類があり、その種類ごとにクラスが異なります。たとえば存在しないメソッドを呼び出した場合は
+# NoMethodErrorクラスの例外が発生し、0で除算した場合はZeroDivisionErrorが発生します。
+# 次のような構文を使って例外のクラスを指定すると、例外オブジェクトのクラスが一致した場合のみ、例外を捕捉できます。
+begin
+    # 例外が起きうる処理
+rescue # 補足したい例外クラス
+    # 例外が発生した場合の処理
+end
+
+# 具体的なコードは以下のとおりです。
+begin
+    1 /0
+rescue ZeroDivisionError
+    puts "0で除算しました"
+end
+#=> 0で除算しました
+
+# 上のコードはZeroDivisionErrorが発生した場合のみrescue節のコードが実行され、
+# プログラムを続行することができます。
+# ZeroDivisionError以外のエラーが発生した場合、例外は補足されませんのでプログラムが異常終了します。
+# なので、rescue節を複数書くことで、異なる例外クラスに対応することもできます。
+begin
+    'abc'.foo
+rescue ZeroDivisionError
+    puts "0で除算しました"
+rescue NoMethodError
+    puts "存在しないメソッドが呼び出されました"
+end
+#=> 存在しないメソッドが呼び出されました
+
+
+# 1つのrescue節に複数の例外クラスを指定することもできます。
+begin
+    'abc'.foo
+rescue ZeroDivisionError,NoMethodError
+    puts '0で除算したか、存在しないメソッドが呼び出されました'
+end
+#=> 0で除算したか、存在しないメソッドが呼び出されました
+
+# 次のように例外オブジェクトを変数に格納することも可能です。
+begin
+    'abc'.foo
+rescue ZeroDivisionError,NoMethodError => e
+    puts "0で除算したか、存在しないメソッドが呼び出されました"
+    puts "エラー: #{e.class} #{e.message}"
+end
+#=> 0で除算したか、存在しないメソッドが呼び出されました
+#   エラー: NoMethodError undifined method `foo` for "abc":String
+
+
+
+
