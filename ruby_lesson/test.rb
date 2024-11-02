@@ -2386,3 +2386,29 @@ end
 
 
 
+# rescue節に何もクラスを指定しなかった場合に捕捉されるのはStandardErrorとそのサブクラスです。
+# NoMemoryErrorやSystemExitなど、StandardErrorを継承していない例外クラスは捕捉されません。
+begin
+    # 例外が起きそうな処理
+rescue
+    # StandardErrorとそのサブクラスのみ捕捉される
+end
+
+# resuce節に例外クラスを指定した場合、捕捉されるのはそのクラス自身とそのサブクラスになります。
+# たとえば次のようにExceptionクラスを指定すると、StandardErrorと無関係のエラーまで捕捉することになります。
+
+# 例外処理の悪い例
+begin
+    # 例外が起きそうな処理
+rescue Exception
+    # Exceptionとそのサブクラスが捕捉される。つまりNoMethodErrorやSystemExitまで捕捉される
+end
+# しかし、通常のプログラムで捕捉するのはStandardErrorクラスか、そのサブクラスに限定すべきです。
+# 何か特別な理由がない限りrescue節にExceptionクラスやStandardErrorと無関係な例外クラスを
+# 指定することは避けましょう。
+
+
+
+
+
+
