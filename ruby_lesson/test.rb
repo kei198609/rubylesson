@@ -2412,3 +2412,64 @@ end
 
 
 
+# 継承関係とrescue節の順番に注意する
+# rescue節が複数ある場合は、上から順番に発生した例外クラスがrescue節のクラスにマッチするかどうかチェックされます。
+# 先ほどの説明したとおり、rescue節に例外クラスを指定すると、そのクラス自身とそのサブクラスが捕捉の対象になります。
+# そのため、例外クラスの継承関係とrescue節を書く順番に注意しないと永遠に実行されないrescue節を作ることになってしまいます。
+
+# 間違った例外処理の例
+begin
+    'abc'.foo
+rescue NameError
+    # NoMethodErrorはここで捕捉される
+    puts 'NameErrorです'
+rescue NoMethodError
+    # このrescue節は永遠に実行されない
+    puts 'NoMethodErrorです'
+end
+#=> NameErrorです
+
+# 2つ目のrescue節が実行されない理由:
+# NameErrorはNoMethodErrorのスーパークラスなので、NameErrorクラスを指定した最初のrescue節で捕捉されます。
+# そのため、どんなことがあっても2つめのrescue節に到達することはないわけです。
+# NameErrorとNoMethodErrorの継承関係: Exception ← StandardError ← NameError ← NoMethodError
+
+# この問題を解決するには、スーパークラスよりもサブクラスを手前に持ってくるようにすればよいです。
+begin
+    'abc'.foo
+rescue NoMethodError
+    puts 'NoMethodErrorです'
+rescue NameError
+    puts 'NameErrorです'
+end
+# =>NoMethodErrorです
+
+# こうするとNameErrorのrescue節よりも先にNoMethodErrorのrescue節が評価されるため、
+# NoMethodError用の例外処理を実行することができます。
+# もちろん,NameErrorが発生した場合はNameError用の例外処理を実行することができます。
+begin
+    'abc'.foo
+rescue NoMethodError
+    puts 'NoMethodErrorです'
+rescue NameError
+    puts 'NameErrorです'
+end
+# =>NameErrorです
+
+# なお、次のように最後にStandardErrorクラスを指定すれば、通常のプログラミングで発生するその他のエラーを
+# まとめて捕捉することができます（最後に指定するのはもちろん、StandardErrorがNoMethodErrorやNameErrorの
+# スーパークラスだからです）。
+begin
+    'abc'.foo
+rescue NoMethodError
+    puts 'NoMethodErrorです'
+rescue NameError
+    puts 'NameErrorです'
+rescue StandardError
+    puts 'その他のエラーです'
+end
+
+
+
+
+
