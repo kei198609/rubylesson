@@ -2473,3 +2473,38 @@ end
 
 
 
+# 例外発生時にもう一度処理をやりなおすretry
+# rescue節でretry文を実行すると、begin節の最初からやりなおすことができます。
+begin
+    # 例外が発生するかもしれない処理
+rescue
+    retry # 処理をやりなおす
+end
+# ただし、無条件にretryし続けると、例外が解決しない場合に無限ループを作ってしまう恐れがあります。
+# そういう場合はカウンタ変数を用意して、retryの回数を制限するのが良いでしょう。
+
+retry_count = 0
+begin
+    puts '処理を開始します'
+    1 / 0 # ゼロ除算エラーをわざと発生させる
+rescue
+    retry_count += 1
+    if retry_count <= 3
+        puts "retryします。#{retry_count}回目"
+        retry
+    else
+        puts 'retryに失敗しました'
+    end
+end
+# 処理を開始します
+# retryします。1回目
+# 処理を開始します
+# retryします。2回目
+# 処理を開始します
+# retryします。3回目
+# 処理を開始します
+# retryに失敗しました
+
+
+
+
