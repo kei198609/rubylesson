@@ -1838,7 +1838,7 @@ end
 # Fileクラスがどこかで定義されていたとします。
 
 module Baseball
-    class file
+    class File
         # 省略
     end
 end
@@ -1990,7 +1990,7 @@ module Loggable
     end
 end
 # 定数を参照する
-Loggable::PREFIX #=> "[LOG]"
+Loggable :: PREFIX #=> "[LOG]"
 
 
 
@@ -2286,11 +2286,11 @@ module Sample
         end
     end
 end
-Sample::User::NAME #=> "Alice"
-Sample::User.hello #=> "Hello i am Alice"
+# Sample::User::NAME #=> "Alice"
+# Sample::User.hello #=> "Hello i am Alice"
 
-# しかし、メソッドを呼び出しに関しては二重コロンを使うことができます。
-Sample::User::hello #=> "Hello i am Alice"
+# # しかし、メソッドを呼び出しに関しては二重コロンを使うことができます。
+# Sample::User::hello #=> "Hello i am Alice"
 
 
 
@@ -2309,11 +2309,11 @@ end
 # ここでは代表的なメソッドとしてmessageメソッドとbacktraceメソッドを使ってみましょう。
 # 例外オブジェクトから情報を取得したい場合は次のような構文を使います。
 
-begin
-    # 例外が起きうる処理
-rescue => #例外オブジェクトを格納する変数
-    # 例外が発生した場合の処理
-end
+# begin
+#     # 例外が起きうる処理
+# rescue => #例外オブジェクトを格納する変数
+#     # 例外が発生した場合の処理
+# end
 
 # 具体的なコードは以下のとおりです。
 begin
@@ -2504,6 +2504,27 @@ end
 # retryします。3回目
 # 処理を開始します
 # retryに失敗しました
+
+
+
+
+# 意図的に例外を発生させる
+# 例外を発生させる場合はraiseメソッドを使います。
+def currency_of(country)
+    case country
+    when :japan
+        'yen'
+    when :us
+        'dollar'
+    when :india
+        'rupee'
+    else
+        raise "無効な国名です。#{country}"
+    end
+end
+currency_of(:japan) #=> "yen"
+currency_of(:italy) #=> "無効な国名です。italy(RuntimeError)"
+# raiseメソッドに文字列を渡すと、その文字列がエラーメッセージになります。
 
 
 
