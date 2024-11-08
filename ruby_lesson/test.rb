@@ -2564,3 +2564,29 @@ end
 
 
 
+# 例外処理も条件分岐を使う
+# 例外の発生がある程度予測できる処理であれば、実際に実行する前に問題の有無を確認できる場合があります。
+# Date.valid_date?というメソッドで正しい日付かどうか確認することができます。
+
+require 'data'
+
+def convert_reiwa_to_data(reiwa_text)
+    m = reiwa_text.match(/令和(?<jp_year>\d+)年(?<month>\d+)月(?<day>\d+)日/)
+    year =m[:jp_year].to_i + 2018
+    month = m[:month].to_i
+    day = m[:day].to_i
+
+    # 正しい日付の場合のみ、Dateオブジェクトを作成する
+    if Date.valid_date?(year, month, day)
+        Date.new(year, month, day)
+    end
+end
+
+convert_reiwa_to_data('令和3年12年31日') #=> #<Date: 2021-12-31>
+convert_reiwa_to_data('令和3年99年99日') #=>nil
+# begin rescueを使うよりも条件分岐を使ったほうが可読性やパフォーマンスの面で有利です。
+
+
+
+
+
