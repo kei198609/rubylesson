@@ -2590,3 +2590,28 @@ convert_reiwa_to_data('令和3年99年99日') #=>nil
 
 
 
+# 予期しない条件は異常終了させる
+# 想定外のパターンがやってきたときは例外を発生させ、速やかにプログラムの実行を中止するのが良いでしょう。
+
+# elseに入ったら例外を発生させるパターン(良い例)
+def currency_of
+    case country
+    when :japan
+        'yen'
+    when :us
+        'dollar'
+    when :india
+        'rupee'
+    else raise ArgmentError, "無効な国名です。#{country}"
+    end
+end
+# 例外が発生する
+currency_of(:italy) #=> 無効な国名です。italy (ArgmentError)
+
+# 例外が発生するのでプログラムの実行はそこで止まってしまいますが、エラーメッセージやバックトレースが残るので、
+# 原因の調査と対策がしやすくなります。
+
+
+
+
+
