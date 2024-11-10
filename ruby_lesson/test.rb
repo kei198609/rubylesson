@@ -2615,3 +2615,20 @@ currency_of(:italy) #=> 無効な国名です。italy (ArgmentError)
 
 
 
+# 例外処理も手を抜かずにテストする
+
+def some_method
+    1 / 0
+rescue => e
+    # full_messageと書くつもりがfull_mesageと書いてしまった
+    puts "ERROR! #{e.full_mesage}"
+end
+# resuce節で別の例外が起きたために、本来出力されるべき"ERROR!"の文字が出力されない
+some_method #=> undefined method `full_mesage`
+# このように、resuce節で別の予期せぬ例外が発生すると、肝心な場面で例外処理が「例外的な状況」に対処できなくなります。
+# ですので、rescue節のコードもテストを行い、正常に実行できることを検証しましょう。
+
+
+
+
+
