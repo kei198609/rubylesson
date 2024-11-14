@@ -2712,3 +2712,46 @@ end
 
 
 
+# 例外処理と戻り値
+# 例外が発生せず、最後まで正常に処理が進んだ場合はbegin節の最後の式が戻り値になります。
+# 例外が発生してその例外が捕捉された場合はrescue節の最後の式が戻り値になります。
+ret =
+    begin
+        'OK'
+    rescue
+        'error'
+    ensure
+        'ensure'
+    end
+puts ret #=>"OK"
+
+# 例外が発生した場合
+# ret =
+#     begin
+#         1 / 0
+#         'OK'
+#     rescue
+#         'error'
+#     ensure
+#         'ensure'
+#     end
+# puts ret #=>"error"
+
+# 上の例では例外処理の戻り値を変数に格納しましたが、次のようにメソッドの戻り値として使うこともできます。
+# def hoge(n)
+#     begin
+#         1 / n
+#         'OK'
+#     rescue
+#         'error'
+#     ensure
+#         'ensure'
+#     end
+# end
+# hoge(1) #=> "OK"
+# hoge(0) #=> "error"
+
+
+
+
+
