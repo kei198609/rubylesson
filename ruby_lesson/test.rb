@@ -2776,3 +2776,69 @@ end
 
 
 
+# 例外処理のbegin/endを省略できるケース
+def fizz_buzz(n)
+    begin
+        if n % 15 == 0
+            'fizzbuzz'
+        elsif n % 3 == 0
+            'fizz'
+        elsif n % 5 == 0
+            'buzz'
+        else
+            n.to_s
+        end
+    rescue => e
+        puts "#{e.class} #{e.message}"
+    end
+end
+fizz_buzz(nil) #=>NoMethodError undefined method '%' for nil:NilClass
+
+# 省略した場合の書き方
+def fizz_buzz(n)
+    if n % 15 == 0
+        'fizzbuzz'
+    elsif n % 3 == 0
+        'fizz'
+    elsif n % 5 == 0
+        'buzz'
+    else
+        n.to_s
+    end
+rescue => e
+    puts "#{e.class} #{e.message}"
+end
+
+fizz_buzz(nil) #=>NoMethodError undefined method '%' for nil:NilClass
+# こうすると行数とインデントを減らすことができるので、コードが少しスッキリします。
+
+# また、beginとendの省略はdo/endブロックの内部でも有効です。
+users.each do |user|
+    begin
+        send_mail_to(user)
+    rescue => e
+        puts e.full_mesage
+    end
+end
+# beginとendを省略した場合
+users.each do |user|
+    send_mail_to(user)
+rescue => e
+    puts e.full_mesage
+end
+
+# ただし、do/endではなく{}を使った場合はbeginとendの省略はできないので注意
+users.each {
+    begin
+        send_mail_to(user)
+    rescue => e
+        puts e.full_mesage
+    end
+}
+
+
+
+
+
+
+
