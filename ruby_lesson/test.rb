@@ -2842,3 +2842,29 @@ users.each {
 
 
 
+# rescueした例外を再度発生させる
+# rescue節の中でraiseメソッドを使うこともできる。このときraiseメソッドの引数を省略すると
+# rescue節で捕捉した例外をもう一度発生させることができます。
+def fizz_buzz(n)
+    if n % 15 == 0
+        'fizzbuzz'
+    elsif n % 3 == 0
+        'fizz'
+    elsif n % 5 == 0
+        'buzz'
+    else
+        n.to_s
+    end
+rescue => e
+    # 発生した例外をログやメールで残す(ここではputsで代用)
+    puts "[LOG]エラーが発生しました: #{e.class} #{e.message}"
+    raise
+end
+fizz_buzz(nil) #=>[LOG]エラーが発生しました: NoMethodError undefined method '%' for nil:NilClass
+
+
+
+
+
+
+
