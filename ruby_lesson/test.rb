@@ -2867,4 +2867,71 @@ fizz_buzz(nil) #=>[LOG]エラーが発生しました: NoMethodError undefined m
 
 
 
+# ブロックを利用するメソッドの定義とyield
+# yieldを使ってブロックの処理を呼び出す
+
+# まず普通にメソッドを実行すると以下のとおりです。
+def greet
+    puts 'おはよう'
+    puts 'こんばんは'
+end
+greet
+#=> おはよう
+#   こんばんは
+
+# メソッドの呼び出しに適当なブロックを付けてみます
+greet do
+    puts 'こんにちは'
+end
+#=> おはよう
+#   こんばんは
+
+# 出力結果は変わることはありません。渡されたブロックを実行するためには
+# メソッド内でyieldを使います。
+
+def greet
+    puts 'おはよう'
+    yield
+    puts 'こんばんは'
+end
+# こうするとメソッド呼び出し時に紐づいたブロックが実行されるようになります。
+greet do
+    puts 'こんにちは'
+end
+#=> おはよう
+#   こんにちは
+#   こんばんは
+
+# また、ブロックを付けずに呼び出すとエラーになります。
+greet
+#=> おはよう
+# no block given(yield)(LocalJumpError)
+
+
+# ブロックが渡されたかどうか確認する場合はblock_given?メソッドを使います。
+# このメソッドはブロックが渡されている場合trueを返します。
+def greet
+    puts 'おはよう'
+    # ブロックの有無を確認してからyieldを呼び出す
+    if block_given?
+        yield
+    end
+    puts 'こんばんは'
+end
+
+greet
+#=> おはよう
+#   こんばんは
+
+greet do
+    puts 'こんにちは'
+end
+#=> おはよう
+#   こんにちは
+#   こんばんは
+
+
+
+
+
 
