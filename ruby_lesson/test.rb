@@ -2934,4 +2934,61 @@ end
 
 
 
+# yieldはブロックに引数を渡したりブロックの戻り値を受け取ったりできます。
+def greet
+    puts 'おはよう'
+    text = yield 'こんにちは'
+    puts text
+    puts 'こんばんは'
+end
+
+greet do |text|
+    text * 2
+end
+#=> おはよう
+#   こんにちはこんにちは
+#   こんばんは
+
+# なお、yieldとブロックでやりとりする引数は個数の過不足に寛容です。
+def greet
+    puts 'おはよう'
+    # 2つの引数をブロックに渡す
+    text = yield 'こんにちは', 12345
+    puts text
+    puts 'こんばんは'
+end
+
+greet do |text|
+    # ブロックパラメータが1つであれば、2つめの引数は無視される
+    text * 2
+end
+#=> おはよう
+#   こんにちはこんにちは
+#   こんばんは
+
+
+def greet
+    puts 'おはよう'
+    # 2つの引数をブロックに渡す
+    text = yield 'こんにちは'
+    puts text
+    puts 'こんばんは'
+end
+greet do |text, other|
+    # ブロックパラメータが2つであれば、2つめの引数はnilになる
+    text * 2 + other.inspect
+end
+#=> おはよう
+#   こんにちはこんにちはnil
+#   こんばんは
+
+
+
+
+
+
+
+
+
+
 
