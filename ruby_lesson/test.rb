@@ -2986,8 +2986,81 @@ end
 
 
 
+# ブロックを引数として明示的に受け取る
+
+# ブロックをメソッドの引数として明示的に受け取ることもできます。ブロックを引数として受け取る場合は、
+# 引数の前に&を付けます。また、そのブロックを実行する場合はcallメソッドを使います。
+# ブロックをメソッドの引数として受け取る
+def メソッド(&引数)
+    引数.call
+end
+
+# 以下はyieldではなくメソッドの引数として受け取ったブロックをcallメソッドで実行する例です。
+def greet(&block)
+    puts 'おはよう'
+    text = block.call('こんにちは')
+    puts text
+    puts 'こんばんは'
+end
+greet do |text|
+    text * 2
+end
+#=> おはよう
+#   こんにちはこんにちは
+#   こんばんは
+
+# 引数名はblockとしていますが自由に付けることができます。
+# ただし、ブロックの引数はメソッド定義につき1つしか指定できません。
+
+# ちなみに、ブロックを引数として受け取る場合でもyieldやblock_given?メソッドは使用可能です。
+def greet(&block)
+    puts 'おはよう'
+    # 引数のblockを使わずにblock_given?やyieldを使っても良い。
+    if block_given?
+        text = yield 'こんにちは'
+        puts text
+    end
+    puts 'こんばんは'
+end
+
+# ブロックを引数にするメリットの1つはブロックをほかのメソッド引数に渡せるようになることです。
+# 以下は日本語版と英語版のgreetメソッドを用意する例です。
+# greet_jaメソッドやgreet_enメソッドは引数として受け取ったブロックを実行することなく、
+# 共通処理を定義したgreet_commonメソッドにブロックを引き渡しています。
+def greet_ja(&block)
+    texts = ['おはよう', 'こんにちは', 'こんばんは']
+    greet_common(texts, &block) # ブロックを別のメソッドに引き渡す
+end
+
+def greet_en(&block)
+    texts = ['good morning', 'hello', 'good evening']
+    greet_common(texts, &block) # ブロックを別のメソッドに引き渡す
+end
+
+# 出力処理用の共通メソッド
+def greet_common(texts, &block) #ほかのメソッドにブロックを引き渡す場合は、引数の手前にも&を付けること。
+    puts texts[0]
+    # ブロックを実行する
+    puts block.call(texts[1])
+    puts texts[2]
+end
+
+# 日本語版のgreetメソッドを呼び出す
+greet_ja do |text|
+    text * 2
+end
+#=> おはよう
+#   こんにちはこんにちは
+#   こんばんは
 
 
+# 英語版のgreetメソッドを呼び出す
+greet_en do |text|
+    text.upcase
+end
+#=> good morning
+#   hellohello
+#   good evening
 
 
 
