@@ -3103,3 +3103,44 @@ end
 
 
 
+# Procオブジェクト
+
+# Procクラスはブロックをオブジェクト化するためのクラスです。
+# たとえば、Stringクラスであれば文字列を、Integerクラスであれば整数を表しますが、
+# Procクラスはブロック、つまり何かの処理(何らかの手続き)を表します。
+# Procクラスのインスタンスを作成する場合は、次のようにProc.newにブロックを渡します。
+
+# "Hello"という文字列を返すProcオブジェクトを作成する
+hello_proc = Proc.new do
+    'Hello'
+end
+# do endの代わりに{}を使ってもよい
+hello_proc = Proc.new { 'Hello' }
+
+
+# Procオブジェクトを実行したい場合はcallメソッドを使います。
+hello_proc = Proc.new { 'Hello' }
+hello_proc.call #=>"Hello"
+
+
+# 実行時に引数を利用するProcオブジェクトも定義できます。
+# 以下は2つの引数を受け取って、加算するProcオブジェクトです。
+add_proc = Proc.new { |a, b| a + b }
+add_proc.call(10, 20) #=> 30
+
+
+# 次のように引数にデフォルト値を付けることもできます
+add_proc = Proc.new{ |a = 0, b = 0| a + b }
+add_proc.call #=> 0
+add_proc.call(10) #=> 10
+add_proc.call(10, 20) #=> 30
+
+
+# Procオブジェクトを作成する場合は、Proc.newだけでなく、Kernelモジュールのprocメソッドを
+# 使うこともできます。どちらを使っても構いません。
+# Proc.newメソッドの代わりにprocメソッドを使う
+add_proc = proc { |a, b| a + b }
+
+
+
+
