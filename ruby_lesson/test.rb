@@ -3144,3 +3144,57 @@ add_proc = proc { |a, b| a + b }
 
 
 
+# Procオブジェクトをブロックの代わりに渡す
+def greet(&block)
+    puts 'おはよう'
+    text = block.call('こんにちは')
+    puts text
+    puts 'こんばんは'
+end
+# 上のコードに出てきた引数のblockはgreetメソッドを実行した際に紐づけられるブロックです。
+# つまり「引数のblockはProcオブジェクトである」と言うこともできます。
+# 次のようにすれば引数のblockが何クラスのインスタンスなのかがわかります。
+def greet(&block)
+    puts block.class
+    puts 'おはよう'
+    text = block.call('こんにちは')
+    puts text
+    puts 'こんばんは'
+end
+
+greet do |text|
+    text * 2
+end
+#=> Proc
+#   おはよう
+#   こんにちはこんにちは
+#   こんばんは
+
+# ところでarityメソッドを使えば、ブロックパラメータの個数がわかります。
+# このarityメソッドは実はProcクラスのインスタンスメソッドです。
+# つまり、arityメソッドが呼び出せるのは、メソッド呼び出し時に使ったブロックが
+# Procオブジェクトになっているからということになります。
+# この考えを発展させると、ブロックの代わりにProcオブジェクトをメソッドの引数として渡す
+# というテクニックが使えます。
+# たとえば以下は直接ブロックを渡さずに、あらかじめ作成したProcオブジェクトをgreetメソッドに渡しています。
+def greet(&block)
+    puts 'おはよう'
+    text = block.call('こんにちは')
+    puts text
+    puts 'こんばんは'
+end
+
+# Procオブジェクトを作成し、それをブロックの代わりとしてgreetメソッドに渡す
+repeat_proc = Proc.new { |text| text * 2 }
+greet(&repeat_proc)
+#=> おはよう
+#   こんにちはこんにちは
+#   こんばんは
+
+# Procオブジェクトをブロックの代わりに渡す際は&repeat_procのように、手前に&がついている点に注意。
+# &がないとブロックではなく、普通の引数が渡されたと見なされます。
+
+
+
+
+
