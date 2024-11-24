@@ -3198,3 +3198,43 @@ greet(&repeat_proc)
 
 
 
+# Procオブジェクトを普通の引数として渡す
+
+# ブロックではなく1個のProcオブジェクトを引数として受け取る(&を付けない)
+def greet(arrange_proc)
+    puts 'おはよう'
+    text = arrange_proc.call('こんにちは')
+    puts text
+    puts 'こんばんは'
+end
+# Procオブジェクトを普通の引数としてgreetメソッドに渡す(&を付けない)
+repeat_proc = Proc.new { |text| text * 2 }
+greet(repeat_proc)
+#=> おはよう
+#   こんにちはこんにちは
+#   こんばんは
+
+# 上のコードではブロックが登場しないので、メソッド定義の引数やメソッド呼び出しで&が使われていない点に注意。
+
+# メソッドが受け取れるブロックの数は最大1つですが、Procオブジェクトは文字列や数値と同じ「ただのオブジェクト」
+# なので、引数として渡すぶんには制限はありません。次のようにすれば3つのProcオブジェクトを引数として渡すこともできます。
+
+# 3種類のProcオブジェクトを受け取り、それぞれのあいさつを文字列に適用するgreetメソッド
+def greet(proc_1, proc_2, proc_3)
+    puts proc_1.call('おはよう')
+    puts proc_2.call('こんにちは')
+    puts proc_3.call('こんばんは')
+end
+# greetメソッドに渡すProcオブジェクトを用意する
+shuffle_proc = Proc.new  { |text| text.chars.shuffle.join }
+repeat_proc = Proc.new  { |text| text * 2 }
+question_proc = Proc.new  { |text| "#{text}?" }
+
+greet(shuffle_proc, repeat_proc, question_proc)
+#=> はおうよ
+#   こんにちはこんにちは
+#   こんばんは?
+
+
+
+
