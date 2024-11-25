@@ -3238,3 +3238,60 @@ greet(shuffle_proc, repeat_proc, question_proc)
 
 
 
+# Proc.newとラムダの違い
+
+# Procオブジェクトを作る方法は4つあります。
+Proc.new { |a, b| a + b }
+proc { |a, b| a + b }
+# 上の2つの方法はすでに解説してあります。残りの2つの方法を見てみましょう。
+
+# ->構文またはlambdaメソッドでProcオブジェクトを作成する
+->(a, b) { a + b }
+lambda { |a, b| a + b }
+# いずれも作成されるのはProcクラスのオブジェクトなのですが、最初の2つと
+# ->構文またはlambdaメソッドの方法は振る舞いが異なります。
+
+# ->がラムダを作成するための記号です。
+# その後ろにくる(a, b)は引数のリストです。{ }は引数を使って実行する処理の内容なります。
+# 引数のリストに使っている( )は省略可能です。
+-> a, b { a + b }
+# 引数がなければ全て省略可能です。
+-> { 'Hello' }
+# ブロックを作成するときと同様、{ }は改行させて使ってもかまいません。
+->(a, b) {
+    a + b
+}
+# また、{ }の代わりに、do endを使うこともできます。
+->(a, b) do
+    a + b
+end
+# 引数のデフォルト値を持たせることも可能です。
+->(a = 0, b = 0) { a + b }
+
+# Proc.newの方法とラムダはほぼ同じものなのですが、微妙に違いがいくつかあります。
+# その中でも一番重要な違いは引数の使い方です。
+
+# Proc.newの作成と実行
+add_proc = Proc.new { |a, b| a + b }
+add_proc.call(10, 20) #=> 30
+
+# ラムダの作成と実行
+add_lambda = ->(a, b) { a + b }
+add_lambda.call(10, 20) #=> 30
+# しかし、ラムダはProc.newの方法よりも引数のチェックが厳密になります。以下のコード例を見て。
+
+add_proc = Proc.new { |a, b| a.to_i + b.to_i }
+# Proc.newは引数が1つまたは3つでも呼び出しが可能
+add_proc.call(10) #=> 10
+add_proc.call(10, 20, 100) #=> 30
+
+# ラムダの場合
+add_lambda = ->(a, b) { a.to_i + b.to_i }
+# ラムダは個数について厳格なので、引数が2個ちょうどでなけれなエラーになる
+add_lambda.call(10) #=> wrong number of arguments(given 1, expected 2)
+add_proc.call(10, 20, 30) #=> wrong number of arguments(given 3, expected 2)
+
+
+
+
+
