@@ -3295,3 +3295,18 @@ add_proc.call(10, 20, 30) #=> wrong number of arguments(given 3, expected 2)
 
 
 
+# Proc.newかラムダかを判断するlambda?メソッド
+# Proc.newの場合
+add_proc = Proc.new { |a, b| a + b }
+add_proc.class #=> Proc
+add_proc.lambda? #=> false
+
+# ラムダの場合
+add_lambda = ->(a, b) { a + b }
+add_lambda.class #=> Proc
+add_lambda.lambda? #=> true
+
+
+
+
+
