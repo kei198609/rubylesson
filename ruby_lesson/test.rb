@@ -3310,3 +3310,41 @@ add_lambda.lambda? #=> true
 
 
 
+# Procオブジェクトについてもっと詳しく
+
+# Procオブジェクトを実行するさまざまな方法
+# Procオブジェクトを実行する方法はcall以外にもいくつかあります。
+add_proc = Proc.new { |a, b| a + b }
+# callメソッドを使う
+add_proc.call(10, 20) #=> 30
+# yieldメソッドを使う
+add_proc.yield(10, 20) #=> 30
+# .()を使う
+add_proc.(10, 20) #=> 30
+# []を使う
+add_proc[10, 20] #=> 30
+# ===を使う
+add_proc === [10, 20] #=> 30
+# なぜProcオブジェクトが===で呼び出せるようになっているのかというと、
+# case文のwhen節でProcオブジェクトを使えるようにするためです。
+def judge(age)
+    adult = Proc.new { |n| n > 20 } #20より大きければtrueを返すProcオブジェクト
+    child = Proc.new { |n| n < 20 } #20より小さければtrueを返すProcオブジェクト
+
+    case age
+    when adult
+        '大人です'
+    when child
+        '子供です'
+    else
+        'はたちです'
+    end
+end
+judge(25) #=> "大人です"
+judge(18) #=> "子供です"
+judge(20) #=> "はたちです"
+
+
+
+
+
