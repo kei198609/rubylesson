@@ -3347,4 +3347,36 @@ judge(20) #=> "はたちです"
 
 
 
+# &とto_procメソッド
+# Procオブジェクトをブロックとして渡したい場合は引数の前に&を付ける必要があります。
+reverse_proc = Proc.new { |s| s.reverse }
+['Ruby', 'Java', 'Python'].map(&reverse_proc) #=>["ybuR", "avaJ", "nohtyP"]
+# &の役割はProcオブジェクトをブロックとして認識させるだけではありません。
+# 厳密には右辺のオブジェクトに対してto_procメソッドを呼び出し、その戻り値として得られたProcオブジェクトを
+# ブロックを利用するメソッドに与えます。
+
+# ただし、元からProcオブジェクトだった場合はto_procメソッドを呼んでも自分自身が変えるだけです。
+reverse_proc = Proc.new { |s| s.reverse }
+other_proc = reverse_proc.to_proc
+# Procオブジェクトに対してto_procオブジェクトを呼んでも自分自身が変えるだけ
+reverse_proc.equal?(other_proc) #=> true
+# しかし、RubyにはProcオブジェクト以外でto_procメソッドを持つものがあります。
+# その1つがシンボルです。シンボルを変換してできたProcオブジェクトが変わっている点は
+# 実行時の引数の数によって実行される処理の内容が微妙に変化するところです。
+# 例えば次のように:splitというシンボルをto_procでProcオブジェクトに変換します。
+split_proc = :split.to_proc
+# このProcオブジェクトに引数を1つ渡して実行すると、1つめの引数をレシーバにし、
+# そのレシーバに対して元のシンボルと同じ名前のメソッドを呼び出します。
+
+# 引数が1つの場合はホワイトスペースで分割する
+split_proc.call('a-b-c-d e') #=> ["a-b-c-d", "e"]
+# 引数が2つの場合は指定された文字で分割する
+split_proc.call('a-b-c-d e', '-') #=> ["a", "b", "c", "d e"]
+# 引数が3つの場合は分割する個数を制限する
+split_proc.call('a-b-c-d e', '-', '3') #=> ["a", "b", "c-d e"]
+
+
+
+
+
 
