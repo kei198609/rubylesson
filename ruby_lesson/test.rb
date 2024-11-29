@@ -3379,4 +3379,44 @@ split_proc.call('a-b-c-d e', '-', '3') #=> ["a", "b", "c-d e"]
 
 
 
+# Procオブジェクトとクロージャ
+
+# メソッドの引数やメソッドのローカル変数は通常、メソッドの実行が終わると参照できなくなります。
+# しかし、Procオブジェクトないで引数やローカル変数を参照すると、メソッドの実行が完了してもProcオブジェクトは
+# 引き続き引数やローカル変数にアクセスし続けることができます。
+# たとえば以下のコードではgenerate_procというProcオブジェクトを生成して返すメソッドを定義しています。
+
+def generate_proc(array)
+    counter = 0
+    # Procオブジェクトをメソッドの戻り値とする
+    Proc.new do
+        counter += 10 #ローカル変数のcounterを加算する
+        array << counter #メソッド引数のarrayにcounterの値を追加する
+    end
+end
+# 次にメソッドの外部でvaluesという空の配列を用意し、generate_procメソッドに渡して戻り値の
+# Procオブジェクトをsample_procという変数で受け取ります。
+
+values =[]
+sample_proc = generate_proc(values)
+
+# generate_procメソッドの実行はすでに終わっているのですが、Procオブジェクトの中ではまだメソッド引数の
+# array(メソッドに渡した時の変数名はvalues)やローカル変数のcounterは生き続けています。
+# そのため、Procオブジェクトを実行するとcounterへの加算やarrayへの値追加が問題なく実行できます。
+# 結果として、最初に宣言したvaluesの中身がProcオブジェクトを実行するたびにどんどん変わることになります。
+
+# Procオブジェクトを実行するとgenerate_procメソッドの引数だったvaluesの中身が書き換えられる
+sample_proc.call
+values #=> [10]
+
+# generate_procメソッド内のローカル変数counterも加算され続ける
+sample_proc.call
+values #=> [10, 20]
+
+# 一般に、生成時のコンテキスト(変数情報など)を保持している関数をクロージャ(closure,関数閉包)と言います。
+# RubyのブロックやProcオブジェクトはクロージャとして振る舞います。
+
+
+
+
 
