@@ -3420,3 +3420,31 @@ values #=> [10, 20]
 
 
 
+# yieldやProcってどこで使うの？
+
+# Proc(とくにラムダ)をよく使うシーンはActiveRecordのスコープです。
+class Guitar < ApplicationRecord
+    # 'gold'というスコープを定義
+    scope :gold, -> { where(color: 'gold') }
+end
+
+
+# スコープの名前 (:gold):
+# scope :gold の部分は、gold というスコープ名を定義しています。
+# このスコープ名を使って、Guitar クラスのインスタンスやクエリに対して特定の条件を適用できます。
+
+# Procオブジェクト (-> { where(color: 'gold') }):
+# -> { where(color: 'gold') } の部分が第二引数であり、
+# これは Procオブジェクト（または lambda）です。
+
+# このProcオブジェクトは、scope メソッドに渡され、スコープが呼び出されたときに実行されます。
+# 具体的には、Guitar.gold が呼ばれると、このProcオブジェクト内のコードが実行され、
+# color が 'gold' のギターを検索するクエリが発行されます。
+guitars = Guitar.gold  # 'gold'のcolorを持つギターを取得する
+# Guitar.gold が呼ばれると、-> { where(color: 'gold') } の部分が実行され、
+# color が 'gold' のギターをデータベースから取得するためのクエリが作成されます。
+
+
+
+
+
