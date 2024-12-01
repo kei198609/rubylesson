@@ -3448,3 +3448,41 @@ guitars = Guitar.gold  # 'gold'のcolorを持つギターを取得する
 
 
 
+# yieldはある典型的な処理があり、その一部だけユースケースに合わせて柔軟に変更したいという要件が
+# あるときはyieldを有効活用できそうです。たとえば処理の開始と終了を毎回ログに記録する要件が
+# 複数ある場合は、月のようなメソッドを定義することでその処理を共通化することができます。
+
+# 処理の開始時と終了時にログを記録する共通メソッド
+def with_logging(name)
+    puts "[LOG] START: #{name}"
+    ret = yield # ブロック内の処理を実行
+    puts "[LOG] END: #{name}"
+    ret # ブロックの結果を返す
+end
+
+# 上のメソッドを使えばブロック内の処理を実行した際の開始時と終了時にログが記録できます。
+# ログ付きで数字の加算を実行する(このブロックが yield で実行され、その結果が answer に格納されます)
+answer = with_logging('add numbers') do
+    1 + 2
+end
+
+# 出力:
+# => [LOG] START: add numbers
+# => [LOG] END: add numbers
+answer #=> 3
+
+
+# ログ付きでmapメソッドを実行する
+numbers = with_logging('Array#map') do
+    [1, 2, 3].map { |n| n * 10 }
+end
+# 出力:
+# => [LOG] START: Array#map
+# => [LOG] END: Array#map
+numbers #=> [10, 20, 30]
+
+
+
+
+
+
