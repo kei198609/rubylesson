@@ -3543,3 +3543,46 @@ end
 
 
 
+# ハッシュをパターンマッチさせる
+
+cars = [
+    {name: 'GTR', engine: '280ps'},
+    {name: 'Prius', engine: '100ps', motor: '72ps'},
+    {name: 'Tesla', motor: '300ps'}
+]
+
+# それぞれの車のスペックを自動車の型識別に出力してみましょう。
+# まずはパターンマッチを使わない場合です。
+cars.each do |car|
+    if cars.key?(:engine) && car.key?(:motor)
+        puts "Hybrid: #{car[:name]} / engine: #{car[:engine]} / motor: #{car[:motor]}"
+    elsif cars.key?(:engine)
+        puts "Gasoline: #{car[:name]} / engine: #{car[:engine]}"
+    elsif car.key?(:motor)
+        puts "EV: #{car[:name]} / motor: #{car[:motor]}"
+    end
+end
+# Gasoline: GTR / engine: 280ps
+# Hybrid: Prius / engine: 100ps / motor: 72ps
+# EV: Tesla / motor: 300ps
+
+# ここでは愚直にkey?メソッドを使ってキーの有無を確認しながら条件分岐させてみました。
+# 次にパターンマッチを使った場合のコード例を見てみましょう。
+
+cars.each do |car|
+    case car
+    in {name:, engine:, motor:}
+        puts "Hybrid: #{name} / engine: #{engine} / motor: #{motor}"
+    in {name:, engine:}
+        puts "Gasoline: #{name} / engine: #{engine}"
+    in {name:, motor:}
+        puts "EV: #{name} / motor: #{motor}"
+    end
+end
+# Gasoline: GTR / engine: 280ps
+# Hybrid: Prius / engine: 100ps / motor: 72ps
+# EV: Tesla / motor: 300ps
+
+
+
+
