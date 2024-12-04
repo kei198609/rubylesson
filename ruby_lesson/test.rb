@@ -3584,5 +3584,36 @@ end
 # EV: Tesla / motor: 300ps
 
 
+# in節の{name:, engine:, motor:}や{name:, engine:}はキーは書いてあるものの、値が書いてありません。
+# 配列のパターンマッチでは[y]のyのように自動的に代入されるローカル変数がありましたが、ハッシュの
+# パターンマッチではそれが見当たりません。
+# 実はハッシュのパターンマッチでも、次のように各キーに対応する値を代入するローカル変数を明示的に指定することができます。
+cars.each do |car|
+    case car
+    in {name: name, engine: engine, motor: motor}
+        puts "Hybrid: #{name} / engine: #{engine} / motor: #{motor}"
+    in {name: name, engine: engine}
+        puts "Gasoline: #{name} / engine: #{engine}"
+    in {name: name, motor: motor}
+        puts "EV: #{name} / motor: #{motor}"
+    end
+end
+
+# in節で値を省略してキーだけ書いた場合は、自動的にキーと同じ名前のローカル変数が作成され、
+# そこに値が代入されるようになっています。
+
+cars.each do |car|
+    case car
+    in {name: , engine: , motor:}
+        puts "Hybrid: #{name} / engine: #{engine} / motor: #{motor}"
+    # 以下省略
+    end
+end
+# すなわち、in {name: , engine:}は:nameと:engineというキーを持つハッシュに、
+# in {name: , motor:}は:nameと:motorというキーを持つハッシュにそれぞれマッチします。
+
+
+
+
 
 
