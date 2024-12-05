@@ -3616,4 +3616,41 @@ end
 
 
 
+# パターンマッチの利用パターン
+
+# valueパターン
+
+# in節に数値や文字列を直接指定できる利用パターンです。
+# case節の式とin節の値が等しければ、対応する処理が実行されます。
+country = 'italy'
+
+case country
+in 'japan'
+    'こんにちは'
+in 'us'
+    'hello'
+in 'italy'
+    'Ciao'
+end
+#=> "Ciao"
+
+# case文と同様にパターンマッチも値を返すので、結果を変数に代入したり
+# メソッドの戻り値にしたりすることができます。
+country = 'italy'
+
+message =
+    case country
+    in 'japan'
+        'こんにちは'
+    in 'us'
+        'hello'
+    in 'italy'
+        'Ciao'
+    end
+message #=> "Ciao"
+
+
+
+
+
 
