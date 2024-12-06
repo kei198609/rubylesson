@@ -3649,8 +3649,38 @@ message =
     end
 message #=> "Ciao"
 
+# thenを使って条件にマッチした時の処理を1行で書ける点もcase文と同じです。
+case country
+in 'japan' then 'こんにちは'
+in 'us' then 'hello'
+in 'italy' then 'Ciao'
+end
 
+# しかし、case文と違う点もあります。それはパターンが1つもマッチしないとエラー(例外)が発生する点です。
+# 以下のコード例でcase文とパターンマッチの違いを確認しましょう。
 
+# case文の場合は真になる条件がまったくなくてもエラーにならずnilが返るだけ。
+country = 'india'
 
+case country
+when 'japan'
+    'こんにちは'
+when 'us'
+    'hello'
+when 'italy'
+    'Ciao'
+end
+#=> nil
+
+# パターンマッチではいずれの条件にもマッチしない場合は例外が発生する
+case country
+in 'japan'
+    'こんにちは'
+in 'us'
+    'hello'
+in 'italy'
+    'Ciao'
+end
+#=> india(NoMatchingPatternError)
 
 
