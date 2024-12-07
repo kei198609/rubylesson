@@ -3683,4 +3683,22 @@ in 'italy'
 end
 #=> india(NoMatchingPatternError)
 
+# エラーを発生させたくない場合はelse節を用意すると、どの条件にもマッチしなかった場合の処理が書けます。
+country = 'india'
+
+case country
+in 'japan'
+    'こんにちは'
+in 'us'
+    'hello'
+in 'italy'
+    'Ciao'
+else
+    'Unknown'
+end
+#=> "Unknown"
+
+
+
+
 
