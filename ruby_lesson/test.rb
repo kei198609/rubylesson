@@ -3699,6 +3699,62 @@ end
 #=> "Unknown"
 
 
+# 想定しなかった条件が発生したときに意図的に例外をraiseするコードを書く場合は、
+# 自動的に例外が発生するパターンマッチを使ったほうがシンプルに書けます。
+
+country = 'india'
+# 想定外の条件に備えてelse節で意図的に例外をraiseする
+case country
+in 'japan'
+    'こんにちは'
+in 'us'
+    'hello'
+in 'italy'
+    'Ciao'
+else
+    raise "無効な国名です。#{country}"
+end
+#=> 無効な国名です。india(RuntimeError)
+
+# パターンマッチでは自動的に例外が発生するのでelse節が不要
+case country
+in 'japan'
+    'こんにちは'
+in 'us'
+    'hello'
+in 'italy'
+    'Ciao'
+end
+#=> india(NoMatchingPatternError)
+
+# else節の代わりに後述するvariableパターンを利用し、任意のオブジェクトにマッチする
+# in節を用意することで例外の発生を防止することもできます。
+country = 'india'
+
+case country
+in 'japan'
+    'こんにちは'
+in 'us'
+    'hello'
+in 'italy'
+    'Ciao'
+in obj
+    "Unknown: #{obj}"
+end
+#=> "Unknown: india"
+
+# valueパターンでもcase文と同じようにin節の範囲オブジェクトやクラス名を書いても機能します。
+value = "abc"
+
+case value
+in Integer
+    '整数です'
+in String # String === "abc"が真なのでここにマッチ
+    '文字列です'
+end
+#=> "文字列です"
+
+
 
 
 
