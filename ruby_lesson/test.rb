@@ -3758,3 +3758,38 @@ end
 
 
 
+# variableパターン
+# in節のパターンに変数を書いてローカル変数の宣言と代入を同時に行う利用パターンです。
+# たとえば次のようにin objのように書くと、あらゆるオブジェクトがマッチし変数objに代入されます。
+
+# 文字列もマッチ
+case 'Alice'
+in obj # objは任意の変数名
+    "obj=#{obj}"
+end
+#=> "obj=Alice"
+
+case 'Alice'
+in name
+    "name=#{name}"  # 'Alice'がnameに代入される
+end
+#=> "name=Alice"
+
+# 数値もマッチ
+case 123
+in obj
+    "obj=#{obj}"
+end
+#=> "obj=123"
+
+# 配列もマッチ
+case [10, 20]
+in obj
+    "obj=#{obj}"
+end
+#=> "obj=[10, 20]"
+
+
+
+
+
