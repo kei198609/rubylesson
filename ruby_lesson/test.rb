@@ -3790,6 +3790,50 @@ end
 #=> "obj=[10, 20]"
 
 
+# このように、in 節に変数を使うことで、パターンマッチの対象となるオブジェクトを直接変数に代入することができ、
+# case の中でそのオブジェクトを利用することができます。
+# 例えば、値が何であるかに関わらず、変数に代入してその後の処理に使いたい場合に非常に便利です。
+data = [123, 'Alice', [10, 20]]
 
+data.each do |item|
+    case item
+    in obj
+        puts "obj=#{obj}"  # objに何でも代入される
+    end
+end
+# 実行結果:
+# obj=123
+# obj=Alice
+# obj=[10, 20]
+
+
+# 配列に要素を変数に代入することもできます。
+record = [2019, 5]
+
+# パターンマッチした値(配列の要素)をin句の変数に代入する。
+case record
+in [year]
+    "#{year}年です"
+in [year, month] #recordの要素が2つなのでここにマッチ
+    "#{year}年#{month}月です"
+in [year, month, day]
+    "#{year}年#{month}月#{day}日です"
+end
+# 実行結果:
+"2019年5月です"
+
+# 場合によっては代入ではなく、in節で事前に定義された変数の値を参照したいことがあるかもしれません。
+# その場合はピン演算子(^)を使います。
+alice = 'Alice'
+bob = 'Bob'
+name = 'Bob'
+
+case name
+in ^alice
+    'Aliceこんにちは'
+in ^bob #ここにマッチ
+    'Bobこんにちは'
+end
+#=> "Bobこんにちは"
 
 
