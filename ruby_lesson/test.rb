@@ -3837,3 +3837,77 @@ end
 #=> "Bobこんにちは"
 
 
+# ピン演算子は事前に定義された変数だけでなくin節で代入された変数を同じin節で参照することもできます。
+# 下のコード例は配列の値が3つとも同じだった場合とそれ以外で出力を切り分ける例です。
+records = [
+    [7, 7, 7],
+    [6, 7, 5]
+]
+records.each do |record|
+    case record
+    in [n ,^n, ^n] #要素数が3つでなおかつ3つとも同じ値であればマッチ
+        puts "all same: #{record}"
+    else
+        puts "not same: #{record}"
+    end
+end
+#=> all same: [7, 7, 7]
+#=> not same: [6, 7, 5]
+
+# ただし、厳密に言うとピン演算子を使ったマッチはvariableパターンではなくvalueパターンとなり、
+# マッチには===が利用されます。そのため、次のようなコードを書くこともできます。
+records = [
+    [Integer, 1, 2],
+    [Integer, 3, x]
+]
+
+records.each do |record|
+    case record
+    in [klass, ^klass, ^klass] #最後の2要素が最初の要素のクラスのインスタンスであればマッチ
+        puts "match: #{record}"
+    else
+        puts "not match: #{record}"
+    end
+end
+# match: [Integer, 1, 2]
+# not match: [Integer, 3, x]
+
+
+# なお、in節に指定できる変数はローカル変数のみです。インスタンス変数を使おうとすると構文エラーになります。
+case 1
+in @n
+    "@n=#{@n}"
+end
+#=> syntax error
+
+# ピン演算子を使う場合もやはり使えるのはローカル変数のみです。
+@n = 1
+# ピン演算子とインスタンス変数を組み合わせると構文エラーになる
+case 1
+in ^@n
+    '1です'
+end
+#=> syntax error
+
+# ピン演算子を使いたい場合はいったんローカル変数に入れ直す必要がある
+n = @n
+case 1
+in ^n
+    '1です'
+end
+#=> "1です"
+
+# メソッド呼び出しもピン演算子と組み合わせることはできません。
+s = '1'
+# ピン演算子とto_iメソッドを組み合わせた場合も構文エラー
+case 1
+in ^s.to_i
+    '1です'
+end
+#=> syntax error
+
+
+
+
+
+
