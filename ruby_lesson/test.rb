@@ -4040,3 +4040,31 @@ end
 
 
 
+# hashパターン
+# in節に{}を使ってハッシュの構造パターンを指定する利用パターンです。
+# 値に変数を指定すると、その変数に対応する値が格納されます。
+case {name: 'Alice', age: 20}
+in {name: name, age: age}
+    "name=#{name}, age=#{age}"
+end
+#=> "name=Alice, age=20"
+
+
+# 値の変数を省略するとキーと同じ名前の変数に値が代入されます。
+case {name: 'Alice', age: 20}
+in {name:, age:}
+    "name=#{name}, age=#{age}"
+end
+#=> "name=Alice, age=20"
+
+
+# キーの順番はマッチの結果には影響しません。
+case {name: 'Alice', age: 20}
+in {age:, name:}
+"name=#{name}, age=#{age}"
+end
+#=> "name=Alice, age=20"
+
+
+
+
