@@ -4066,5 +4066,25 @@ end
 #=> "name=Alice, age=20"
 
 
+# 値にはvalueパターンのように、固定の値や===で比較可能な値を指定できます。
+case {name: 'Alice', age: 20, gender: :female}
+in {name: 'Alice', age: 18.., gender:}
+    # :nameの値がAlice, :ageの値が18以上かつ、キーに:genderが含まれればマッチ
+    # :genderに対応する値は変数genderに代入される
+    "gender=#{gender}"
+end
+#=> "gender=female"
+
+# 参考 :name と name: の違い
+# :name は シンボル です。Rubyでは、シンボルは主に識別子として使われます。
+# シンボル自体には値が含まれているわけではなく、名前（識別子）として扱われます。
+# name: はハッシュの キー を示すための構文で、シンボル :name をキーとして使っているという意味です。
+# 例
+# person = { name: 'Alice' }
+# これは、`:name` をキーとして、'Alice' を値に持つハッシュです。
+
+
+
+
 
 
