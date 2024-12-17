@@ -4084,6 +4084,63 @@ end
 # これは、`:name` をキーとして、'Alice' を値に持つハッシュです。
 
 
+# hashパターンとarrayパターンを混在させることも可能です。
+case {name: 'Alice', children: ['Bob']}
+in {name:, children: [child]}
+# :nameと:childrenのキーを持ち、なおかつ:chidrenの値が要素1個の配列であればマッチ
+"name=#{name}, child=#{child}"
+end
+#=> "name=Alice, child=Bob"
+
+
+# hashパターンはハッシュの各要素がin節で指定したパターン(キーと値、またはキーのみ)に部分一致すればマッチしたと判定されます。
+case {name: 'Alice', age: 20, gender: :female}
+in {name: 'Alice', gender:}
+    # in節に:ageを指定していないが、:nameと:genderの条件が部分一致するので全体としてはマッチ
+    "gender=#{gender}"
+end
+#=> "gender=female"
+
+
+# in節の順番を間違えると意図した動きになりません。
+cars = [
+    {name: 'The Beatle', engine: '105'},
+    {name: 'Prius', engine: '98', motor: '72ps'},
+    {name: 'Tesla', motor: '306ps'}
+]
+
+cars.each do |car|
+    case car
+    in {name: ,engine:}
+        puts "Gasoline:#{name} / engine:#{engine}" # The BeatleもPriusもどちらもこのパターンにマッチする
+    in {name:, motor:}
+        puts "EV:#{name} / motor:#{motor}"
+    in {name:, engine:, motor:}
+        # Priusはガソリン車のパターンに部分一致するので下の処理は絶対に実行されない
+        puts "Hybrid:#{name} / engine:#{engine} / motor:#{motor}"
+    end
+end
+# 実行結果:
+# Gasoline:The Beatle / engine:105ps
+# Gasoline:Prius / engine:98ps
+# EV:Tesla / motor:306ps
+
+# ただし、in節に{}を書いた場合は例外的に「空のハッシュに完全一致」することがマッチの条件になります。
+case {a: 1}
+in {}
+    'empty' # {a: 1}は空のハッシュではないのでここにはマッチしない
+in {a:}
+    "a=#{a}"
+end
+#=> "a=1"
+
+case {}
+in {}
+    'empty' # 空のハッシュ同士で完全一致するのでここにマッチする
+in {a:}
+    "a=#{a}"
+end
+#=> "empty"
 
 
 
