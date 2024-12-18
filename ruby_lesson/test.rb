@@ -4145,3 +4145,42 @@ end
 
 
 
+# hashパターンのin節は、key: value形式のパターンしか許容されていません。
+# key => value形式を使おうとすると構文エラーが発生します。
+# この制約によりhashパターンで使えるハッシュのキーは必然的にシンボルのみになります。
+case {name: 'Alice', age: 20}
+in {:name => n, :age => a}
+#省略
+end
+#=> syntax error 省略
+
+# メソッド引数の定義と同様に**を使って任意のキーと値を指定することもできます。
+case {name: 'Alice', age: 20, gender: :female}
+in {name: 'Alice', **rest}
+# :nameがキーで値がAliceならマッチ。それ以外のキーと値は任意で変数restに代入
+"rest=#{rest}"
+end
+#=> "rest={:age=>20, :gender=>:female}"
+
+# arrayパターンの*とは異なり、**が使える位置はパターンの最後だけです。
+# 最初や途中で**を使おうとすると構文エラーになります。
+# (そもそもhashパターンではキーの順番はマッチの結果に影響しないので**を使う場所を変えても意味がありません)
+case {name: 'Alice', age: 20, gender: :female}
+in {**rest, gender:}
+# 省略
+end
+#=> syntax error 省略
+
+# 変数として使わない場合は**だけでもかまいません。
+# ですが、**をつけなかったときと違いがないので、実際に使うことはほとんどないかもしれません。
+case {name: 'Alice', age: 20, gender: :female}
+in {name: 'Alice', **}
+    # :nameがキーで値がAliceならマッチ。それ以外のキーと値は任意(変数として使わない)
+    # ただし、in {name: 'Alice'}と書いたときと違いがない
+    'matched'
+end
+#=> "matched"
+
+
+
+
