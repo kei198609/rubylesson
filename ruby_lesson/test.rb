@@ -4231,4 +4231,33 @@ end
 
 
 
+# asパターン
+# asパターンはパターンマッチでマッチしたオブジェクトを変数に代入する利用パターンです。
+# たとえば、以下のようなパターンマッチは「:nameが文字列で:ageが18以上のハッシュ」にはマッチしますが、
+# このままでは:nameや:ageに対応する値を取得できません。
+case {name: 'Alice', age: 20, gender: :female}
+in {name: String, age: 18..}
+# マッチするが、:nameや:ageの値が取得できない
+end
+
+# こんなときはin節のパターンに"=> 変数名"と書くと、マッチしたオブジェクトを変数に代入できます。
+case {name: 'Alice', age: 20, gender: :female}
+in {name: String => name, age: 18.. => age}
+    "name=#{name}, age=#{age}" # => 変数名 の形式でマッチしたオブジェクトを変数に代入できる(asパターン)
+end
+#=> "name=Alice, age=20"
+
+# 次のように一番外側に"=> 変数名"と書くとマッチしたオブジェクト全体(ここではHashオブジェクト)を取得できます。
+case {name: 'Alice', age: 20, gender: :female}
+in {name: 'Alice', age: 18..} => person
+    # マッチしたハッシュ全体を変数personに代入できる
+    "person=#{person}"
+end
+#=> "person={:name=>\"Alice"\, :age=>20, :gender=>:female}"
+
+
+
+
+
+
 
