@@ -4397,3 +4397,73 @@ end
 
 
 
+# 1行パターンマッチ
+# Rubyのパターンマッチではcase節を省略して"評価したい式 in パターン"を1行で書くことができます。
+# Ruby3.0の1行パターンマッチではマッチすればtrue,しなければfalseが返ります。
+[1, 2, 3] in [Integer, Integer, Integer] #=> ture
+[1, 2, 'x'] in [Integer, Integer, Integer] #=> false
+
+# trueまたはfalseを返す1行パターンマッチの特性を活かすと、次のようにif文でパターンマッチを使えます。
+person = {name: 'Alice', children: ['Bob']}
+if person in {name:, children: [_]}
+    # :nameと:childrenをキーに持ち、なおかつ:childrenが要素1つの配列であれば以下の処理を実行する
+    "Hello, #{name}"
+end
+#=> # Hello, Alice
+
+# 次のコード例ではパターンマッチとselectメソッドを組み合わせて、
+# 配列の中からキーに:nameと:motorを含むハッシュだけを抽出しています。
+
+cars = [
+    {name: 'The Beatle', engine: '105'},
+    {name: 'Prius', engine: '98', motor: '72ps'},
+    {name: 'Tesla', motor: '306ps'}
+]
+
+# selectメソッドを1行パターンマッチを使って、キーに:nameと:motorを含むハッシュだけを抽出する
+cars.select do |car|
+    car in {name:, motor:}
+end
+# [
+# {:name => "prius", :engine => "98ps", :motor => '72ps'},
+# {:name => "Tesla", :motor => '306ps'}
+# ]
+
+
+# 1行パターンマッチはもう1つ、式 => パターンという記法も用意されています。
+# この記法はおもにパターンマッチに使った変数代入を利用するために使います。
+
+# =>を使った1行パターンマッチで変数nameとchildにハッシュの値を代入する
+{name: 'Alice', children: ['Bob']} => {name:, children: [child]}
+name #=> "Alice"
+child #=> "Bob"
+
+# この1行パターンマッチ構文を使うと、あたかも左辺の式を右辺の変数に代入しているように見える場合があるため
+# 「右代入」と呼ばれることがあります。
+123 => n
+n * 10 #=> 1230
+
+
+# 右代入はメソッドチェーンのような長くて複雑な式を変数に代入する際に視線やキャレットを右端から先頭へ
+# 戻さずに、そのまま変数を読み書きできるというメリットもあります。
+words = 'Ruby is fun'
+words.split('').map { |word| words.upcase + '!' * 3 }.join(' ') => loud_voice
+loud_voice #=> "RUBY!!! IS!!! FUN!!!"
+
+# words.split(''):
+# words の文字列 'Ruby is fun' を1文字ずつ分割します。
+# 結果として、['R', 'u', 'b', 'y', ' ', 'i', 's', ' ', 'f', 'u', 'n'] という配列になります。
+
+# map { |word| words.upcase + '!' * 3 }:
+# map メソッドで、配列内の各文字（word）に対して処理を行っていますが、実際には words.upcase + '!' * 3 という処理が行われています。
+# map メソッドは、配列の各要素に指定したブロック内の処理を実行し、その結果を新しい配列として返します。
+# mapメソッド基本例
+# arr = [1, 2, 3, 4]
+# result = arr.map { |n| n * 2 }
+# puts result
+# #=> [2, 4, 6, 8]
+
+
+
+
+
