@@ -4613,3 +4613,95 @@ end
 
 
 
+# deconstruct_keysメソッドの引数として渡されるオブジェクトの中身と利用目的について説明します。
+# まず、オブジェクトの中身についてですが、この引数にはhashパターンで参照されるキーの配列が渡されます。
+class Point
+    def initialize(x, y)
+        @x = x
+        @y = y
+    end
+
+    def deconstruct
+        [@x, @y]
+    end
+
+    # hashパターンで呼ばれるメソッド
+    def deconstruct_keys(keys)
+        puts "keys=#{keys.inspect}" # 確認用にkeysの内容を表示する
+        {x: @x, y: @y}
+    end
+
+    def to_s
+        "x:#{@x}, y:#{@y}"
+    end
+end
+
+point = Point.new(10, 20)
+# hashパターンで参照されるキーの配列がdeconstruct_keysメソッドに渡される
+point in {x: 10, y: 20} #=> keys=[:x, :y]
+point in {x: 10}        #=> keys=[:x]
+
+# ただし、**restや**nilのようなパターンが指定された場合は、すべての要素を返す必要があるため、
+# 他のキー指定の有無にかかわらずnilが渡される
+point in {x: 10, **rest} #=> keys=nil
+point in {x: 10, y: 20, **nil} #=> keys=nil
+
+
+
+# ハッシュの要素が大量にあったり、値の取得が重たい処理だったりする場合は、毎回すべての要素を返すより、
+# 必要最小限の要素を返すようにしたほうが効率的です。
+# そこで、パフォーマンス上の懸念がある場合は引数で渡されるキー情報に応じて返却する要素を取捨選択します。
+def deconstruct_keys(keys)
+    # 引数のkeysを参照して、必要最小限の要素を返すコード例
+    hash = {}
+    hash[:x] = @x if keys.nil? || keys.include?(x)
+    hash[:y] = @y if keys.nil? || keys.include?(y)
+    hash
+end
+# 解説
+# hash = {}:
+# 空のハッシュを作成します。このハッシュに、必要なキーと値のペアを条件に応じて追加していきます。
+
+# hash[:x] = @x if keys.nil? || keys.include?(:x):
+# keys が nil の場合、または keys に :x が含まれている場合に、@x を hash に追加します。
+
+# hash[:y] = @y if keys.nil? || keys.include?(:y):
+# 同様に、keys が nil または keys に :y が含まれている場合、@y を hash に追加します。
+
+# hash:
+# 最後に、条件に基づいて要素を追加したハッシュを返します。
+
+# 実際にこのメソッドを使う例を見てみましょう。
+# keys が nil の場合
+
+class MyClass
+    def initialize(x, y)
+        @x = x
+        @y = y
+    end
+
+    def deconstruct_keys(keys)
+        hash = {}
+        hash[:x] = @x if keys.nil? || keys.include?(:x)
+        hash[:y] = @y if keys.nil? || keys.include?(:y)
+        hash
+    end
+end
+
+obj = MyClass.new(10, 20)
+
+# keysがnilの場合、両方の要素を返す
+puts obj.deconstruct_keys(nil) #=> {:x => 10, :y => 20}
+
+
+
+# キー情報を使うかどうかは任意です。使わない場合はアンダースコア(_)で始まる引数名にして、
+# 「APIの規約上必要だが、実際には使わない引数」であることを示すと良いでしょう。
+def deconstruct_keys(_keys)
+    {x: @x, y: @y}
+end
+
+
+
+
+
