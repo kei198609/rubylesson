@@ -4504,5 +4504,112 @@ end
 
 
 
+# 自作クラスをパターンマッチに対応させる
+# ここまでarrayパターンやhashパターンでは組み込みライブラリのArrayオブジェクトやHashオブジェクトを
+# マッチさせてきましたが、組み込みライブラリだけでなく、自作クラスをパターンマッチに対応させることも可能です。
+
+# 自作クラスをarrayパターンに対応させるためにはdeconstructメソッドを、hashパターンに対応させるためには
+# deconstruct_keysメソッドをそれぞれに定義します。deconstructメソッドは自分自身の配列表現を、
+# deconstruct_keysメソッドでは自分自身のハッシュ表現をそれぞれ戻り値として返すようにします。
+# たとえば、平面座標を表す単純なPointクラスを作り、このクラスをパターンマッチに対応させるために
+# deconstructメソッドとdeconstruct_keysメソッドを定義してみます。
+
+class Point
+    def initialize(x, y)
+        @x = x
+        @y = y
+    end
+    # arrayパターンで呼ばれるメソッド
+    def deconstruct
+        [@x, @y]
+    end
+
+    # hashパターンで呼ばれるメソッド
+    def deconstruct_keys(_keys)
+        {x: @x, y: @y}
+    end
+
+    #実行結果をわかりやすく表示させるためto_sメソッドもオーバーライドしておく
+    def to_s
+        "x:#{@x}, y:#{@y}"
+    end
+end
+
+# 次にこのクラスをパターンマッチで使ってみます。
+point = Point.new(10, 20)
+
+case point
+in [1, 2]
+    # ここにはマッチしない
+in [10, 20]
+    # ここにマッチする
+    'matched'
+end
+#=> "matched"
+
+case point
+in {x: 1, y:2}
+# ここにはマッチしない
+in {x: 10, y:20}
+# ここにマッチする
+'matched'
+end
+#=> "matched"
+
+
+# in節には[1, 2]や{x: ,y:}のような形式でパターンを書いてきましたが、
+# クラス名(パターン)またはクラス名[パターン]という形式もあります。
+# この記法を使うと、arrayパターンやhashパターンを利用しつつ、マッチさせたいオブジェクトの型を限定することができます。
+# たとえば、以下のようなパターンマッチではPointオブジェクトが来ても、Arrayオブジェクト(ただの配列)が来ても、どちらもマッチしてしまいます。
+
+# PointオブジェクトとArrayオブジェクトを混在させた配列を作る
+data = [
+    Point.new(10, 20),
+    [10, 20]
+]
+data.each do |obj|
+    case obj
+    in [10, 20]
+        # PointもArrayもどちらもマッチする
+        puts "obj=#{obj}"
+    end
+end
+#=> obj=x:10, y:20
+#   obj=[10, 20]
+
+# これをin Point(10, 20)やin Array(10, 20)に変えると、判定対象となる
+# オブジェクトのデータ型を限定することができます。
+data.each do |obj|
+    case obj
+    in Point(10, 20)
+        # Pointオブジェクトかつ、配列表現が[10, 20]ならマッチ
+        puts "point=#{obj}"
+    in Array(10, 20)
+        # Arrayオブジェクトかつ、配列表現が[10, 20]ならマッチ
+        puts "array=#{obj}"
+    end
+end
+#=> point=x:10, y:20
+#   array=[10, 20]
+
+# またhashパターンの場合はPoint(x: 10, y: 20)、もしくはPoint[x: 10, y: 20]と書きます。
+point = Point.new(10, 20)
+# クラス名(パターン)の形式を使う場合
+case point
+in Point(x: 10, y: 20)
+    'matched'
+end
+#=> "matched"
+
+# クラス名[パターン]の形式を使う場合
+case point
+in Point[x: 10, y: 20]
+    'matched'
+end
+#=> "matched"
+
+
+
+
 
 
