@@ -4705,3 +4705,19 @@ end
 
 
 
+# よく発生する例外クラスとその原因
+
+# NameError
+
+# 未定義のローカル変数や定数などを呼び出した時に発生します。
+# 外部ファイルや外部ライブラリのrequireを忘れている場合にも発生することがあります。
+
+# 出力例
+# distanceをdistanseとタイプミスした場合
+# undefined local variable or method `distanse` for #<Gate:0x00000001393e85e8 ...> (NameError)
+
+# dataライブラリをrequireせずにDateクラスを使おうとした場合
+# uninitialized constant Date (NameError)
+
+
+
