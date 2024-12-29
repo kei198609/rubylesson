@@ -4721,3 +4721,36 @@ end
 
 
 
+# NoMethodError
+
+# 存在しないメソッドや可視性が制限されているため呼び出せないメソッドを呼び出そうとした場合に発生します。
+# たとえば以下のような場合です。
+# ・単純にメソッド名を打ち間違えた。
+# ・privateメソッドをクラスの外部から呼び出そうとした。
+# ・レシーバ(メソッドが呼び出されたオブジェクトのこと)の型(クラス)が想定していた型と異なる(文字列ではなくシンボルになっていた場合など)
+# ・レシーバが想定に反してnilになっている。
+
+# 特に4つめのレシーバがnilになっているケースは非常によく発生します。
+
+# 出力例
+# stamped_atメソッドを間違えてstamped_onと入力した場合
+# undefined method `stamped_on` for #<Ticket:0x000000012e...> (NoMethodError)
+
+# 出力例
+# privateメソッドのbarをクラスの外部から呼び出そうとした場合
+# private method `bar` called for #<Foo:0x000000012e33e1c0> (NoMethodError)
+
+# 出力例
+# シンボルに対してcharsメソッドを呼び出してしまった場合
+# undefined method `chars` for :japan:Symbol (NoMethodError)
+
+# 出力例
+# ticket.fareを呼び出したが、ticketがnilだった場合
+# undefined method `fare` for nil:NilClass (NoMethodError)
+
+
+
+
+
+
+
