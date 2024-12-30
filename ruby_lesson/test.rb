@@ -4752,5 +4752,15 @@ end
 
 
 
+# TypeError
+
+# TypeErrorは期待しない型(クラス)がメソッドの引数に渡された時に発生します。
+# 出力例
+# 10 + '1'のように整数と文字列を加算しようとした場合
+# String can't be coerced into Integer (TypeError)
+
+
+
+
 
 
