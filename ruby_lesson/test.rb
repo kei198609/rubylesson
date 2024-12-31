@@ -4762,5 +4762,15 @@ end
 
 
 
+# ArgumentError
+
+# ArgumentErrorは引数の(argument)の数が違ったり、期待する値ではなかったりした場合に発生します。
+# 出力例
+# 引数が必須なのに[1, 2, 3].deleteのように引数なしでメソッドを呼んだ場合
+# wrong number of arguments (given 0, expected 1) (ArgumentError)
+
+# 出力例
+# 正の値を渡すべきメソッド(演算子)に対し、'a' * -1のように負の値を渡した場合
+# negative argument (ArgumentError)
 
 
