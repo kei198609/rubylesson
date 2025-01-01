@@ -4774,3 +4774,14 @@ end
 # negative argument (ArgumentError)
 
 
+# ZeroDivisionError
+
+# ZeroDivisionErrorは整数を0で除算(割り算)しようとしたときに発生します。
+# 出力例
+# 1 / 0のように0で除算しようとした場合
+# divided by 0 (ZeroDivisionError)
+
+
+
+
+
