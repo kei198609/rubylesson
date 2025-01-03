@@ -4809,4 +4809,14 @@ factorial(5)
 
 
 
+# LoadError
+
+# requireやrequire_relativeの実行に失敗したときに発生します。
+# ・requireの引数に与えたライブラリ名が間違っている
+# ・requireしようとしたgemが実行環境にインストールされていない
+# ・require_relativeで指定したファイルのパスが間違っている
+# 出力例
+# require 'pathname'を間違ってrequire 'pathmame'と書いてしまった場合
+# cannot load such file -- pathmame (LoadError)
+
 
