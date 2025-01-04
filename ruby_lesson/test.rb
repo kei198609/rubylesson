@@ -4820,3 +4820,14 @@ factorial(5)
 # cannot load such file -- pathmame (LoadError)
 
 
+# SyntaxError
+# 構文エラーです。たいていの場合、プログラムの起動自体に失敗します。
+# このエラーが発生したときはendやカンマの数に過不足がある、丸カッコや中カッコが
+# ちゃんと閉じられていない、といった原因が考えられます。
+# 以下のコードはputs({ foo: 1, bar: 2})のように丸カッコが必要
+# puts{ foo: 1, bar: 2 }
+#=> syntax error, unexpected ':', expecting '}' (SyntaxError)
+
+
+
+
