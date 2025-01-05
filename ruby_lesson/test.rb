@@ -4831,3 +4831,33 @@ factorial(5)
 
 
 
+# プログラムの途中経過を確認する
+
+# printデバッグ
+# printメソッドをプログラムに埋め込んでプログラムを実行し、ターミナルに出力される値を確認して不具合を探るという手法です。
+# Rubyの場合はprintメソッドよりもputsメソッドやpメソッドのほうをよく使います。
+
+def to_hex(r, g, b)
+    [r, g, b].sum('#') do |n|
+        n.to_s(16).rjust(2, '0')
+    end
+end
+
+
+# printデバッグは変数やメソッドの値を出力するだけでなく、メソッドや条件分岐が意図したとおりに
+# 実行されているかどうか確認する場合にも使えます。
+
+def greet(country)
+    puts 'greet start' # greetメソッドが呼ばれたことを確認
+    return 'countryを入力してください' if country.nil?
+
+    if country == 'japan'
+        puts 'japan' # 真の条件分岐に入ったことを確認
+        'こんにちは'
+    else
+        puts 'other' # 偽の条件分岐に入ったことを確認
+        'hello'
+    end
+end
+
+
