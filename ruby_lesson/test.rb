@@ -4888,3 +4888,18 @@ a #=> "hello"
 
 
 
+# ログにデバッグ情報を出力する
+
+# 以下はRailsアプリケーションでログ出力するコード例です。
+class User < ApplicationRecord
+    def facebook_username
+        logger.debug "[DEBUG] info.name: #{info.name}" #ログに変数info.nameの値を出力する
+        info.name
+    end
+end
+
+
+
+
+
+
