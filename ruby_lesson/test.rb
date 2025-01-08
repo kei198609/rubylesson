@@ -4901,5 +4901,28 @@ end
 
 
 
+# デバッガ(debug.gem)を使う
+
+# fizz_buzzメソッドに処理が移ったタイミングで停止させてみましょう。
+# debugライブラリをrequireしたあと、if文が始まる直前にbinding.breakというコードを挟み込んでみます。
+require 'debug'
+
+def fizz_buzz(n)
+    binding.break
+    if n % 15 == 0
+        'Fizz Buzz'
+    elsif n % 3 == 0
+        'Fizz'
+    elsif n% 5 == 0
+        'Buzz'
+    else
+        n.to_s
+    end
+end
+
+
+
+
+
 
 
