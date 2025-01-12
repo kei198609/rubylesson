@@ -4985,3 +4985,30 @@ end
 
 
 
+# FileUtilsモジュールは基本的なファイル操作を集めたモジュールです。
+# ファイルのコピーや削除などを便利に実行するためのメソッドが定義されています。
+require 'fileutils'
+
+# libディレクトリのhello_world.txtをhello_world.rbにリネームする
+FileUtils.mv('./lib/hello_world.txt', './lib/hello_world.rb')
+
+
+# Pathnameクラスはパス名をオブジェクト指向らしく扱うクラスです。
+# たとえば、自分自身がファイル(またはディレクトリ)かどうかを返すメソッドや、
+# 新しいパス文字列を組み立てるメソッドなどが定義されています。
+
+require 'pathname'
+
+# カレントディレクトリ配下にあるlibディレクトリを表すオブジェクトを作る
+lib = Pathname.new('./lib')
+# ファイルか？
+lib.file? #=> false
+# ディレクトリか？
+lib.directory? #=> true
+# libディレクトリ配下にあるsample.txtへのパス文字列を作る
+lib.join('sample.txt').to_s #=> "./lib/sample.txt"
+
+
+
+
+
