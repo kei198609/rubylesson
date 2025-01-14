@@ -5012,3 +5012,40 @@ lib.join('sample.txt').to_s #=> "./lib/sample.txt"
 
 
 
+# 特定の形式のファイルを読み書きする
+# Rubyでは単純なテキストファイルだけでなく、CSVファイルやJSONといった特定の形式の
+# ファイルやテキストデータを読み書きするライブラリも用意されています。
+
+# CSV
+require 'csv'
+# CSVファイルの出力
+CSV.open('./lib/sample.csv', 'w') do |csv|
+    # ヘッダ行を出力する
+    csv << ['Name', 'Email', 'Age']
+    # 明細行を出力する
+    csv << ['Alice', 'alice@example.com', 20]
+end
+
+# JSON
+# JSONはJavaScript Object Notationの略で、JavaScriptと互換性のあるテキストフォーマットの一種です。
+# シンプルかつ軽量にオブジェクトの内容を表現できるため、JavaScriptだけでなく様々な言語やWebサービス間で
+# データを交換するときによく使われます。
+
+require 'json'
+
+# ハッシュをJSON形式の文字列に変換する
+user = { name: 'Alice', email: 'alice@example.com', age: 20 }
+user_json = user.to_json # ハッシュをJSON形式の文字列に変換する
+puts user_json
+#=> {"name":"Alice","email":"alice@example.com","age":"20"}
+
+# JSON文字列をパースしてハッシュに変換する(デフォルトではキーは文字列になる)
+JSON.parse(user_json)
+#=> {"name"=>"Alice", "email"=>"alice@example.com", "age"=>20}
+
+# symbolize_namesオブションを指定するとキーがシンボルになる
+JSON.parse(user_json, symbolize_names: true)
+#=> {:name=>"Alice", :email=>"alice@example.com", :age=>20}
+
+
+
