@@ -5049,3 +5049,56 @@ JSON.parse(user_json, symbolize_names: true)
 
 
 
+# YAML
+# YAMLは"YAML Ain't a Markup Language"の略で、インデントを使ってデータの階層構造を
+# 表現でするテキストフォーマットの一種です。
+require 'yaml'
+
+# YAML形式のテキストデータを用意する
+yaml = <<TEXT # <<TEXT で YAML形式の文字列を作成します。
+    alice:
+    name: 'Alice'
+    email: 'alice@example.com'
+    age: 20
+TEXT
+
+# YAMLテキストをパースしてハッシュに変換する
+users = YAML.load(yaml)
+{
+    "alice" => {
+        "name" => "Alice",
+        "email" => "alice@example.com",
+        "age" => 20
+    }
+}
+# YAML.loadは文字列をRubyオブジェクトに変換します。
+
+
+# ハッシュに新しい要素を追加する
+users['alice']['gender'] = :female
+# ハッシュの構造が以下のように更新されます：
+{
+    "alice" => {
+        "name" => "Alice",
+        "email" => "alice@example.com",
+        "age" => 20,
+        "gender" => :female
+    }
+}
+
+
+# ハッシュからYAMLテキストに変換する
+puts YAML.dump(users)
+# ターミナルに以下のような出力が表示されます：
+# alice:
+#   name: Alice
+#   email: alice@example.com
+#   age: 20
+#   gender: :female
+
+# YAML.dumpはRubyオブジェクトをYAML形式に変換します。
+
+
+
+
+
