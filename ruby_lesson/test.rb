@@ -5101,4 +5101,57 @@ puts YAML.dump(users)
 
 
 
+# Rake
+# RakeはRubyで作られているビルドツールです。
+# macOS/Linux系の環境で昔からよく使われているビルドツールにMakeがありますが、
+# RakeはそのRuby版だと言えます。ただし、もともとはビルドツールとして開発されたRakeですが、
+# 実際にはビルドに限らず、「何かしらのまとまった処理」を簡単に実行するためのツールとして使われることも多いです。
+# ビルドとはコンパイルやトランスパイル(別言語への変換)といった処理を通じて、
+# ソースコードやライブラリを1つにまとめ、実行可能ファイルや配布パッケージを作成する処理です。
+
+# Rakeの基本的な使い方
+# Rakeの大きな特徴の1つはRubyプログラムを内部DSLとして使用する点です。
+# RakeはRakefileという名前のファイルにタスクを定義します。
+# たとえば以下はRakefileに"hello_world"という名前のタスク定義をする例です。
+
+# hello_worldという名前のタスクを定義する
+task :hello_world do
+    puts 'Hello, world' # ブロックの中がタスクとして実行される処理になる
+end
+
+# 上のタスクは以下のようにrakeコマンドを使って実行できます。
+# $ rake hello_world
+# Hello, world
+
+
+# タスクにはdescメソッドを使ってタスクの説明を入れることもできます。
+desc 'テスト用のタスクです。'
+task :hello_world do
+    puts 'Hello, world'
+end
+
+# rake -Tというコマンドを入力すると、タスクの一覧が説明付きで表示されます。
+# $ rake -T
+# rake hello_world #テスト用のタスクです。
+
+
+
+# タスクの数が増えてきたときは、名前空間(ネームスペース)を使ってタスクを整理することもできます。
+# 名前空間を使ってタスクをグループ分けする
+namespace :my_tasks do
+    desc 'テスト用のタスクです。'
+    task :hello_world do
+        puts 'Hello, world'
+    end
+end
+# 名前空間付きのタスクを実行するときは、コロン(:)を使って名前空間とタスクを区切ります。
+# $ rake my_tasks:hello_world
+# Hello, world
+
+
+
+
+
+
+
 
