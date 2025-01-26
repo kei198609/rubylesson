@@ -5451,4 +5451,44 @@ f1 =false
 
 
 
+# if文
+
+
+if 条件A
+    # 条件Aが真だった場合の処理
+elsif 条件B
+    # 条件Aが偽で条件Bが真だった場合の処理
+elsif 条件C
+    # 条件Aも条件Bも偽で、条件Cが真だった場合の処理
+else
+    # それ以外の条件の処理
+end
+
+# elsifである点に注意してください。
+# また、elsifやelseは不要なら省略可能です。
+
+if 条件A
+    # 条件Aが真だった場合の処理
+end
+
+
+# 与えられた数値が10より大きいかどうかで処理を変える場合は次のように書きます。
+n = 11
+if n > 10
+    puts "10より大きい"
+else
+    puts "10以下"
+end
+
+country = 'italy'
+if country == 'japan'
+    puts 'こんにちは'
+elsif country == 'us'
+    puts 'Hello'
+elsif country == 'italy'
+    puts 'Ciao'
+else
+    puts '???'
+end
+
 
