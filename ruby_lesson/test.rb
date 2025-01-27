@@ -5492,3 +5492,45 @@ else
 end
 
 
+# Rubyのif文は最後に評価された式を戻り値として返します。
+# なので、irbなどで実行する場合は、putsを使わなくてもif文の戻り値を見ることができます。
+country = 'italy'
+if country == 'japan'
+    'こんにちは'
+elsif country == 'us'
+    'Hello'
+elsif country == 'italy'
+    'Ciao'
+else
+    '???'
+end
+#=> "Ciao"
+
+# 「if文が戻り値を返す」という性質を利用して、次のようにif文の戻り値を変数に代入することもできます。
+country = 'italy'
+greeting =
+    if country == 'japan'
+        'こんにちは'
+    elsif country == 'us'
+        'Hello'
+    elsif country == 'italy'
+        'Ciao'
+    else
+        '???'
+    end
+greeting #=>"Ciao"
+
+
+# else節がなく、なおかつどの条件にも合致しなかった場合はnilが返ります。
+country = 'italy'
+greeting =
+    if country == 'japan'
+        'こんにちは'
+    elsif country == 'us'
+        'Hello'
+    end
+
+greeting #=> nil
+
+
+
