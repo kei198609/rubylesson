@@ -1,3 +1,13 @@
+# メモ
+# gets.chomp.split(' ').map {|x|x.to_i}
+# このコードは、1行で複数の整数がスペースで区切られている場合に使うもので、改行で区切られた入力には適していません。
+# ちな、入力が改行で区切られている場合（例：複数行にわたって値が入力される場合）は、以下のように、gets.chomp で取得した各行を順に処理する必要があります。
+# n = gets.chomp.to_i
+# a = []
+# n.times do
+#     a << gets.chomp.to_i
+# end
+
 # ********5. フィボナッチ数列********
 
 def fibonacci(n)
@@ -49,9 +59,10 @@ end
 
 def linierSearch(nums, target)
     nums.each_with_index do |num, index|
-        return index if num == target
+          return index if num == target
     end
 end
+
 
 
 
@@ -73,6 +84,7 @@ end
 # Example 3:
 # Input: n = 15
 # Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+
 
 def fizz_buzz(n)
     answer = []
@@ -3830,7 +3842,8 @@ pust result
 
 # メソッドの理解
 # ********RPGの攻撃シーンを作ろう********
-# RPGの攻撃シーンを表示するプログラムで、teamのメンバーが順番にattackメソッドを呼び出します。さらに、teamのメンバーが攻撃した後に、敵の体力(enemy_hp)を表示するようになっています。敵の最初の体力は標準入力によって入力されます。
+# RPGの攻撃シーンを表示するプログラムで、teamのメンバーが順番にattackメソッドを呼び出します。
+# さらに、teamのメンバーが攻撃した後に、敵の体力(enemy_hp)を表示するようになっています。敵の最初の体力は標準入力によって入力されます。
 
 # ここに、teamのメンバーが攻撃した分だけ、敵の体力をマイナスするコードを追加してください。
 # teamのメンバーの攻撃力は、あらかじめteamに定義されています。
@@ -3999,7 +4012,12 @@ team.each do |person|
     person.attack("スライム")
 end
 
-
+# initialize メソッドは、クラスのインスタンスが作成されるときに呼び出される特別なメソッドです。
+# このメソッドの目的は、インスタンスの初期設定を行うことです。
+# initialize(name) メソッドは、1つの引数 name を受け取ります。
+# この引数は、Player.new("勇者") から渡された "勇者" です。
+# メソッド内で @name = name とすることで、受け取った name の値をインスタンス変数 @name に代入します。
+# これにより、作成された Player オブジェクトの @name には "勇者" がセットされます。
 
 
 # ********クラスで、引数と戻り値のあるメソッドを作ろう********
