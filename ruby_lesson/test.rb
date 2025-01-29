@@ -5534,3 +5534,43 @@ greeting #=> nil
 
 
 
+# Rubyのif文は修飾子として文の後ろに置くことができます。後置ifと呼ばれることもあります。
+# if文を普通に書く場合
+point = 7
+day = 1
+# 1日であればポイント5倍
+if day = 1
+    point *= 5
+end
+point #=> 35
+
+# 上のコードはif文を修飾子として使うことで次のように書くことができます。
+point = 7
+day = 1
+
+point *= 5 if day == 1
+point #=> 35
+
+
+# またifとelsifの後ろにはthenを入れることもできます。
+if 条件A then
+    # 条件Aが真だった場合の処理
+elsif 条件B then
+    # 条件Aが偽で条件Bが真だった場合の処理
+else
+    # それ以外の条件の処理
+end
+
+# thenを入れると次のように条件式とその条件が真だった場合の処理を1行に押し込めることもできます。
+# 使用頻度はあまり高くありません。
+country = 'italy'
+if country == 'japan' then 'こんにちは'
+elsif country == 'us' then 'Hello'
+elsif country == 'italy' then 'Ciao'
+else ???
+end
+#=> Ciao
+
+
+
+
