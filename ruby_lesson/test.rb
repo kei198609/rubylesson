@@ -5574,3 +5574,45 @@ end
 
 
 
+# メソッドの定義
+
+def メソッド名(引数1、引数2)
+    # 必要な処理
+end
+# たとえば、2つの数字を加算するメソッドであれば次のようになります。
+def add(a, b)
+    a + b
+end
+add(1, 2) #=> 3
+
+# メソッド名も変数名と同じルールになっています。すなわち、小文字のスネークケースで書きます。
+
+# メソッド名はスネークケースで書く
+def hello_world
+    'Hello, world'
+end
+
+# キャメルケースは使わない
+def helloworld
+    'Hello, world'
+end
+
+# アンダースコアで始めることは少ない
+def _hello_world
+    'Hello, world'
+end
+
+# メソッド名に数字を入れる
+def hello_word_2
+    'Hello, world'
+end
+
+# 数字から始まるメソッド名はエラーになる
+# def 2_hello_world
+#     'Hello, world'
+# end
+
+
+
+
+
