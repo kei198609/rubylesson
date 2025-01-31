@@ -5615,4 +5615,43 @@ end
 
 
 
+# メソッドの戻り値
+# Rubyは最後に評価された式がメソッドの戻り値になるが特徴です。returnのようなキーワードは不要です。
+# Rubyにもreturnがあるので、次のように書くこともできますが、Rubyではreturnを使わない書き方の方が主流です。
+def add(a, b)
+    return a + b
+end
+add(1, 2) #=>3
+
+# returnはメソッドを途中で脱出する場合に使われることが多いです。
+def greet(country)
+    # countryがnilならメッセージを返してメソッドを抜ける
+    return 'countryを入力してください' if country.nil?
+    if country =='japan'
+        'こんにちは'
+    else
+        'hello'
+    end
+end
+greet(nil) #=>"countryを入力してください"
+greet('japan') #=>"こんにちは"
+
+
+
+
+# メソッド定義における引数の()
+
+# 引数がない場合は()を付けない方が主流
+def greet
+    'こんにちは'
+end
+
+# ()を付けても良いが、省略されることが多い
+def greet()
+    'こんにちは'
+end
+
+
+
+
 
