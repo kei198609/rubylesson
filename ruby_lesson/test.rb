@@ -5801,3 +5801,62 @@ user.valid? && send_email(user)
 
 
 
+# 優先順位が低いand,or,not
+
+# 優先度が低いのため、&&,||,!と同じように使うことはできません。
+# 高い !
+#     &&
+#     ||
+#     not
+# 低い and or
+
+# &&,||と異なり、andとorは優先順位に違いがありません。
+# そのため()を使わない場合は左から右に順番に真偽値が評価されていきます。
+# たとえば、次のようなコードを書くと結果が異なります。
+
+t1 = true
+t2 = true
+f1 = false
+
+t1 || t2 && f1 => true
+t1 or t2 and f1 => false
+
+# これは次のような式を書いたことと同じになるためです。
+# &&は||よりも優先順位が高い
+t1 || (t2 && f1)
+# andとorの優先順位は同じなので、左から順に評価される
+(t1 or t2) and f1
+
+# このような特徴があるため、andやorを&&や||の代わりに使おうとすると思いがけない不具合を招く可能性があります。
+
+# andやorは条件分岐で使うのではなく、制御フローを扱うのに向いています。
+# 先ほど使った正常なユーザであればメールを送信するコードから丸カッコをなくしたものです。
+user.valid? && send_email user
+#=> syntax error
+
+# これは次のように解釈されてしまったためです。
+(user.valid? && send_email) user
+# しかし、&&の代わりにandを使うと構文エラーにならず、制御フローを実行できます。
+user.valid? and send_email user
+# andを使うと次のように解釈されるためです。
+(user.valid?) and (send_email) user
+# ただし、&&を使う場合でもsend_email (user)と書けば1つの処理であることが明確になるため、構文エラーになりません。
+user.valid? && send_email (user)
+
+
+# orも「Aが真か？真でなければBせよ」という制御フローを実現する際に便利です。次はそのコード例です。
+def greet(country)
+    # countryがnil(またはfalse)ならメッセージを返してメソッドを抜ける
+    country or return 'countryを入力してください'
+    if country == 'japan'
+        'こんにちは'
+    else
+        'Hello'
+    end
+end
+greet(nil) #=>"countryを入力してください"
+greet(japan) #=>"こんにちは"
+
+
+
+
