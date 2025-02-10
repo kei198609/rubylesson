@@ -5860,3 +5860,72 @@ greet(japan) #=>"こんにちは"
 
 
 
+# unless文
+# Rubyにはifと反対の意味を持つunlessがあります。
+# 条件式が偽の場合だけ処理を実行する点です。
+# if文で否定の条件を書いているときは,unless文に書き換えられます。
+
+status = 'error'
+if status != 'ok'
+    '何か異常があります'
+end
+#=> "何か異常があります"
+
+# unlessを使って次のように書き換えることができます。
+status = 'error'
+unless status == 'ok'
+    '何か異常があります'
+end
+#=> "何か異常があります"
+
+# elseを使って条件が偽でなかった場合の処理を書くこともできます。
+status = 'ok'
+unless status == 'ok'
+    '何か異常があります'
+else
+    '正常です'
+end
+#=>"正常です"
+
+# ただし、if文のelsifに相当するものは存在しません。
+
+
+# unlessはifと同様、unlessの戻り値を直接変数に代入したり、修飾子として文の後ろに置いたりできます。
+
+status = 'error'
+# unlessの結果を変数に代入する
+message =
+unless status == 'ok'
+    '何か異常があります'
+else
+    '正常です'
+end
+
+message #=>"何か異常があります"
+
+# unlessを修飾子として使う
+'何か異常があります' unless status == 'ok'
+#=>"何か異常があります"
+
+
+# thenを入れることができる点もif文と同じです。
+status = 'error'
+unless status == 'ok' then
+    '何か異常があります'
+end
+#=>"何か異常があります"
+
+
+# if + 否定条件は、unless + 肯定条件に書き直すことができるものの、
+# 書き直さなければいけないわけではありません。
+# if文のほうが読みやすいと思った場合は、if + 否定条件のままにしておいても大丈夫です。
+
+status = 'error'
+if status != 'ok'
+    '何か異常があります'
+end
+#=>"何か異常があります"
+
+
+
+
