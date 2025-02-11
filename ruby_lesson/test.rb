@@ -5929,3 +5929,50 @@ end
 
 
 
+# == trueや== falseは冗長なので書かない
+
+s = ''
+# 冗長な書き方
+if s.empty? == true
+    '空文字列です'
+end
+
+# こう書く
+if s.empty?
+    '空文字列です'
+end
+
+
+n = 123
+# zero?は数値が0だったときにtrueを返し、それ以外はfalseを返すメソッド
+# 冗長な書き方
+if n.zero? == false
+    'ゼロではありません'
+end
+
+# こう書く
+if !n.zero?
+    'ゼロではありません'
+end
+
+
+# 同じ考え方で、Rubyではnilを偽として扱うので==nilや!=nilを書くこともあまりありません。
+
+user = nil
+# こう書くのではなく
+if user == nil
+    'nilです'
+end
+# こう書く
+if !user
+    'nilです'
+end
+
+# またはnil?メソッドを使う
+if user.nil?
+    'nilです'
+end
+
+
+
+
