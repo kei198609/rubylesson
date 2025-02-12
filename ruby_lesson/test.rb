@@ -5976,3 +5976,66 @@ end
 
 
 
+# case文
+# 1つのオブジェクトや式を複数の値と比較する場合は、elsifを重ねるよりもcase文で
+# 書いた方がシンプルになります。構文は次のとおりです。
+case 対象のオブジェクトや式
+when 値1
+    # 値1に一致する場合の処理
+when 値2
+    # 値1に一致せず、値2に一致する場合の処理
+when 値3
+    # 値1にも値2にも一致せず、値3に一致する場合の処理
+else
+    # どれにも一致しない場合の処理
+end
+
+
+
+country = 'italy'
+# if文を使う場合
+if country == 'japan'
+    'こんにちは'
+elsif country == 'us'
+    'Hello'
+elsif country == 'italy'
+    'Cia0'
+else
+    '???'
+end
+#=> "Ciao"
+
+
+# case文を使う場合
+case country
+when 'japan'
+    'こんにちは'
+when 'us'
+    'Hello'
+when 'italy'
+    'Ciao'
+else
+    '???'
+end
+#=> "Ciao"
+
+
+# if文と同様、case文も最後に評価された式を戻り値として返すため、
+# case文の結果を変数に入れることが可能です。
+country = 'japan'
+
+message =
+case country
+when 'japan'
+    'こんにちは'
+when 'us'
+    'Hello'
+when 'italy'
+    'Ciao'
+else
+    '???'
+end
+message #=> "こんにちは"
+
+
+
