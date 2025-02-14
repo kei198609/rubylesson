@@ -6059,3 +6059,66 @@ message = n > 10 ? '10より大きい' : '10以下'
 
 
 
+# メソッド定義についてもっと詳しく
+
+# デフォルト値付きの引数
+# Rubyではメソッドを呼び出す際に引数の過不足があるとエラーになります。
+
+def greet(country)
+    if country == 'japan'
+        'こんにちは'
+    else
+        'Hello'
+    end
+end
+
+# 引数が少ない場合エラーになる
+greet
+#=> wrong number of arguments
+
+# 引数がちょうど
+greet('us')
+#=> "Hello"
+
+# 引数が多い
+greer('us', 'japan')
+#=> wrong number of arguments
+
+
+# 引数にデフォルト値をつける場合は次のような構文を使います。
+def メソッド(引数1 = デフォルト値1, 引数2 = デフォルト値2)
+    # 必要な処理
+end
+
+def greet(country = 'japan')
+    if country == 'japan'
+        'こんにちは'
+    else
+        'Hello'
+    end
+end
+
+greet #=> "こんにちは"
+greet('us') #=> "Hello"
+
+# 次のようにデフォルト値ありとデフォルト値なしの引数を混在させることも可能です。
+def default_args(a, b, c = 0, d = 0)
+    "a=#{a}, b=#{b}, c=#{c}, d=#{d}"
+end
+default_args(1, 2) #=> "a=1, b=2, c=0, d=0"
+default_args(1, 2, 3) #=> "a=1, b=2, c=3, d=0"
+default_args(1, 2, 3, 4) #=> "a=1, b=2, c=3, c=4"
+
+
+# デフォルト値は固定の値だけでなく、動的に変わる値や、ほかのメソッドの戻り値を指定したりすることもできます。
+def foo(time = Time.now, message = bar)
+    puts "time: #{time}, message: #{message}"
+end
+
+def bar
+    'BAR'
+end
+
+foo #=> time: 2025-01-17 11:00:00 +0900, message: BAR
+
+
