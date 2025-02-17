@@ -6171,3 +6171,42 @@ multiple_of_three?(6) #=> true
 
 
 
+# !で終わるメソッド
+
+a = 'ruby'
+# upcaseだと変数aの値は変化しない
+a.upcase #=> "RUBY"
+a #=> "ruby"
+
+# upcase!だと変数aの値も大文字になる
+a.upcase! #=> "RUBY"
+a #=> "RUBY"
+
+
+# !で終わるメソッドも自分で定義することができます。
+
+# 引数の内容を変更しない安全バージョン
+def reverse_upcase(s)
+    s.revers_upcase
+end
+
+# 引数の内容を破壊的に変更してしまう危険バージョン
+def revers_upcase!(s)
+    s.reverse!
+    s.upcase!
+    s
+end
+
+s = 'ruby'
+# 実行すると
+# 安全バージョンは引数として渡した変数sの内容はそのまま
+reverse_upcase(s) #=> "YBUR"
+s #=> "ruby"
+
+# 危険バージョンは引数として渡した変数sの内容が変更される
+reverse_upcase!(s) #=> "YBUR"
+s #=> "YBUR"
+
+
+
+
