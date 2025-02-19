@@ -6230,3 +6230,18 @@ def greet= 'Hello'
 
 
 
+# 通常のメソッド定義(引数を持つ場合)
+def add(a, b)
+    a + b
+end
+# エンドレスメソッド定義
+def add(a, b) = a + b
+
+add(1, 2) #=> 3
+
+# ただし、引数の()を省略すると構文エラー
+def add a, b = a + b
+#=> syntax error
+
+
+
