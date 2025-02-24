@@ -6312,3 +6312,14 @@ a #=> "hello"
 require 'date'
 Date.today #=> #<Date: 2025-02-27
 
+# 一方、自分で作成したRubyプログラムを読み込む場合はrequire_relativeを使います。
+# require_relativeでは自ファイルからの相対パスで読み込むファイルを指定します。
+# たとえば次のようにファイルが配置されていたとします。
+# foo/
+#   L hello.rb
+# bar/
+#   L bye.rb
+
+# foo/hello.rbからbar/bye.rbを読み込みたい場合は、require_relativeを使って次のように書きます。
+# (../は1つ上のディレクトリを表します。また拡張子の.rbは省略可能です)。
+
