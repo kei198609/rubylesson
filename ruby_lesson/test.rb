@@ -6323,3 +6323,12 @@ Date.today #=> #<Date: 2025-02-27
 # foo/hello.rbからbar/bye.rbを読み込みたい場合は、require_relativeを使って次のように書きます。
 # (../は1つ上のディレクトリを表します。また拡張子の.rbは省略可能です)。
 
+# foo/hello.rbから見た相対パスでbar/bye.rbを読み込む
+require_relative '../bar/bye'
+
+# もし次のようにhello.rbとbye.rbが同じfooディレクトリにあるなら、../や/なしでbye.rbを指定できます。
+# foo/
+#   L hello.rb
+#   L bye.rb
+require_relative 'bye'
+
