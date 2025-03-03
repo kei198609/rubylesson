@@ -6394,3 +6394,11 @@ puts s
 # def
 # => nil
 
+print s
+# abc
+# def=> nil
+
+p s
+# "abc\ndef"
+# => "abc\ndef"
+
