@@ -6445,3 +6445,7 @@ p a
 # greet()よりも...
 greet
 
+# putsやpのような、グローバル関数っぽく使えるメソッドの場合
+# puts('Hello')よりも
+puts 'Hello'
+
