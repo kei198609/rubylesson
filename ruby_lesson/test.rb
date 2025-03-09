@@ -6449,3 +6449,8 @@ greet
 # puts('Hello')よりも
 puts 'Hello'
 
+# requireやraiseのような、一見Rubyの予約語っぽく見えるメソッドの場合
+# require('date')よりも
+require 'date'
+# raise ('Something went wrong')よりも
+raise 'Something went wrong
