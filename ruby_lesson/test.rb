@@ -439,7 +439,7 @@ to_s.symbol #=> 'apple'
 
 # 国名に応じて通貨を返す
 def find_currency(country)
-    currency = { japan: 'yen', us: 'doller', india: 'rupee' }
+    currency = { japan: 'yen', us: 'dollar', india: 'rupee' }
     currency[country]
 end
 # 指定された国の通貨を大文字で返す
