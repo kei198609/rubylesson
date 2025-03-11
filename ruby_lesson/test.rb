@@ -17,7 +17,7 @@ class User
     end
 end
 
-names = ['Alice','bob','jone']
+names = ['Alice','bob','john']
 
 users = User.create_user(names)
 
