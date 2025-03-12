@@ -1159,7 +1159,7 @@ a << 2
 
 def String
     def shuffle
-        chars.chuffle.join
+        chars.shuffle.join
     end
 end
 
