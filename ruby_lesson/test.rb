@@ -3059,7 +3059,7 @@ greet_en do |text|
     text.upcase
 end
 #=> good morning
-#   hellohello
+#   HELLO
 #   good evening
 
 
