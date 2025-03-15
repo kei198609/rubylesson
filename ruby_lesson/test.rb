@@ -35,7 +35,7 @@ end
 class User
     # @nameを読み書きするメソッドが自動的に定義される
     attr_accessor :name
-    def initialise(name)
+    def initialize(name)
         @name = name
     end
 end
