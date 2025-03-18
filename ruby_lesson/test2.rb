@@ -60,7 +60,7 @@ end
 
 def linierSearch(nums, target)
     nums.each_with_index do |num, index|
-          return index if num == target
+        return index if num == target
     end
 end
 
