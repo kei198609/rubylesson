@@ -4087,7 +4087,7 @@ end
 # hashパターンとarrayパターンを混在させることも可能です。
 case {name: 'Alice', children: ['Bob']}
 in {name:, children: [child]}
-# :nameと:childrenのキーを持ち、なおかつ:chidrenの値が要素1個の配列であればマッチ
+# :nameと:childrenのキーを持ち、なおかつ:childrenの値が要素1個の配列であればマッチ
 "name=#{name}, child=#{child}"
 end
 #=> "name=Alice, child=Bob"
