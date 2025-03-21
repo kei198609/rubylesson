@@ -4104,7 +4104,7 @@ end
 
 # in節の順番を間違えると意図した動きになりません。
 cars = [
-    {name: 'The Beatle', engine: '105'},
+    {name: 'The Beetle', engine: '105'},
     {name: 'Prius', engine: '98', motor: '72ps'},
     {name: 'Tesla', motor: '306ps'}
 ]
@@ -4112,7 +4112,7 @@ cars = [
 cars.each do |car|
     case car
     in {name: ,engine:}
-        puts "Gasoline:#{name} / engine:#{engine}" # The BeatleもPriusもどちらもこのパターンにマッチする
+        puts "Gasoline:#{name} / engine:#{engine}" # The BeetleもPriusもどちらもこのパターンにマッチする
     in {name:, motor:}
         puts "EV:#{name} / motor:#{motor}"
     in {name:, engine:, motor:}
@@ -4121,7 +4121,7 @@ cars.each do |car|
     end
 end
 # 実行結果:
-# Gasoline:The Beatle / engine:105ps
+# Gasoline:The Beetle / engine:105ps
 # Gasoline:Prius / engine:98ps
 # EV:Tesla / motor:306ps
 
