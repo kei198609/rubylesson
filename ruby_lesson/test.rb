@@ -4400,7 +4400,7 @@ end
 # 1行パターンマッチ
 # Rubyのパターンマッチではcase節を省略して"評価したい式 in パターン"を1行で書くことができます。
 # Ruby3.0の1行パターンマッチではマッチすればtrue,しなければfalseが返ります。
-[1, 2, 3] in [Integer, Integer, Integer] #=> ture
+[1, 2, 3] in [Integer, Integer, Integer] #=> true
 [1, 2, 'x'] in [Integer, Integer, Integer] #=> false
 
 # trueまたはfalseを返す1行パターンマッチの特性を活かすと、次のようにif文でパターンマッチを使えます。
@@ -4415,7 +4415,7 @@ end
 # 配列の中からキーに:nameと:motorを含むハッシュだけを抽出しています。
 
 cars = [
-    {name: 'The Beatle', engine: '105'},
+    {name: 'The Beetle', engine: '105'},
     {name: 'Prius', engine: '98', motor: '72ps'},
     {name: 'Tesla', motor: '306ps'}
 ]
@@ -4447,8 +4447,12 @@ n * 10 #=> 1230
 # 右代入はメソッドチェーンのような長くて複雑な式を変数に代入する際に視線やキャレットを右端から先頭へ
 # 戻さずに、そのまま変数を読み書きできるというメリットもあります。
 words = 'Ruby is fun'
-words.split('').map { |word| words.upcase + '!' * 3 }.join(' ') => loud_voice
+words.split(' ').map { |word| word.upcase + '!' * 3 }.join(' ') => loud_voice
 loud_voice #=> "RUBY!!! IS!!! FUN!!!"
+
+
+# words.split(' ')
+# → 空白（スペース）で区切る → ["Ruby", "is", "fun"]
 
 # words.split(''):
 # words の文字列 'Ruby is fun' を1文字ずつ分割します。
