@@ -1660,12 +1660,12 @@ m = gets.chomp.to_i
 m.times do
     target, dmg = gets.chomp.split
     dmg = dmg.to_i #dmg はダメージ数を表す文字列として取得されるので、to_i メソッドを使って整数に変換
-    damege[target] += dmg #damage[target] に dmg を加算して、ターゲットが受けた累積ダメージを更新
+    damage[target] += dmg #damage[target] に dmg を加算して、ターゲットが受けた累積ダメージを更新
 end
 
 # 最後に調べる名前 s を取得し、その人の合計ダメージをハッシュから取得して出力します。
 s = gets.chomp
-puts damege[s]
+puts damage[s]
 
 
 
