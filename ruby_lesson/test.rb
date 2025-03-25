@@ -5431,10 +5431,10 @@ t1 && f1 #=> false
 # 条件1か条件2のいずれかが真であれば真、両方偽であれば偽
 # 条件1 || 条件2
 t1 = true
-f1 = false
-f2 = false
-t1 || t1 #=> true
-t1 || t2 #=> false
+t2 = false
+t1 || t1  # => true
+t1 || t2  # => true（t1がtrueなので）
+t2 || t2  # => false（両方false）
 
 
 # &&は||よりも優先順位が高いので、次のように解釈される
