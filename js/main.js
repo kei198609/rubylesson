@@ -197,7 +197,7 @@ function fizzBuzz(n) {
 // Output: 8
 // Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
 
-function missingNunber(nums) {
+function missingNumber(nums) {
   const n = nums.length;
   const total = (n * (n + 1)) / 2;
   const sum = nums.reduce((acc, num) => acc + num, 0); //reduce メソッドは、配列の各要素に対して指定されたコールバック関数を実行し、その結果を累積して1つの値にします。
