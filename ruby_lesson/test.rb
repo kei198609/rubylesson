@@ -1254,7 +1254,7 @@ display_name(product) #=> Name is A great movie
 # このように、オブジェクトのクラスが何であろうと、そのメソッドが呼び出せれば良しとするプログラミングスタイルのことを
 # ダックタイピングと呼びます。
 
-# # 以下は別の例
+# 以下は別の例
 # 在庫の確認は商品の種類によって確認方法が異なるため、サブクラスでstock?メソッドを実装してもらうようにします。
 # スーパークラスのProductクラスではstock?メソッドを実装しません。
 class Product
@@ -2289,7 +2289,7 @@ end
 # Sample::User::NAME #=> "Alice"
 # Sample::User.hello #=> "Hello i am Alice"
 
-# # しかし、メソッドを呼び出しに関しては二重コロンを使うことができます。
+# しかし、メソッドを呼び出しに関しては二重コロンを使うことができます。
 # Sample::User::hello #=> "Hello i am Alice"
 
 
@@ -4465,7 +4465,7 @@ loud_voice #=> "RUBY!!! IS!!! FUN!!!"
 # arr = [1, 2, 3, 4]
 # result = arr.map { |n| n * 2 }
 # puts result
-# #=> [2, 4, 6, 8]
+# => [2, 4, 6, 8]
 
 
 
