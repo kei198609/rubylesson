@@ -753,7 +753,7 @@ puts "#{D} #{P}"
 # s_1
 # s_2
 
-#例: 入力が "hello world" の場合、s_1 は "hello"、s_2 は "world" となります。
+# 例: 入力が "hello world" の場合、s_1 は "hello"、s_2 は "world" となります。
 # split(' ') で、空白で区切られた2つの部分に分割します。
 s_1, s_2 = gets.chomp.split(' ')
 puts s_1
