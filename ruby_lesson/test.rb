@@ -1013,8 +1013,8 @@ TrafficLight :: RED #=>2
 TrafficLight :: TrafficLight #=>[0, 1, 2]
 
 # 定数にはリテラルで作られる静的な値だけでなく、メソッドや条件分岐を使った動的な値も代入可能です。
-NUMNERS = [1, 2, 3].map {|n| n * 10}
-# NUMNERS #=>[10, 20, 30]
+NUMBERS = [1, 2, 3].map {|n| n * 10}
+# NUMBERS #=>[10, 20, 30]
 
 
 
