@@ -2381,7 +2381,7 @@ rescue ZeroDivisionError,NoMethodError => e
     puts "エラー: #{e.class} #{e.message}"
 end
 #=> 0で除算したか、存在しないメソッドが呼び出されました
-#   エラー: NoMethodError undifined method `foo` for "abc":String
+#   エラー: NoMethodError undefined method `foo` for "abc":String
 
 
 
