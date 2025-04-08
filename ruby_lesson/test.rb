@@ -527,13 +527,13 @@ end
 # => 氏名: Bob Python, 年齢: 30
 
 # Userクラスを導入すると、タイプミスした時エラーが発生します。
-users[0].first_mame #=> undifined method
+users[0].first_mame #=> undefined method
 
 # 新しく属性（データ項目）を追加したり、内容を変更したりすることも防止できます。
 # 勝手に属性を追加できない
-users[0].country = 'japan' #=> undifined method
+users[0].country = 'japan' #=> undefined method
 # 勝手にfirst_nameを変更できない
-users[0].first_name = 'Carol' #=> undifined method
+users[0].first_name = 'Carol' #=> undefined method
 
 
 
