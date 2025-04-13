@@ -4248,12 +4248,14 @@ class Greeting
         @msg = "hello"
         @target = "paiza"
     end
+
     def say_hello()
         puts "#{@msg} #{@target}"
         say_yeah() #ここを追記
     end
 
     private
+
     def say_yeah()
         puts "YEAH YEAH YEAH!"
     end
@@ -4261,6 +4263,10 @@ end
 
 player = Greeting.new()
 player.say_hello()
+
+
+
+
 
 # ********親クラスのメソッドを呼び出す********
 # Greetingクラスでsay_helloメソッドを定義して、Helloクラスでsay_helloメソッドをオーバーライドしています。
