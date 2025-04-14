@@ -4265,7 +4265,12 @@ player = Greeting.new()
 player.say_hello()
 
 
-
+# say_yeah メソッドは private になっているので、
+# クラスの外から player.say_yeah() のように呼ぼうとすると → エラーになります
+# でも、クラスの内部から（=say_helloの中など）呼び出すのは → OKです
+# もし以下のようなことをすると…
+# player = Greeting.new
+# player.say_yeah  # エラーになります！
 
 
 # ********親クラスのメソッドを呼び出す********
