@@ -4559,8 +4559,8 @@ end
 # 標準入力から読み込んだ複数行を配列に格納しよう
 
 array = []
-while line = gets
-    line.chomp!
+while line = gets # 1行ずつ標準入力を読み込む
+    line.chomp! # 改行を削除
     array << line
 end
 
@@ -4580,8 +4580,11 @@ skills.each_value do |i|
     puts i
 end
 
-
-
+# 他の書き方
+# each でキーと値の両方を使う
+skills.each do |key, value|
+    puts "#{key}: #{value}"
+end
 
 # ********
 # 数学テストの得点がハッシュに格納されています。
