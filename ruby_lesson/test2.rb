@@ -62,6 +62,7 @@ def linierSearch(nums, target)
     nums.each_with_index do |num, index|
         return index if num == target
     end
+    return -1  # 見つからなかったら -1 を返す
 end
 
 
