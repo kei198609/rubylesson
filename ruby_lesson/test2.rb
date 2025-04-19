@@ -211,9 +211,15 @@ end
 # Explanation: The last word is "joyboy" with length 6.
 
 def last_word(s)
-    words = s.strip.split('')
+    words = s.strip.split(' ')
     words.last.length
 end
+
+# strip: 前後の空白を除去
+
+# split(' '): 空白で「単語」に分割
+# split('')だと["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d"] みたいに分割してしますので注意
+
 
 # ********28. Find the Index of the First Occurrence in a String********
 # Example 1:
@@ -258,7 +264,14 @@ end
 # ブロックの評価結果が最大の要素を返します。max_byメソッドを使用すると、
 # 配列やハッシュなどの各要素に対してブロックを評価し、その評価結果が最大の要素を簡単に取得できる
 
+# max_byメソッドの基本的な使い方
+# array = [1, 5, 3, 9, 2]
+# max = array.max_by { |n| n }
+# puts max  # => 9
 
+# words = ["apple", "banana", "grape", "watermelon"]
+# longest = words.max_by { |word| word.length }
+# puts longest  # => "watermelon"
 
 # Two Pointers
 # ********125. Valid Palindrome********
