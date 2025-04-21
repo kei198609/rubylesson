@@ -320,6 +320,16 @@ end
 def ransom(ransomNote,magazine)
     ransomNote.each_char.all? { |char| ransomNote.count(char) <= magazine.count(char) }
 end
+# ransomNote の各文字が magazine に十分あるかどうかを確認しています。
+# all? は「すべての文字について条件が true かどうか」をチェックします。
+# count(char) を使って、文字の出現回数を比較しています。
+
+# ransomNote.count(char)はransomNote の中に、文字 char が何回出てくるかを数えます。
+# magazine.count(char)はmagazine の中に文字 char が何回出てくるかを数えます。
+# ransomNote.count(char) <= magazine.count(char)は
+# magazine の中に、ransomNote で必要な文字が足りてるかどうかを判定するという意味
+
+
 # each_charとは？
 # 例
 # "hello".each_char { |char| puts char }
