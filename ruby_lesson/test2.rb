@@ -453,7 +453,7 @@ end
 # Input: nums = [1]
 # Output: 1
 def single_number(nums)
-    single = 0
+    single = 0 # XOR を始めるための「初期値」
     nums.each { |num| single ^= num }
     single
 end
@@ -878,7 +878,9 @@ puts max_number
 # paiza paiza ... paiza
 
 
-# Array.new(n, "paiza") を使って、"paiza" を n 回格納した配列を作成します。
+# Array.new(n, "paiza")
+# 要素 "paiza" を n 個もつ配列を作成
+# 例：n = 3 → ["paiza", "paiza", "paiza"]
 # join(" ") を使って、配列内の要素をスペースで結合し、一つの文字列にします。
 n = gets.chomp.to_i
 puts Array.new(n, "paiza").join(' ')
