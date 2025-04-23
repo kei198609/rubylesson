@@ -879,7 +879,7 @@ puts max_number
 
 
 # Array.new(n, "paiza")
-# 要素 "paiza" を n 個もつ配列を作成
+# "paiza" を n 回格納した配列を作成
 # 例：n = 3 → ["paiza", "paiza", "paiza"]
 # join(" ") を使って、配列内の要素をスペースで結合し、一つの文字列にします。
 n = gets.chomp.to_i
@@ -1001,6 +1001,10 @@ end
 numbers.each do |x|
     puts x.length
 end
+# なぜ to_i を使わないの？
+"00123".length	#5（文字列としての長さ）
+"00123".to_i	#123 に変換されて 3 桁に
+# to_i を使うと「桁数が削れてしまう」可能性があるので、文字列のまま扱う必要があるんです。
 
 
 # ********部分文字列********
