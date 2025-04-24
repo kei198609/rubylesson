@@ -1281,7 +1281,7 @@ index = nil
 a.each_with_index do |value, i|
     if value == k
         index = i + 1
-        break
+        break #最初に見つかった人でループ終了
     end
 end
 puts index
