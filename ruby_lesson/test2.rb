@@ -1475,7 +1475,15 @@ result.each do |x|
 end
 
 
+# 参考 間違った書き方
 
+a.each do |x|
+    puts x.sort
+end
+
+# x は a の中の1つ1つの要素（つまり整数）
+# .sort は 配列にしか使えないメソッド
+# だから、x.sort を呼ぼうとすると エラーになります
 
 # ********辞書式ソート********
 # 正整数 n が与えられ、数のペアが n 個与えられます。各ペアの最初の数はりんごの個数を、
@@ -1626,12 +1634,12 @@ n = gets.chomp.to_i
 people = {}
 # n回のループで名前と財産を取得し、ハッシュに格納
 n.times do
-    name, zaisan = gets.chomp.split
+    name, zaisan = gets.chomp.split # 名前と財産を空白区切りで読み取り
     people[name] = zaisan.to_i  #要素を追加する場合は、ハッシュ[] = 値 の構文。name がハッシュのキーとなり、wealth.to_i がその値として格納されます。
 end
 
-s = gets.chomp
-puts people[s]
+s = gets.chomp # 検索対象の名前 s を読み取り
+puts people[s] # 該当人物の財産を出力
 
 
 
