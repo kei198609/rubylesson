@@ -1979,7 +1979,7 @@ end
 
 classmates.each do |x|
     puts "User{"
-    puts "nickname : #{x[:nickname]}"#{x[:nickname]}の:nicknameはシンボル。
+    puts "nickname : #{x[:nickname]}" #{x[:nickname]}の:nicknameはシンボル。
     puts "old : #{x[:old]}"
     puts "birth : #{x[:birth]}"
     puts "state : #{x[:state]}"
