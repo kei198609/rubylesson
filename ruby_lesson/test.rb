@@ -592,11 +592,33 @@ user.name #=> 'Bob'
 # 読み取り専用にしたい時は
 # attr_readerを使う。
 # この場合、@nameの参照はできるが、@nameの変更はできない。
+class User
+    attr_reader :name
+
+    def initialize(name)
+        @name = name
+    end
+end
+user = User.new('Alice')
+user.name        # => "Alice"（読み取りOK）
+user.name = 'Bob' # エラー（NoMethodError）
+
+
 
 # 書き込み専用にしたい時は、
 # attr_writerを使う。
 # この場合、@nameは変更できるが、@nameの参照はできない。
+class User
+    attr_writer :name
 
+    def initialize(name)
+        @name = name
+    end
+end
+
+user = User.new('Alice')
+user.name = 'Bob' # 書き込みOK
+user.name         # エラー（NoMethodError）
 
 
 # クラスメソッドの定義
