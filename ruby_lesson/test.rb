@@ -682,7 +682,7 @@ class User
 end
 
 names = ['Alice', 'Bob', 'Carol']
-users = User.create_users(names)
+users = User.create_users(names) # create_users で3人の User インスタンスが作られ、users に格納される。
 users.each do |i|
     puts i.hello
 end
