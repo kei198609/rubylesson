@@ -810,6 +810,28 @@ user.hello #=> 'Hello'
 
 
 
+# private を使うと？
+class User
+    def call_hello
+        hello  # OK: selfなしで呼び出すならOK
+    end
+
+    private
+
+    def hello
+        'Hello'
+    end
+end
+
+user = User.new
+user.call_hello    # => "Hello"
+user.hello         # NoMethodError（外部から呼べない）
+
+
+
+
+
+
 
 # privateメソッドはサブクラスでも呼び出せる
 
