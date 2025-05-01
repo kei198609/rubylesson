@@ -2975,9 +2975,7 @@ number = gets.chomp.split.map { |x|x.to_i }
 sum = number[a - 1..b - 1].sum
 puts sum
 
-
-
-
+# Ruby の配列スライス（[start..end]）を使って、A 番目から B 番目までの部分配列を取り出し、.sum で合計値を算出
 
 
 
