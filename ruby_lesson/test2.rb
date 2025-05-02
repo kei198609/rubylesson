@@ -3064,8 +3064,10 @@ end
 # 1
 # 1
 
-n = gets.chomp.to_i
-a, b = gets.chomp.split.map { |x|x.to_i }
+n = gets.to_i
+a = gets.split.map(&:to_i)
+b = gets.split.map(&:to_i)
+
 n.times do |i|
     puts a[i] - b[i]
 end
@@ -3074,6 +3076,10 @@ end
 # 代わりに、n 回のループを実行するためには n.times do |i| を使用します。
 
 
+
+# a, b = gets.chomp.split.map { |x|x.to_i }
+# これは 「a と b に1つずつ値を代入」するだけなので、数列がすべて入るわけではありません。
+# → a には最初の1個、b には次の1個だけが入ってしまいます。
 
 # ********数列の反転 (paizaランク D 相当)********
 
