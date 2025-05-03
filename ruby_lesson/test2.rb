@@ -3105,7 +3105,7 @@ end
 
 n = gets.chomp.to_i
 a = gets.chomp.split.map {|x|x.to_i}
-a.reverse each do |x|
+a.reverse.each do |x|
     puts x
 end
 
@@ -3298,6 +3298,17 @@ n = gets.chomp.to_i
 a = gets.chomp.split.map { |x| x.to_i }
 index_of_one = a.index(1) # 1の位置を見つける
 puts index_of_one + 1 # インデックスは0から始まるので、1を加算して結果を出力
+
+
+# 別解（each_with_index 使用）
+a.each_with_index do |val, i|
+    if val == 1
+        puts i + 1
+        break
+    end
+end
+
+
 
 
 
