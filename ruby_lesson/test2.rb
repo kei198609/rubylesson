@@ -3484,6 +3484,15 @@ a.each do |num|
 end
 
 
+# 少し冗長だけどif elseでも書ける。
+a.each do |x|
+    if x.even?
+        puts x
+    else
+        # 奇数のときは何もしない
+    end
+end
+
 
 # ********割り切れる数だけ出力 (paizaランク D 相当)********
 # N 個の整数 a_1, a_2, ..., a_N が与えられます。
