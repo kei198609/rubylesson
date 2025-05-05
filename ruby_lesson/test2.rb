@@ -3794,8 +3794,8 @@ puts day
 # 出力例2
 # 6
 
-n = gets.chomp.to_i
-a = gets.chomp.split.map { |x| x.to_i }
+n = gets.chomp.to_i # 要素数 n を取得
+a = gets.chomp.split.map { |x| x.to_i } # 数列を整数配列に変換
 
 result = a.each_with_index.map do |val, index|
     val + index + 1
