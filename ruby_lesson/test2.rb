@@ -3885,7 +3885,7 @@ end
 # 9
 
 n = gets.chomp.to_i
-count = []
+count = 0 # count = []と書くと、count += 1 は「配列に数値を足す」という意味になり、型エラーになります。
 (1..n).each do |x|
     if n % x == 0
         count += 1
