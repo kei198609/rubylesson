@@ -4006,6 +4006,33 @@ end
 
 
 
+# 敵のHPが0以下になったら“スライムを倒した！”と表示してループを終了する
+def attack(person)
+    puts "#{person}はスライムを攻撃した"
+end
+
+def output_ememy_hp(ememy_hp)
+    puts "敵のHPは残り#{ememy_hp}です"
+end
+
+ememy_hp = gets.to_i
+team = {"勇者" => 200, "戦士" => 150, "魔法使い" => 100}
+team.each do |person, power|
+    attack(person)
+    ememy_hp -= power
+    if ememy_hp > 0
+        output_ememy_hp(ememy_hp)
+    else
+        puts "スライムを倒した！"
+        break
+    end
+end
+
+
+
+
+
+
 
 # ********メソッドの記法を理解しよう********
 def say_hello(msg)
