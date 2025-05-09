@@ -4087,7 +4087,8 @@ def say_hello(msg)
 end
 
 say_hello(msg)
-
+# 出力結果
+# hello paiza
 
 # スコープのポイント
 # メソッドの中で定義された変数は、外からアクセスできない。
