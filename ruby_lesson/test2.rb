@@ -4302,7 +4302,8 @@ end
 player = Hello.new()
 player.say_hello("ruby")
 
-
+# 実行結果
+# hello ruby
 
 
 # ********RPGのPlayerクラスを継承で記述するその2********
