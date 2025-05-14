@@ -4690,6 +4690,21 @@ end
 
 p array
 
+# Rubyらしく書くなら
+array = readlines.map(&:chomp)
+p array
+
+# readlines：すべての行を一括で読み込む
+# .map(&:chomp)：各行の改行を取り除く
+
+
+# &:（「シンボル to Proc 変換」）は、ブロックを簡潔に書くための省略記法です
+# array.map { |x| x.chomp }
+# これを &:chomp で書くと
+# array.map(&:chomp)
+
+
+
 # ********
 # ループでハッシュのキーと値を出力しよう
 # 期待する出力値
