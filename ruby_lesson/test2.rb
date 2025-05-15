@@ -4740,6 +4740,15 @@ sorted_math = math.sort_by { |key, value| value }
 p sorted_math
 
 
+# よりRubyらしく（省略記法）
+
+sorted_math = math.sort_by(&:last)
+p sorted_math
+# math の各要素は [key, value] の配列（例：["あだち", 40]）
+# .last はその中の value（=末尾要素） を指す
+# &:last は |pair| pair.last と同じ意味
+
+
 
 
 # ********
