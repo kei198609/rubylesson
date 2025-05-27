@@ -5368,9 +5368,13 @@ puts handle_name
 
 require 'set'
 
+# 当選番号を読み込み、Setにする（検索を高速にするため）
 winning_numbers = gets.split.map(&:to_i).to_set
+
+# 購入したくじの枚数
 n = gets.to_i
 
+# 各くじについて照合処理
 n.times do
     ticket_numbers = gets.split.map(&:to_i).to_set
     match_count = (ticket_numbers & winning_numbers).size
@@ -5386,6 +5390,9 @@ end
 
 
 
-# &：Setの**積集合（共通部分）**を計算
-# ticket_numbers & winning_numbers：一致している番号だけのSet
-# .size：一致している番号の個数をカウント
+
+# ticket_numbers & winning_numbers：
+# A & B → Set同士の積集合（共通部分）を生成
+# Ruby の Set クラスでは & 演算子は「積集合（共通部分）」を返すように定義されています。
+
+# .size は Set の要素数を返す
