@@ -5450,3 +5450,55 @@ diameter = r * 2              # ボールの直径を計算
     min_dimension = [h, w, d].min          # 3辺のうち一番短い辺を選びます（直径がこの長さ以下でなければ入らないため）
     puts i if diameter <= min_dimension    # ボールの直径が最も短い辺以下なら、その箱の番号 i を出力。
 end
+
+
+
+
+
+# ********
+# Q. 下記のJSONから、ユーザー名（"name"）と、最初のロール（roles[0]）を取得せよ
+
+# {
+#   "user": {
+#     "id": 123,
+#     "name": "john",
+#     "email": "john@example.com",
+#     "roles": ["admin", "editor"]
+#   }
+# }
+
+require 'json' # Ruby で JSON を扱うための標準ライブラリを読み込みます
+# 文字列としての JSON データを json_text に代入
+json_text = '{
+    "user": {
+        "id": 123,
+        "name": "john",
+        "email": "john@example.com",
+        "roles": ["admin", "editor"]
+    }
+}'
+data = JSON.parse(json_text)
+name = data["user"]["name"]
+first_role = data["user"]["roles"][0]
+puts "#{name},#{first_role}"
+
+
+# JSON.parse(json_text)は
+# - `json_text` を Ruby のハッシュ形式に変換（パース）しています。
+# - 結果：
+#   {
+#     "user" => {
+#       "id" => 123,
+#       "name" => "john",
+#       "email" => "john@example.com",
+#       "roles" => ["admin", "editor"]
+#     }
+#   }
+
+# name = data["user"]["name"]は
+# - `data["user"]` はユーザー情報のハッシュを指す。
+# - その中の `"name"` の値（"john"）を取り出して `name` に代入。
+
+# first_role = data["user"]["roles"][0]は
+# "roles" は配列：["admin", "editor"]
+# [0] は配列の1番目（0番目）の要素なので "admin" を取り出して代入。
