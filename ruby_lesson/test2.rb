@@ -5502,3 +5502,38 @@ puts "#{name},#{first_role}"
 # first_role = data["user"]["roles"][0]は
 # "roles" は配列：["admin", "editor"]
 # [0] は配列の1番目（0番目）の要素なので "admin" を取り出して代入。
+
+
+
+
+
+
+# ********
+# 次の JSON 文字列に含まれる products の各商品名（name）を1行ずつ出力してください。
+# {
+#   "products": [
+#     { "id": 1, "name": "Laptop" },
+#     { "id": 2, "name": "Mouse" },
+#     { "id": 3, "name": "Keyboard" }
+#   ]
+# }
+
+require 'json'
+
+json_text = '{
+    "products": [
+        { "id": 1, "name": "Laptop" },
+        { "id": 2, "name": "Mouse" },
+        { "id": 3, "name": "Keyboard" }
+    ]
+}'
+
+data = JSON.parse(json_text)
+data["products"].each do |product|
+    puts product["name"]
+end
+
+# 出力
+# Laptop
+# Mouse
+# Keyboard
