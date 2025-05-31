@@ -5537,3 +5537,38 @@ end
 # Laptop
 # Mouse
 # Keyboard
+
+
+
+
+# ********
+#次の JSON はユーザーの配列です。
+# "age" が 30 以上のユーザーの "name" をすべて1行ずつ出力してください。
+
+# {
+#   "users": [
+#     { "name": "Ken", "age": 25 },
+#     { "name": "Naoko", "age": 33 },
+#     { "name": "Taro", "age": 40 },
+#     { "name": "Yui", "age": 28 }
+#   ]
+# }
+
+require 'json'
+json_text = '{
+    "users": [
+        { "name": "Ken", "age": 25 },
+        { "name": "Naoko", "age": 33 },
+        { "name": "Taro", "age": 40 },
+        { "name": "Yui", "age": 28 }
+    ]
+}'
+
+data = JSON.parse(json_text)
+data["users"].each do |user|
+    puts user["name"] if user["age"] >= 30
+end
+
+# 出力
+# Naoko
+# Taro
