@@ -5572,3 +5572,38 @@ end
 # 出力
 # Naoko
 # Taro
+
+
+
+
+# ********
+# 次のJSONから、投稿（posts）のうち、likes が10以上の投稿の title を出力してください。
+
+# {
+#   "user": {
+#     "name": "John",
+#     "posts": [
+#       { "title": "First Post", "likes": 5 },
+#       { "title": "Second Post", "likes": 12 },
+#       { "title": "Third Post", "likes": 30 }
+#     ]
+#   }
+# }
+
+require 'json'
+
+json_text = '{
+    "user": {
+        "name": "John",
+        "posts": [
+            { "title": "First Post", "likes": 5 },
+            { "title": "Second Post", "likes": 12 },
+            { "title": "Third Post", "likes": 30 }
+        ]
+    }
+}'
+
+data = JSON.parse(json_text)
+data["user"]["posts"].each do |i|
+    puts i["likes"] if i["likes"] >= 10
+end
