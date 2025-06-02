@@ -5607,3 +5607,37 @@ data = JSON.parse(json_text)
 data["user"]["posts"].each do |i|
     puts i["likes"] if i["likes"] >= 10
 end
+
+
+
+
+# ********
+# 次のJSONはレビュー情報です。
+# 評価（rating）が4以上のレビューの件数を出力してください。
+# {
+#   "reviews": [
+#     { "user": "Ken", "rating": 5 },
+#     { "user": "Naoko", "rating": 3 },
+#     { "user": "Taro", "rating": 4 },
+#     { "user": "Yui", "rating": 2 }
+#   ]
+# }
+
+require 'json'
+
+json_text = '{
+    "reviews": [
+        { "user": "Ken", "rating": 5 },
+        { "user": "Naoko", "rating": 3 },
+        { "user": "Taro", "rating": 4 },
+        { "user": "Yui", "rating": 2 }
+    ]
+}'
+
+data = JSON.parse(json_text)
+count = 0
+data["reviews"].each do |i|
+    count += 1 if i["rating"] >= 4
+end
+
+puts count
