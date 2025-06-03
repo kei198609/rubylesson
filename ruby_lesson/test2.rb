@@ -5641,3 +5641,42 @@ data["reviews"].each do |i|
 end
 
 puts count
+
+
+
+
+
+# ********
+# 次のJSONは複数のユーザーが属しているチーム情報です。
+# すべての team 名のうち、重複を除いたユニークな名前を出力してください（昇順）。
+# {
+#   "members": [
+#     { "name": "A", "team": "Red" },
+#     { "name": "B", "team": "Blue" },
+#     { "name": "C", "team": "Red" },
+#     { "name": "D", "team": "Green" }
+#   ]
+# }
+
+require 'json'
+
+json_text = '{
+    "members": [
+        { "name": "A", "team": "Red" },
+        { "name": "B", "team": "Blue" },
+        { "name": "C", "team": "Red" },
+        { "name": "D", "team": "Green" }
+    ]
+}'
+
+data = JSON.parse(json_text)
+teams = data["members"].map do |i|
+    i["team"]
+end
+puts teams.uniq.sort
+
+# または
+
+data = JSON.parse(json_text)
+teams = data["members"].map { |i| i["team"] }.uniq.sort
+puts teams
