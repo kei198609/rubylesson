@@ -5680,3 +5680,29 @@ puts teams.uniq.sort
 data = JSON.parse(json_text)
 teams = data["members"].map { |i| i["team"] }.uniq.sort
 puts teams
+
+
+
+
+# ********
+# 各ユーザーの最新ログイン時刻を出力せよ
+
+# {
+#   "users": [
+#     { "name": "Alice", "logins": ["2023-01-01", "2023-01-05"] },
+#     { "name": "Bob", "logins": ["2023-01-02", "2023-01-04"] }
+#   ]
+# }
+
+require 'json'
+json_text = '{
+    "users": [
+        { "name": "Alice", "logins": ["2023-01-01", "2023-01-05"] },
+        { "name": "Bob", "logins": ["2023-01-02", "2023-01-04"] }
+    ]
+}'
+data = JSON.parse(json_text)
+data["users"].each do |u|
+    latest = u["logins"].max
+    puts "#{u["name"]}: #{latest}"
+end
