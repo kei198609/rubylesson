@@ -5706,3 +5706,49 @@ data["users"].each do |u|
     latest = u["logins"].max
     puts "#{u["name"]}: #{latest}"
 end
+
+
+
+
+
+# ********
+# あなたはくじの当選通知を行う担当者です。
+
+# くじはユーザーが投票期間中に 0 から 9999 までの数を 1 つだけ選んで投票する方式です。投票した数字のことを投票番号と言います。
+# 投票には 1 から順に連番で投票 ID が与えられます。ユーザーは自分の投票 ID と投票番号を知ることができます。
+
+# 投票期間終了時に運営が 0 から 9999 までの当選番号をランダムに N 個選びます。
+# N 個の当選番号の中に自分の投票番号と 1 つでも同じ番号があれば当選となります。
+
+# N 個の当選番号と、K 個の投票番号が 投票 ID が 1 のものから順に与えられます。
+# 当選した投票の ID をすべて出力してください。
+# 当選した投票がなかった場合、-1 を出力してください。
+
+
+# 要件のまとめ：
+# 当選番号 w_1〜w_N（N個）
+# 投票番号 v_1〜v_K（K個）← 投票ID 1〜Kに対応
+# 各投票番号が当選番号の中に含まれているかをチェックし、
+# 当選していれば 投票ID（1始まり） を出力
+# 1つも当選していなければ -1 を出力
+
+# 入力の読み取り
+n, k = gets.split.map(&:to_i)
+winning_numbers = gets.split.map(&:to_i)
+voting_numbers = gets.split.map(&:to_i)
+
+# 当選した投票IDを格納
+result = []
+
+voting_numbers.each_with_index do |vote, index|
+    if winning_numbers.include?(vote)
+        result << index + 1  # 投票IDは1から始まる
+    end
+end
+
+# 出力
+if result.empty?
+    puts -1
+else
+    puts result
+end
