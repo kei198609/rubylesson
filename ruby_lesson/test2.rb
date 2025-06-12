@@ -5989,7 +5989,7 @@ puts total_points
 
 
 
-# ********
+# ********C166
 # あなたは X 円の商品を、手持ちの小銭だけでちょうど支払う必要があります。
 
 # 小銭の種類は：
@@ -6011,3 +6011,17 @@ puts total_points
 
 # 1円：3枚
 # → 合計 9 枚
+
+x = gets.to_i
+
+coins = [500, 100, 50, 10, 5, 1]
+count = 0
+
+coins.each do |coin|
+    count += x / coin
+    x %= coin
+end
+
+puts count
+
+
