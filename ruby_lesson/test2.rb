@@ -6080,3 +6080,29 @@ if filtered.empty?
 else
     puts filtered
 end
+
+
+
+# Array.new(n)
+# これは 長さ n の配列を作るという意味です。
+# 例えば、Array.new(3) は [nil, nil, nil] を作ります。
+
+# { gets.chomp }
+# ブロック（{} の中）は Array.new の各要素をどう作るかを指定しています。
+# gets は1行の入力を読み取る
+# chomp はその入力の 末尾の改行 \n を取り除く
+# つまり、gets.chomp は「改行なしの1行文字列」を返します。
+
+# Array.new(n) { gets.chomp }
+# この組み合わせによって、以下の処理が行われます：
+# gets.chomp を n 回繰り返し、
+# 各回の結果（文字列）を配列の要素として保存
+
+# なぜ配列に入れるの？
+# ログを順番に処理したいから
+# 後で "重要文字列が含まれているか" を1個ずつチェックしたい
+# そのためには、ログ全体を保存しておく必要があります
+# 例えば以下のように繰り返し処理するためには、配列にしておくのが最も自然です。
+logs.each do |log|
+    puts log if log.include?("ai")
+end
