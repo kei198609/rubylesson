@@ -6140,3 +6140,14 @@ end
 # が改行区切りで与えられるので、希望する病室の部屋番号をすべて改行区切りで出力して下さい。
 # もし、希望する病室が1つもない場合は"none" と出力して下さい。
 
+n = gets.chomp              # 嫌いな数字（文字として扱う）
+m = gets.to_i               # 病室の総数
+rooms = Array.new(m) { gets.chomp }  # 病室番号（文字列で取得）
+
+result = rooms.select { |room| !room.include?(n) } # 嫌いな数字を含まない部屋番号だけ抽出
+
+if result.empty?
+    puts "none"
+else
+    puts result
+end
