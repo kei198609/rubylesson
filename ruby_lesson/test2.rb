@@ -6142,7 +6142,7 @@ end
 
 n = gets.chomp              # 嫌いな数字（文字として扱う）
 m = gets.to_i               # 病室の総数
-rooms = Array.new(m) { gets.chomp }  # 病室番号（文字列で取得）
+rooms = Array.new(m) { gets.chomp }  # m個の病室番号を配列に格納（文字列として）
 
 result = rooms.select { |room| !room.include?(n) } # 嫌いな数字を含まない部屋番号だけ抽出
 
