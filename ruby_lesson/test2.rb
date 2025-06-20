@@ -6184,3 +6184,21 @@ end
 # 与えられた N 枚のカードの総合スコアを 1 行に出力してください。
 # 出力の最後に改行を入れ、余計な文字、空行を含んではいけません。
 
+n = gets.to_i
+cards = gets.split.map(&:to_i).sort
+
+score = 0
+group_max = cards[0]
+
+(1...n).each do |i|
+    if cards[i] == cards[i - 1] + 1
+        group_max = cards[i] if cards[i] > group_max
+    else
+        score += group_max
+        group_max = cards[i]
+    end
+end
+
+score += group_max  # 最後のグループを追加
+
+puts score
