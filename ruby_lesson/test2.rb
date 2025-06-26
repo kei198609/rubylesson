@@ -6365,13 +6365,25 @@ puts total
 
 
 # 入力例
-# 3 7
-# 10
-# 14
+# 3 5
+# 12
+# 7
 # 20
+
+
+# 処理：
+# 12 % 5 = 2
+# 7 % 5 = 2
+# 20 % 5 = 0
+
+# 出力：
+# 2
+# 2
+# 0
 
 n, mod = gets.split.map(&:to_i)
 n.times do
     x = gets.to_i
     puts x % mod
 end
+
