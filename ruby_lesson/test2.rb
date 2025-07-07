@@ -6620,3 +6620,37 @@ for i in 1..9  # 段のループ（1〜9）
     end
     puts  # 改行して次の段へ
 end
+
+
+
+
+# ********
+# RPGの攻撃シーン
+
+# 入力される値
+# 730
+
+# 期待する出力値
+# 勇者はスライムを攻撃した
+# 敵のHPは残り530です
+# 戦士はスライムを攻撃した
+# 敵のHPは残り380です
+# 魔法使いはスライムを攻撃した
+# 敵のHPは残り280です
+
+def attack(person)
+    puts "#{person}はスライムを攻撃した"
+end
+
+def output_ememy_hp(enemy_hp)
+    puts "敵のHPは残り#{enemy_hp}です"
+end
+
+enemy_hp = gets.to_i
+team = {"勇者" => 200, "戦士" => 150, "魔法使い" => 100}
+team.each do |person, power|
+    attack(person)
+    # 以下に、敵の体力を減少させるコードを書く
+    enemy_hp -= power
+    output_ememy_hp(enemy_hp)
+end
