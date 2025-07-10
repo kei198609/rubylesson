@@ -46,6 +46,40 @@ user.name = 'Bob'
 # @nameを参照するとBobに変更されている。
 user.name #=>"Bob"
 
+
+
+# クラスでデータを管理する
+
+class User
+    attr_accessor :job
+    def initialize(job)
+        @job = job
+    end
+
+    def walk()
+        puts "#{@job}は荒野を歩いていた"
+    end
+
+    def attack(enemy)
+        puts "勇者は#{enemy}を攻撃した"
+    end
+end
+player1 = User.new("戦士")
+player1.walk()
+
+player2 = User.new("盗賊")
+player2.walk()
+
+# attr_accessorを定義しているのでjob変数を書き換えることができる。
+# player1の変数のjobに勇者を代入して、
+player1.job = "勇者"
+player1.walk()
+
+
+# 戦士は荒野を歩いていた
+# 盗賊は荒野を歩いていた
+# 勇者は荒野を歩いていた
+
 # *********配列*********
 
 # 要素の変更、追加、削除
