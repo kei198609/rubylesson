@@ -19,7 +19,7 @@
 // 入力: s = "hello"
 // 出力: "olleh"
   function reverseString(s) {
-    return s.sprit('').reverse().join('');
+    return s.split('').reverse().join('');
   }
 
 // 3. 文字列内の特定の文字のカウント
@@ -30,8 +30,21 @@
 // 出力: 2
 
   function count(s, char) {
-    return s.sprit(char).length - 1;
+    return s.split(char).length - 1;
   }
+
+
+
+// split(char) の動作：
+// split() は、指定した文字で文字列を分割し、配列を返します。
+// "hello" の中には "l" が 2回 含まれています。
+// "l" を区切りとして分割すると：
+// "he"（最初の "l" の前）
+// ""（2つの "l" の間）
+// "o"（最後の "l" の後）
+
+// "hello".split("l")
+// → ["he", "", "o"]
 
 
 // 4. アナグラムの検出
@@ -43,14 +56,14 @@
 
   function anagram(s1, s2) {
     const sortStr = (str) => {
-      return str.sprit('').sort().join('');
+      return str.split('').sort().join('');
     };
     return sortStr(s1) === sortStr(s2);
   }
 
   // 省略記法(アロー関数の中括弧 {} と return キーワードを省略)
   function anagram(s1, s2) {
-    const sortStr = (str) => str.sprit('').sort().join('');
+    const sortStr = (str) => str.split('').sort().join('');
     return sortStr(s1) === sortStr(s2);
   }
 
