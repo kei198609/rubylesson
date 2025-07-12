@@ -316,3 +316,37 @@ function removeElement(nums, val) {
   }
   return i; // 削除後の新しい長さを返す
 }
+
+
+
+
+// fizzBuzz
+// 1 ~ 100 の整数に対して、3 と 5 の両方で割り切れるなら FizzBuzz を、
+// 3 でのみ割り切れるなら Fizz 、5 でのみ割り切れるなら Buzz を改行区切りで出力してください。
+// また、どちらでも割り切れない場合は、その数字を改行区切りで出力してください。
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+// 自分の得意な言語で
+// Let's チャレンジ！！
+var lines = [];
+var reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.on('line', (line) => {
+  lines.push(line);
+});
+reader.on('close', () => {
+  for (let i = 1; i <= 100; i++) {
+    if (i % 15 === 0) {
+      console.log("FizzBuzz");
+    } else if (i % 3 === 0) {
+      console.log("Fizz");
+    } else if (i % 5 === 0) {
+      console.log("Buzz");
+    } else {
+      console.log(i);
+    }
+  }
+});
