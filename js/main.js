@@ -329,8 +329,8 @@ process.stdin.resume();
 process.stdin.setEncoding('utf8');
 // 自分の得意な言語で
 // Let's チャレンジ！！
-var lines = [];
-var reader = require('readline').createInterface({
+const lines = [];
+const reader = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout
 });
@@ -348,5 +348,46 @@ reader.on('close', () => {
     } else {
       console.log(i);
     }
+  }
+});
+
+
+
+
+
+
+// 入力される値
+// S
+
+// 入力値最終行の末尾に改行が１つ入ります。
+// 文字列は標準入力から渡されます。 標準入力からの値取得方法はこちらをご確認ください
+// 期待する出力
+// YESまたはNOを出力してください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+
+// YES
+// または
+// NO
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const S = lines[0]; // 入力された文字列
+
+  // ↓ ここに判定ロジックを書く
+  if (S === "hello") {  // 例：Sが"hello"ならYES
+    console.log("YES");
+  } else {
+    console.log("NO");
   }
 });
