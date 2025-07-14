@@ -391,3 +391,36 @@ reader.on('close', () => {
     console.log("NO");
   }
 });
+
+
+
+
+// 整数 A, B, C が与えられます。
+// 式 A × B ≦ C が成立している場合はYESを、そうではない場合はNOを出力してください。
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const [A, B, C] = lines[0].split(' ').map(Number);
+
+  if (A * B <= C) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+});
+
+// lines[0]： "3 4 12" のような文字列が格納される。
+// .split(' ')： ["3", "4", "12"] に分割。
+// .map(Number)： [3, 4, 12] に数値変換。
