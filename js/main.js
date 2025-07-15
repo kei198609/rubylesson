@@ -424,3 +424,33 @@ reader.on('close', () => {
 // lines[0]： "3 4 12" のような文字列が格納される。
 // .split(' ')： ["3", "4", "12"] に分割。
 // .map(Number)： [3, 4, 12] に数値変換。
+
+
+
+
+
+
+// ある占いでは、箱の中に 1~9 までのいずれかの数字が書かれている玉を取り出し、
+// その玉に書かれている数字から運勢を占います。
+// 玉に書かれている数字が 7 の時は大吉となります。
+// 占いで取り出した玉に書かれている数字が 1 つ与えられます。
+// 大吉かどうかを判定してください。
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+reader.on('line', (line) => {
+  lines.push(line);
+});
+reader.on('close', () => {
+  const num = Number(lines[0]); //lines[0] に入力された数字が文字列として入るので、Number() で数値に変換。
+  if (num === 7) {
+    console.log("Yes");
+  } else {
+    console.log("No");
+  }
+});
