@@ -477,3 +477,28 @@ reader.on('close', () => {
       console.log(i);
   }
 });
+
+
+
+
+
+// 整数 A, B が与えられます。A と B の差 D と積 P を半角スペース区切りで出力してください。
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const [A, B] = lines[0].split(' ').map(Number); // A, Bを数値として取得
+  const D = A - B;
+  const P = A * B;
+  console.log(`${D} ${P}`); // 半角スペース区切りで出力
+});
