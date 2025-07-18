@@ -502,3 +502,29 @@ reader.on('close', () => {
   const P = A * B;
   console.log(`${D} ${P}`); // 半角スペース区切りで出力
 });
+
+
+// 長さ N の数列Aが与えられます。Aの中に 0 が含まれていない場合はYESを、 0 が含まれている場合はNOを出力してください。
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const N = Number(lines[0]);
+  const A = lines.slice(1, N + 1).map(Number);
+  const hasZero = A.includes(0);
+  if (hasZero) {
+    console.log("NO");
+  } else {
+    console.log("YES");
+  }
+});
