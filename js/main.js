@@ -558,3 +558,38 @@ reader.on('close', () => {
     console.log("NO");
   }
 });
+
+
+
+
+// 大文字または小文字のアルファベットCが与えられます。
+// Cが大文字の場合はYESを、そうではない場合はNOを出力してください。
+
+// 入力される値
+// C
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const C = lines[0];// 1文字のアルファベット
+  if (C >= 'A' && C <= 'Z') {
+    console.log();
+  } else {
+    console.log();
+  }
+});
+
+// C >= 'A' && C <= 'Z'
+// → アルファベットの大文字かどうかを判定する条件です。
+// 'A'〜'Z' は Unicode（またはASCII）で連続しているので、この比較が有効です。
