@@ -593,3 +593,31 @@ reader.on('close', () => {
 // C >= 'A' && C <= 'Z'
 // → アルファベットの大文字かどうかを判定する条件です。
 // 'A'〜'Z' は Unicode（またはASCII）で連続しているので、この比較が有効です。
+
+
+
+// 2 つの整数A、Bが与えられます。A, B の少なくとも一方が 10 以上の場合はYESを、そうではない場合はNOを出力してください。
+
+// 入力される値
+// A B
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const [A, B]  = lines[0].split(' ').map(Number);
+  if (A >= 10 || B >= 10) {
+    console.log('YES');
+  } else {
+    console.log('NO');
+  }
+});
