@@ -621,3 +621,39 @@ reader.on('close', () => {
     console.log('NO');
   }
 });
+
+
+
+
+// 長さ N の数列Aが与えられます。この数列に含まれる偶数の要素の個数と、奇数の要素の個数を答えてください。
+
+// 入力される値
+// N
+// A1 A2 ... AN
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const N  = Number(lines[0]);// 最初の行は要素数
+  const A  = lines[1].split(' ').map(Number);// 2行目が数列A
+  let even = 0;
+  let add = 0;
+  for (let i = 0; i < N; i++) {
+    if (A[i] % 2 === 0) {
+      even++;
+    } else {
+      add++;
+    }
+  }
+  console.log(`${even} ${odd}`);
+});
