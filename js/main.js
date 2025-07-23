@@ -657,3 +657,30 @@ reader.on('close', () => {
   }
   console.log(`${even} ${odd}`);
 });
+
+
+
+// 整数Nが与えられます。Nのけた数を出力してください。
+// 入力される値
+// N
+
+// 期待する出力
+// N のけた数Dを出力してください。末尾に改行を入れ、余計な文字、空行を含んではいけません。
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const N  = lines[0].trim();// 入力された行から改行や空白を除く
+  const D  = N.replace('-', '').length;//負の符号を除いた桁数
+  console.log(D);
+});
