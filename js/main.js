@@ -684,3 +684,43 @@ reader.on('close', () => {
   const D  = N.replace('-', '').length;//負の符号を除いた桁数
   console.log(D);
 });
+
+
+
+// 整数N, A, B ( - 99 ≦ N, A, B ≦ 100 ) があります。
+// 以下の 2 つの操作をそれぞれ 1 回ずつおこなったとき、Nを 0 にできる場合はYESを、
+// できない場合はNOを出力してください。
+// 1. NにAを足す、またはNからAを引く
+// 2. NにBを足す、またはNからBを引く
+
+// 入力される値
+// N A B
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const [N, A, B]  = lines[0].split(' ').map(Number);
+  const results = [
+    N + A + B,
+    N + A - B,
+    N - A + B,
+    N - A - B
+  ];
+  if (results.includes(0)) {
+    console.log('YES');
+  } else {
+    console.log('NO');
+  }
+});
+// N ± A ± B の4通りを results 配列に格納
+// .includes(0) でどれか1つでも 0 になれば "YES"
