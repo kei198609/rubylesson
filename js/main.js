@@ -724,3 +724,40 @@ reader.on('close', () => {
 });
 // N ± A ± B の4通りを results 配列に格納
 // .includes(0) でどれか1つでも 0 になれば "YES"
+
+
+
+
+// 整数N, 2 つの数列A, B が与えられます。 1 ≦ i ≦ N を満たす整数 i のうち、
+// A_i と B_i が等しくなるような i の個数を求めてください。
+
+// 入力される値
+// N
+// A_1 A_2 ... A_N
+// B_1 B_2 ... B_N
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const N  = Number(lines[0]);
+  const A  = lines[1].split(' ').map(Number);
+  const B  = lines[2].split(' ').map(Number);
+
+  let count = 0;
+
+  for (let i = 0; i < N; i++) {
+    if (A[i] === B[i]) {
+      count++;
+    }
+  }
+});
