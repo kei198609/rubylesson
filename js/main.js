@@ -785,3 +785,28 @@ reader.on('close', () => {
   }
   console.log(M);
 });
+
+
+
+
+
+// 直線上の道があり、最初は X = 0 の地点にいます。この道はX = T + 0.1 の地点で崖になっています。
+// また、 1 歩でX軸方向にK進むことができます。崖に落ちずにN歩進むことはできるでしょうか。
+
+// 崖に落ちずにN歩進むことができる場合はYESを、そうではない場合はNOを出力してください。
+// 末尾に改行を入れ、余計な文字、空行を含んではいけません。
+
+// 入力される値
+// N K T
+
+reader.on('close', () => {
+  const [N, K, T]  = lines[0].split(' ').map(Number); //
+  const position = N * K;
+  const cliff = T + 0.1;
+
+  if (position < cliff) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+});
