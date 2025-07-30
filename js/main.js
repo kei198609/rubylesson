@@ -849,3 +849,19 @@ reader.on('close', () => {
 
 
 
+// 10 個の整数 K_1, K_2, ..., K_10 が与えられます。
+// これらを受け取り、改行区切りで出力してください。
+
+// 入力される値
+// K_1 K_2 ... K_10
+
+
+// 期待する出力
+// 与えられた 10 個の数字を改行区切りで出力してください。
+// ・ 1 行で整数 K_i が半角スペース区切りで与えられます。
+reader.on('close', () => {
+  const numbers = lines[0].split(' ').map(Number);
+  numbers.forEach(num => {
+    console.log(num);
+  });
+});
