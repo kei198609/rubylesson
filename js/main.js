@@ -865,3 +865,27 @@ reader.on('close', () => {
     console.log(num);
   });
 });
+
+
+
+// N 個の整数 K_1, K_2, ..., K_N が与えられます。
+// これらを受け取り、改行区切りで出力してください。
+
+// 入力される値
+// N
+// K_1 K_2 ... K_N
+
+
+// ・ 1 行目に整数 N が与えられます。
+// ・ 2 行目に整数 K_i が半角スペース区切りで与えられます。
+
+// 期待する出力
+// 与えられた N 個の数字を改行区切りで出力してください。
+// 出力の末尾には改行を入れてください。
+reader.on('close', () => {
+  const N = Number(lines[0]);
+  const numbers = lines[1].split(' ').map(Number);
+  for (let i = 0; i < N; i++) {
+    console.log(numbers[i]);
+  }
+});
