@@ -889,3 +889,22 @@ reader.on('close', () => {
     console.log(numbers[i]);
   }
 });
+
+
+
+
+
+// 入力される値
+// N K
+
+// ・ 1 行目に整数 N, K が与えられます。
+
+// 期待する出力
+// N を K 回、改行区切りで出力してください。
+// 出力の末尾には改行を入れてください。
+reader.on('close', () => {
+  const [N, K] = lines[0].split(' ').map(Number);
+  for (let i = 0; i < K; i++) {
+    console.log(N);
+  }
+});
