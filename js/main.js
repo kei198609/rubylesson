@@ -1048,3 +1048,30 @@ const a = [5, 3, 1, 4];
 console.log(a.indexOf(1)); // → 2 （3番目の位置 → 0, 1, 2）
 console.log(a.indexOf(4)); // → 3
 console.log(a.indexOf(7)); // → -1（存在しない）
+
+
+
+// 長さ N の数列 a (a_1, a_2, ..., a_N) が与えられます。
+// この数列の中に 1 が何個あるか出力してください。
+
+// 入力される値
+// N
+// a_1 a_2 ... a_N
+
+// ・ 1 行目に整数 N が与えられます。
+// ・ 2 行目に長さ N の数列 a が与えられます。
+
+// 期待する出力
+// 数列の中に 1 が何個あるか出力してください。
+// 出力の末尾には改行を入れてください。
+reader.on('close', () => {
+  const N = Number(lines[0]);
+  const a = lines[1].split(' ').map(Number);
+  let count = 0;
+  for (let i = 0; i < N; i++) {
+    if (a[i] === 1) {
+      count++;
+    }
+  }
+  console.log(count);
+});
