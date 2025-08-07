@@ -1075,3 +1075,34 @@ reader.on('close', () => {
   }
   console.log(count);
 });
+
+
+
+
+// 長さがわからない数列 a が入力されます。
+// -1 が入力されるまで、受け取った数を改行区切りで出力してください。
+
+// 入力される値
+// a_1 a_2 ... -1
+
+// 期待する出力
+// -1 が入力されるまで、受け取った数を改行区切りで出力してください。
+// 出力の末尾には改行を入れてください。
+// ・ 数列 a が 1 行で与えられます。
+
+reader.on('close', () => {
+  const numbers = lines[0].split(' ').map(Number);
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] === -1) break;
+    console.log(numbers[i]);
+  }
+});
+
+// numbers.lengthは
+// i が配列の長さより小さい間、繰り返す
+// なぜ i < numbers.length なのか？
+// JavaScript の配列は インデックスが0から始まる ので、
+// 最後の要素のインデックスは length - 1 になります。
+
+// つまり、範囲外にアクセスしないようにするために、
+// i < numbers.length という条件でループを止めます。
