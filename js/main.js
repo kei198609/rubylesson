@@ -1205,3 +1205,54 @@ reader.on('close', () => {
 });
 
 // a[i] は「配列 a の i 番目の要素」
+
+
+
+
+
+// 10 進数で表された整数 N が与えられます。
+// 整数 N の各桁の和を計算し、出力してください。
+
+// 入力される値
+// N
+// ・ 1 行で整数 N が与えられます。
+
+// 期待する出力
+// 整数 N の各桁の和を計算し、出力してください。
+
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+const lines = [];
+const reader = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+reader.on('line', (line) => {
+  lines.push(line);
+});
+
+reader.on('close', () => {
+  const N = lines[0].trim();// 入力された整数（文字列として扱う）
+  let sum = 0;
+  for (let i = 0; N.length; i++) {
+    sum += Number(N[i]);// 1桁ずつ数値に変換して加算
+  }
+
+  console.log(sum);
+});
+
+// lines[0].trim()
+// → 入力文字列から余計な空白や改行を除去
+// → 文字列として扱うことで桁ごとに分解しやすくなる
+
+
+// lines[0] は 文字列として扱う ことになります。
+// const lines = [];
+// reader.on('line', (line) => {
+//   lines.push(line); // line は標準入力から読み取った「文字列」
+// });
+// readline モジュールで読み取った line は 必ず文字列型（String） です。
+// だから、lines[0] も文字列になります。
