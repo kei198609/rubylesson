@@ -1342,3 +1342,27 @@ reader.on('close', () => {
   let result = N.toString(2);
   console.log(result);
 });
+
+
+
+
+
+// 整数 N, M, K が与えられます。
+// N が M ずつ増えるとき、何回目に K を越えるか出力してください。
+
+// 入力される値
+// N M K
+// ・ 1 行で整数 N, M, K が与えられます。
+
+// 期待する出力
+// N が M ずつ増えるとき、何回目に K を越えるか出力してください。
+
+reader.on('close', () => {
+  const [N, M, K] = lines[0].split(' ').map(Number);
+  let count = 0;
+  while (N <= K) { // K を超えるまで繰り返す
+    N += M;
+    count++;
+  }
+  console.log(count);
+});
