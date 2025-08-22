@@ -6690,3 +6690,33 @@ puts n / 3
 # 1 から N までの配列を作り、その中で 3 の倍数を数える場合
 result = (1..n).count { |x| x % 3 == 0 }
 puts result
+
+
+
+
+
+
+
+
+# パスワードを表す文字列 S が標準入力から与えられます。
+# S が password という文字列と一致している場合には dangerous、そうでない場合は safe を出力してください。
+
+# 入力
+# 入力は次の形式で与えられます。
+
+# S
+# また、入力される値は次の制約を満たします。
+# S は英小文字のみからなる長さ 1 以上 1000 以下の文字列
+
+# 出力
+# 答えを出力してください。
+
+s = gets.chomp
+puts s == "password" ? "dangerous" : "safe"
+
+
+
+# パスワードを表す文字列 S が標準入力から与えられます。
+# S が 6 文字以下の場合は dangerous、そうでない場合は safe を出力してください。
+s = gets.chomp
+puts s.length <= 6 ? "dangerous" : "safe"
