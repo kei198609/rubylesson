@@ -6720,3 +6720,14 @@ puts s == "password" ? "dangerous" : "safe"
 # S が 6 文字以下の場合は dangerous、そうでない場合は safe を出力してください。
 s = gets.chomp
 puts s.length <= 6 ? "dangerous" : "safe"
+
+
+# 正整数 N が標準入力から与えられます。
+# テストの点数が 0 点以上 100 点以下であるならば valid、そうでないならば invalid を出力してください。
+n = gets.to_i
+puts n >= 0 && n <= 100 ? "valid" : "invalid"
+
+# または
+puts (1..100).include?(n) ? "valid" : "invalid"
+
+
