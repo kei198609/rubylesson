@@ -6731,3 +6731,14 @@ puts n >= 0 && n <= 100 ? "valid" : "invalid"
 puts (1..100).include?(n) ? "valid" : "invalid"
 
 
+# 次の処理を i=1,2,…,100 について行ってください。
+# i 行目には整数 i を出力する。
+(1..100).each do |i|
+    puts i
+end
+
+# 次の処理を i=1,2,…,100 について行ってください。
+# i 行目には整数 2i を出力する。
+(1..100).each do |i|
+    puts 2 * i
+end
