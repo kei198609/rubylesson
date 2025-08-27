@@ -6779,3 +6779,44 @@ arr = gets.split.map(&:to_i)
 arr.each do |x|
     puts x if x % 3 == 0
 end
+
+
+
+
+# gets.split.map(&:to_i)
+# 1 行に複数の数値が並んでいる場合に使う
+# 例:
+# 入力が
+# 10 20 30
+# のとき
+# arr = gets.split.map(&:to_i)
+# => [10, 20, 30]
+
+# n.times.map { gets.chomp }
+# 複数行に 1 つずつデータがある場合に使う
+# 例:
+# 入力が
+# abc
+# de
+# fghij
+# のとき
+# arr = 3.times.map { gets.chomp }
+# => ["abc", "de", "fghij"]
+
+
+
+# 「N 個の文字列を全部つなげてできる文字列の 長さ を出力する」
+# 入力例
+# 3
+# abc
+# de
+# fghij
+
+# 出力例
+# 10
+
+n = gets.to_i
+strings = n.times.map { gets.chomp }
+result = strings.join.length
+puts result
+
