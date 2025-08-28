@@ -6820,3 +6820,13 @@ strings = n.times.map { gets.chomp }
 result = strings.join.length
 puts result
 
+
+
+# N 個の文字列の頭文字をつないでできる文字列を出力してください。
+n = gets.to_i
+ans = ""
+n.times do
+    s = gets.chomp
+    ans << s[0]
+end
+puts ans
