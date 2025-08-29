@@ -6830,3 +6830,16 @@ n.times do
     ans << s[0]
 end
 puts ans
+
+
+
+
+
+# 配列の K 番目の要素を出力する問題
+# 入力
+# N K
+# A0 A1 ... AN-1
+
+n, k = gets.split.map(&:to_i)
+arr = gets.split.map(&:to_i)
+puts arr[k]
