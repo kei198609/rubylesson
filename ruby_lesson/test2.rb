@@ -6843,3 +6843,37 @@ puts ans
 n, k = gets.split.map(&:to_i)
 arr = gets.split.map(&:to_i)
 puts arr[k]
+
+
+
+
+# 整数列 A（長さN）と整数列 B（長さM）が与えられる。
+# それぞれの列の中に含まれる 正の整数（>0） の個数を数える。
+# 以下の条件で出力する：
+# A の方が多い → "A"
+# B の方が多い → "B"
+# 同じ → "same"
+
+n, m = gets.split.map(&:to_i)
+a = gets.split.map(&:to_i)
+b = gets.split.map(&:to_i)
+
+count_a = a.count { |x| x > 0 }
+count_b = b.count { |x| x > 0 }
+
+if count_a > count_b
+    puts "A"
+elsif count_b > count_a
+    pust "B"
+else
+    puts "same"
+end
+
+
+# count_a = a.count { |x| x > 0 }について
+
+# a.count { ... }は配列 a の中を一つずつ取り出して { ... } の条件に当てはめ、
+# true になった回数を数える仕組みです。
+# { |x| x > 0 }はブロック。
+# |x| は配列から取り出した要素を入れる変数。
+# x > 0 という条件を評価して、true なら「カウント対象」になります。
