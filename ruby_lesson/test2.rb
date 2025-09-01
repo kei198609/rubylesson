@@ -6912,3 +6912,22 @@ puts total
 # puts a * b
 # ここだと 最初の1行しか読み取れません。
 # もし n=3 のときでも、a, b に代入されるのは 次の1行（A0, B0）だけ です。
+
+
+
+
+
+# 入力
+# N：生徒の人数
+# A0,A1...:各生徒の点数
+
+# 平均点以上を取った生徒の 出席番号（0始まり） を、小さい順に改行区切りで出力
+
+n = gets.to_i
+scores = gets.split.map(&:to_i)
+
+average = scores.sum.to_f / n   # 平均点（小数で計算）
+
+scores.each_with_index do |score, i|
+    puts i if score >= average
+end
