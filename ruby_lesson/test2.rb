@@ -6931,3 +6931,12 @@ average = scores.sum.to_f / n   # 平均点（小数で計算）
 scores.each_with_index do |score, i|
     puts i if score >= average
 end
+
+
+
+
+# これら N 個の整数を末尾から順に、一行ずつ出力してください。
+n = gets.to_i
+a = gets.split.map(&:to_i)
+
+a.reverse_each { |x| puts x } # reverse_each で後ろから順に出力します。
