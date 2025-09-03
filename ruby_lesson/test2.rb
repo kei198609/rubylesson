@@ -6940,3 +6940,17 @@ n = gets.to_i
 a = gets.split.map(&:to_i)
 
 a.reverse_each { |x| puts x } # reverse_each で後ろから順に出力します。
+
+
+
+
+
+# 10,9,…,1 を 1 行ずつ出力してください。
+(1..10).to_a.reverse.each do |i|
+    puts i
+end
+
+# to_a とは？
+# Ruby で 「配列に変換するメソッド」 です。
+# to_a = "to array" の意味。
+# reverseを使いたいから配列にしている。
