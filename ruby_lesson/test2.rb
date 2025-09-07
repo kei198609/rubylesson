@@ -6998,3 +6998,21 @@ end
 # 内側 (1..9).map { |j| i * j } → その行の計算結果を配列にする
 # join(" ") でスペース区切りにして1行の文字列に変換
 # puts で出力
+
+
+
+
+
+
+
+# 文字列 S の中で文字 'a' が現れるすべての位置（インデックス）を求め、小さい順に改行区切りで出力
+n = gets.to_i
+s = gets.chomp
+
+s.chars.each_with_index do |ch, i|
+    puts i if ch == "a"
+end
+# s.chars で文字列を配列に分解
+# chars にする理由は「文字列を配列にして、Ruby の配列処理メソッド（each, map, select など）が使えるようにする」ため
+# each_with_index で (文字, インデックス) を順に処理
+# ch == "a" のときだけ puts i
