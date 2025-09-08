@@ -7016,3 +7016,12 @@ end
 # chars にする理由は「文字列を配列にして、Ruby の配列処理メソッド（each, map, select など）が使えるようにする」ため
 # each_with_index で (文字, インデックス) を順に処理
 # ch == "a" のときだけ puts i
+
+
+
+
+# 最初に現れる 'a' の位置（0始まり）を出力
+n = gets.to_i
+s = gets.chomp
+
+puts s.index('a')
