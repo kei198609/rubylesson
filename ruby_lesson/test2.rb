@@ -7025,3 +7025,11 @@ n = gets.to_i
 s = gets.chomp
 
 puts s.index('a')
+
+
+
+# 文字列 S に含まれる 'a' の個数を数えて出力
+n = gets.to_i
+s = gets.chomp
+
+puts s.count('a')
