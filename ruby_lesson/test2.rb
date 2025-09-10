@@ -7033,3 +7033,19 @@ n = gets.to_i
 s = gets.chomp
 
 puts s.count('a')
+
+
+
+# 長さ N の文字列 S と T が与えられます。
+# S と T を比較したとき、同じ位置に同じ文字がある箇所はいくつありますか。
+# 同じ位置で文字が一致する数を数える
+
+n = gets.to_i
+s = gets.chomp
+t = gets.chomp
+
+count = 0
+n.times do |i|
+    count += 1 if s[i] == t[i]
+end
+puts count
