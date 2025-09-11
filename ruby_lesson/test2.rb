@@ -7049,3 +7049,21 @@ n.times do |i|
     count += 1 if s[i] == t[i]
 end
 puts count
+
+
+
+
+# 文字列 S の中に "abc" が連続して現れる箇所の数を数える課題
+n = gets.to_i
+s = gets.chomp
+
+count = 0
+(0..n-3).each do |i|  # 長さ3の部分文字列を取り出すので n-3 まで
+    count += 1 if s[i, 3] == "abc"
+end
+
+puts count
+
+# s[i, 3] は「文字列 s の i 文字目から3文字」を取り出します。
+# "abc" と一致したらカウントを増やします。
+# i の範囲は 0..n-3（最後の2文字から始めても "abc" は作れないので）。
