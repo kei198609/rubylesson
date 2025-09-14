@@ -7120,3 +7120,15 @@ end
 # 例
 # [1,2,3,4,5,6,7].join(' ')
 # => "1 2 3 4 5 6 7"
+
+
+
+
+
+# 1..N の中で '4' も '9' も含まない数だけを出力
+n = gets.to_i
+
+(1..n).each do |x|
+    s = x.to_s
+    puts x unless s.include?('4') || s.include?('9')
+end
