@@ -7132,3 +7132,18 @@ n = gets.to_i
     s = x.to_s
     puts x unless s.include?('4') || s.include?('9')
 end
+
+
+
+
+
+# S を T に一致させるために置き換える必要がある文字数を数える
+n = gets.to_i
+s = gets.chomp
+t = gets.chomp
+
+count = 0
+(0...n).each do |i|
+    count += 1 if s[i] != t[i]
+end
+puts count
