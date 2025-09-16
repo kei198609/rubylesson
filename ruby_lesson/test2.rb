@@ -7147,3 +7147,26 @@ count = 0
     count += 1 if s[i] != t[i]
 end
 puts count
+
+
+
+n = gets.to_i
+s = gets.chomp
+
+map = { 'A' => 'T', 'T' => 'A', 'G' => 'C', 'C' => 'G'}
+result = ""
+s.chars.each do |i|
+    result << map[i]
+end
+puts result
+
+# s.chars.each do |ch|
+# → 文字列 s を1文字ずつ取り出してループする。
+
+
+# 「キー」と「値」をセットで持つデータ構造。
+# 上の例だと：
+# キー 'A' に対して値 'T'
+# キー 'T' に対して値 'A'
+# キー 'G' に対して値 'C'
+# キー 'C' に対して値 'G'
