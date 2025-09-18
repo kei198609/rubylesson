@@ -7209,3 +7209,12 @@ puts s.reverse.chars.each_slice(3).map(&:join).join(',').reverse
 # .reverse
 # 最後にもう一度 reverse して正しい順序に戻す。
 # 例: "765,432,1".reverse → "1,234,567"
+
+
+
+
+# 配列に V があるかどうかを判定して、あれば Yes、なければ No を出す
+n, v = gets.split.map(&:to_i)
+a = gets.split.map(&:to_i)
+
+puts a.include?(v) ? "Yes" : "No"
