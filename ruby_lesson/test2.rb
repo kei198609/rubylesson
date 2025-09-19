@@ -7218,3 +7218,19 @@ n, v = gets.split.map(&:to_i)
 a = gets.split.map(&:to_i)
 
 puts a.include?(v) ? "Yes" : "No"
+
+
+
+# 配列 A の中で 最も右にある V の位置（0始まり） を出す。無ければ -1
+n, v = gets.split.map(&:to_i)
+a = gets.split.map(&:to_i)
+
+pos = -1
+a.each_with_index do |x, i|
+    pos = i if x == v   # 右側に進むたびに更新 → 最後の一致が残る
+end
+
+puts pos
+
+# each_with_index は配列を 要素 (x) と 添字 (i) 付きで順に回す。
+# 条件 x == v なら pos = i と代入。
