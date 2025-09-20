@@ -7234,3 +7234,15 @@ puts pos
 
 # each_with_index は配列を 要素 (x) と 添字 (i) 付きで順に回す。
 # 条件 x == v なら pos = i と代入。
+
+
+
+
+# 与えられた整数列の中で、正の整数（0より大きいもの）が何個あるか数える
+n = gets.to_i
+a = gets.split.map(&:to_i)
+count = 0
+a.each do |i|
+    count += 1 if i > 0
+end
+puts count
