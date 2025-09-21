@@ -7246,3 +7246,19 @@ a.each do |i|
     count += 1 if i > 0
 end
 puts count
+
+
+
+
+# 与えられた N 個の整数の最大値を出力
+n = gets.to_i
+a = gets.split.map(&:to_i)
+
+max_value = 0
+
+a.each do |i|
+    if i > max_value
+        max_value = i
+    end
+end
+puts max_value
