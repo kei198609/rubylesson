@@ -7262,3 +7262,15 @@ a.each do |i|
     end
 end
 puts max_value
+
+
+
+
+
+# 与えられた整数列の最大値を求め、その最大値と等しい要素がいくつあるか数える
+n = gets.to_i
+a = gets.split.map(&:to_i)
+
+max_value = a.max
+
+puts a.count { |i| i == max_value }
