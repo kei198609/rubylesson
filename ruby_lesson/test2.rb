@@ -7274,3 +7274,21 @@ a = gets.split.map(&:to_i)
 max_value = a.max
 
 puts a.count { |i| i == max_value }
+
+
+
+# 次の条件を満たす i の個数を調べるプログラムを作成してください。
+# i は 1 以上 N−1 以下の整数
+
+n = gets.to_i
+a = gets.split.map(&:to_i)
+
+count = 0
+a.each_with_index do |x, i|
+    if i > 0 && x > a[i - 1]
+        count += 1
+    end
+end
+
+puts count
+
