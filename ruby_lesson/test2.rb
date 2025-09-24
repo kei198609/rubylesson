@@ -7292,3 +7292,16 @@ end
 
 puts count
 
+
+
+
+# 1 以上 N 以下の整数のうち、2 でも 3 でも 5 でも割り切れない数の個数
+n = gets.to_i
+count = 0
+(1..n).each do |x|
+    if x % 2 != 0 && x % 3 != 0 && x % 5 != 0
+        count += 1
+    end
+end
+puts count
+
