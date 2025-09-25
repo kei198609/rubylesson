@@ -7305,3 +7305,14 @@ count = 0
 end
 puts count
 
+
+
+
+# N の約数の個数を数えるプログラムを作成してください。
+# ただし N の約数とは「 N を割り切ることのできる 1 以上の整数」のことです。
+n = gets.to_i
+count = 0
+(1..n).each do |x|
+    count += 1 if n % x == 0
+end
+puts count
