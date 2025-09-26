@@ -7316,3 +7316,10 @@ count = 0
     count += 1 if n % x == 0
 end
 puts count
+
+
+# 文字列 S の中に c が含まれるならばYesを出力し、含まれないならばNoを出力してください。
+
+s = gets.chomp
+c = gets.chomp
+puts s.include?(c) ? "Yes" : "No"
