@@ -7323,3 +7323,16 @@ puts count
 s = gets.chomp
 c = gets.chomp
 puts s.include?(c) ? "Yes" : "No"
+
+
+
+# 与えられた N 個の文字列のうち、回文になっている文字列がいくつあるか数える
+n = gets.to_i
+count = 0
+
+n.times do
+    s = gets.chomp
+    count += 1 if s == s.reverse
+end
+
+puts count
