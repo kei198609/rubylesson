@@ -7336,3 +7336,17 @@ n.times do
 end
 
 puts count
+
+
+
+# 文字列 S に含まれている異なる文字の種類数」を数える
+s = gets.chomp
+puts s.chars.uniq.size
+# s.chars : 文字列を1文字ずつ配列に変換
+# 例: "apple".chars → ["a", "p", "p", "l", "e"]
+
+# .uniq : 重複を取り除く
+# 例: ["a", "p", "p", "l", "e"].uniq → ["a", "p", "l", "e"]
+
+# .size : 配列の長さ（要素数）を数える
+# 例: ["a", "p", "l", "e"].size → 4
