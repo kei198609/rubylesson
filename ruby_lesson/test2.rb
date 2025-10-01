@@ -7350,3 +7350,15 @@ puts s.chars.uniq.size
 
 # .size : 配列の長さ（要素数）を数える
 # 例: ["a", "p", "l", "e"].size → 4
+
+
+
+
+# 区間[L,R] の整数を文字列にして回文か判定し、数え上げる
+l, r = gets.split.map(&:to_i)
+count = 0
+(l..r).each do |x|
+    s = x.to_s
+    count += 1 if s == s.reverse
+end
+puts count
