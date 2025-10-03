@@ -7373,3 +7373,16 @@ puts count
 k = gets.to_i
 arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
 puts arr[k]
+
+
+
+# サイズ H×W の盤面が与えられます。 これらの盤面の各マスには、文字 o か x が描かれています。
+# この盤面内の o の描かれたマスの個数を求めてください。
+# 文字列 S 0,S 1,…,SH−1は盤面の各行の様子を表します。
+h, w = gets.split.map(&:to_i)
+ans = 0
+h.times do
+    s = gets.chomp
+    ans += s.count("o")
+end
+puts ans
