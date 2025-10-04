@@ -7386,3 +7386,25 @@ h.times do
     ans += s.count("o")
 end
 puts ans
+
+
+
+# 英小文字からなる文字列 S が与えられます。
+# 26 種類の英小文字のうち、S に現れないものの個数を答えてください。
+
+s = gets.chomp
+puts 26 - s.chars.uniq.size
+
+# s.chars
+# 文字列を1文字ずつの配列に変換します。
+# 例: "abcabc".chars → ["a", "b", "c", "a", "b", "c"]
+
+# s.chars.uniq
+# 配列の 重複要素を削除 して、新しい配列を返します。
+# 例: ["a", "b", "c", "a", "b", "c"].uniq → ["a", "b", "c"]
+
+# s.chars.uniq.size
+# 重複を除いた配列の 要素数（種類数） を返します。
+# 例: ["a", "b", "c"].size → 3
+# → つまり「文字列 s に含まれる異なる文字の種類の数」。
+
