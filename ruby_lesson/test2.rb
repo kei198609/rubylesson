@@ -7408,3 +7408,27 @@ puts 26 - s.chars.uniq.size
 # 例: ["a", "b", "c"].size → 3
 # → つまり「文字列 s に含まれる異なる文字の種類の数」。
 
+
+
+# 正の整数 N が与えられます。
+# N が 3 の倍数でもあり、5 の倍数でもあるならば、Yes と出力してください。
+# そうでない場合は整数 N をそのまま出力してください。
+
+# ダメ回答
+# n は整数なので、each メソッドを持っていないから
+n = gets.to_i
+n.each do |i|
+    if i % 15 == 0
+        puts "Yes"
+    else
+        puts i
+    end
+end
+
+# OK回答
+n = gets.to_i
+if n % 15 == 0
+    puts "Yes"
+else
+    puts n
+end
