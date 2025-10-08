@@ -7456,3 +7456,30 @@ if n % 3 == 0 && n % 5 != 0
 else
     puts n
 end
+
+
+
+
+# 1 から N までの整数 n に対して：
+# 3 の倍数 → "Fizz"
+# 5 の倍数 → " i % 3 == 0"
+# 両方の倍数 → "FizzBuzz"
+# それ以外 → 数値そのまま出力
+# 最後に「Fizz と出力された回数」を答える
+# ※「FizzBuzz」は 数えない
+
+n = gets.to_i
+count = 0
+(1..n).each do |i|
+    if i % 15 == 0
+        puts "FizzBuzz"
+    elsif i % 3 == 0
+        puts "Fizz"
+        count += 1
+    elsif i % 5 == 0
+        puts "Buzz"
+    else
+        puts i
+    end
+end
+puts count
