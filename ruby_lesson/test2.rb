@@ -7547,3 +7547,20 @@ puts s[n - 1]
 
 a, b, c, d = gets.split.map(&:to_i)
 puts [a, b, c, d].max
+
+
+
+
+# Unicode において 97 番から 122 番までに対応する文字を、
+# 出力するプログラムを作成してください。
+
+(97..122).each do |i|
+    puts "#{i} #{i.chr}"
+end
+
+# i.chr
+# → 整数 i を Unicodeの文字 に変換。
+# 例：97.chr → "a"
+
+# "#{i} #{i.chr}"
+# → 文字列埋め込みを使って "97 a" のように整形して出力。
