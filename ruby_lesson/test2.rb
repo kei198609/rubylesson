@@ -7590,3 +7590,27 @@ puts (c.ord + 1).chr
 
 # 文字 → Unicode番号にするメソッドは.ord
 # Unicode番号 → 文字にするメソッドは.chr
+
+
+
+
+
+# パスワードを表す 4 桁の数字 S が与えられます。
+# S の文字がすべて同じ数字であれば dangerous、そうでなければ safe を出力してください。
+s = gets.chomp
+if s.chars.uniq.length == 1
+    puts "dangerous"
+else
+    puts "safe"
+end
+
+# s.chars
+# → 文字列を1文字ずつの配列に変換
+# 例："1111".chars → ["1", "1", "1", "1"]
+
+# .uniq
+# → 配列の重複を削除
+# 例：["1", "1", "1", "1"].uniq → ["1"]
+
+# .length == 1
+# → 異なる数字が1種類しかない（＝すべて同じ数字）なら "dangerous"
