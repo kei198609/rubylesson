@@ -7645,3 +7645,23 @@ puts a[n - 1 - k]
 # a[k]  	     左からk番目  	 a[1] = 20
 # a[n - 1 - k]	 右からk番目	 a[1] = 40（右から1番目）
 # 右端がインデックス n-1 だから、右から k 番目はそこから k を引く。
+
+
+
+
+
+# 与えられた整数が
+# 正の数 → "positive"
+# 負の数 → "negative"
+# 0 → "zero"
+# のどれかを出力するプログラムを書く問題
+
+def hoge(n)
+    if n > 0
+        puts "positive"
+    elsif n < 0
+        puts "negative"
+    else n == 0
+        puts "zero"
+    end
+end
