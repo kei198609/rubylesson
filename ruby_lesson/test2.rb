@@ -7661,7 +7661,25 @@ def hoge(n)
         puts "positive"
     elsif n < 0
         puts "negative"
-    else n == 0
+    else
         puts "zero"
     end
 end
+
+
+# 1 から 5 までの整数からなるリスト numbers が与えられます。
+# numbers の中で最も多く登場する整数は何回現れるか出力してください。
+
+numbers = [1, 2, 2, 3, 1, 2]
+counts = numbers.tally       # 各値の出現回数をハッシュに
+puts counts.values.max       # 出現回数の最大値を出力
+
+# numbers.tally
+# → 各数が何回出てくるかを {数 => 回数} のハッシュにまとめる。
+# 例：[1, 2, 2, 3] → {1=>1, 2=>2, 3=>1}
+
+# .values.max
+# → 出現回数の最大値を取り出す。
+
+# values は、ハッシュ（Hash）オブジェクト に対して使えるメソッドで、
+# 「ハッシュの値（value）だけを配列として取り出す」ためのもの
