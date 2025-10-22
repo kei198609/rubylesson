@@ -7711,3 +7711,10 @@ end
 # N を 10 進法表記に変換してください。
 n = gets.chomp
 puts n.to_i(2)
+
+# 整数 N が M 進法表記で与えられます。
+# N を 10 進法表記に変換してください。
+m = gets.to_i
+n = gets.chomp
+puts n.to_i(m)
+
