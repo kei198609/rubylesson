@@ -7746,3 +7746,14 @@ end
 
 s = gets.chomp
 puts s[0]
+
+
+
+# 2 つの文字列 S,T が、標準入力で一行ずつ与えられます。
+# これらの文字列をこの順に繋げて得られる文字列を出力してください。
+
+s = gets.chomp
+t = gets.chomp
+puts s + t
+
+
