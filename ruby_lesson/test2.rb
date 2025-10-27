@@ -7757,3 +7757,8 @@ t = gets.chomp
 puts s + t
 
 
+# 2つの整数 A, B が与えられたときに、
+# そのうち 大きい方の値 を出力
+
+a, b = gets.split.map(&:to_i)
+puts [a, b].max
