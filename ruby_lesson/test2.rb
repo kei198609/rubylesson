@@ -7762,3 +7762,15 @@ puts s + t
 
 a, b = gets.split.map(&:to_i)
 puts [a, b].max
+
+
+# 2 つの正の整数 A,B が空白区切りで入力されます。
+# A が B の倍数かどうかを判定してください。
+# A が B の倍数ならば Yes を出力し、そうでないならば No を出力してください。
+
+a, b = gets.split.map(&:to_i)
+if a % b == 0
+    puts 'Yes'
+else
+    puts 'No'
+end
