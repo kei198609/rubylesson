@@ -7774,3 +7774,10 @@ if a % b == 0
 else
     puts 'No'
 end
+
+
+
+# 3 つの整数 A,B,C が空白区切りで入力されます。
+# 3 つの整数の平均値を整数で出力してください。
+a, b, c = gets.split.map(&:to_i)
+puts (a + b + c) / 3
