@@ -7811,3 +7811,13 @@ else
 end
 
 
+
+
+# 次のメッセージを 100 回表示するプログラムを作って実行してください。 Hello paiza
+
+greeting = 'Hello paiza'
+
+100.times do
+    puts greeting
+end
+
