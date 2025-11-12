@@ -17,3 +17,30 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+<!-- 項目追加の練習 -->
+<ul id="list">
+    <li>項目1</li>
+    <li>項目2</li>
+</ul>
+<button id="add">追加</button>
+
+<script>
+    document.getElementById("add").addEventListener("click", function() {
+        const li = document.createElement("li");
+        li.textContent = "新しい項目";
+        document.getElementById("list").appendChild(li);
+    });
+</script>
+
+
+
+<!-- 入力フォームに文字が入力されるたびに、その文字数を下の <p> に表示 -->
+<input type="text" id="text">
+<p id="count">文字数: 0</p>
+
+<script>
+    document.getElementById("text").addEventListener("input", (e) => {
+        document.getElementById("count").textContent = `文字数: ${e.target.value.length}`
+    });
+</script>
