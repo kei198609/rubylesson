@@ -44,3 +44,14 @@
         document.getElementById("count").textContent = `文字数: ${e.target.value.length}`
     });
 </script>
+
+
+<!-- ボタンクリックでテキストを変更 -->
+<p id="message">ここにメッセージが表示されます</p>
+<button id="btn_1">クリック</button>
+
+<script>
+document.getElementById("btn_1").addEventListener("click", () => {
+    document.getElementById("message").textContent = "ボタンがクリックされました！";
+});
+</script>
