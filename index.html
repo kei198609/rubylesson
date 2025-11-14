@@ -55,3 +55,16 @@ document.getElementById("btn_1").addEventListener("click", () => {
     document.getElementById("message").textContent = "ボタンがクリックされました！";
 });
 </script>
+
+
+
+
+<!-- 背景色の切り替え（白⇄グレー） -->
+<button id="changeColor">変更</button>
+<script>
+    let gray = false;
+    document.getElementById("changeColor").addEventListener("click", () => {
+        gray = !gray;
+        document.body.style.backgroundColor = gray? "#eee" : "#fff";
+    });
+</script>
