@@ -68,3 +68,15 @@ document.getElementById("btn_1").addEventListener("click", () => {
         document.body.style.backgroundColor = gray? "#eee" : "#fff";
     });
 </script>
+
+
+
+
+<!-- ボタンをクリックしたら、<p id="text"> の中身を空（""）にしてください -->
+<p id="text_1">このテキストを消してください</p>
+<button id="clearBtn">消す</button>
+<script>
+    document.getElementById("clearBtn").addEventListener("click", () => {
+        document.getElementById("text_1").textContent = "";
+    });
+</script>
