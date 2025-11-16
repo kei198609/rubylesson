@@ -80,3 +80,16 @@ document.getElementById("btn_1").addEventListener("click", () => {
         document.getElementById("text_1").textContent = "";
     });
 </script>
+
+
+<!-- 入力内容をそのまま表示する（リアルタイムじゃなくボタンクリック） -->
+<input type="text" id="inputText" placeholder="ここに入力">
+<button id="showBtn">表示</button>
+<p id="result_1">ここに結果が表示されます</p>
+
+<script>
+document.getElementById("showBtn").addEventListener("click", () => {
+    const value = document.getElementById("inputText").value;
+    document.getElementById("result_1").textContent = value;
+});
+</script>
