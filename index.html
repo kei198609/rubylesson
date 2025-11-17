@@ -93,3 +93,27 @@ document.getElementById("showBtn").addEventListener("click", () => {
     document.getElementById("result_1").textContent = value;
 });
 </script>
+
+
+
+<!-- ボタンをクリックするたびに、<p id="secret"> を表示・非表示に切り替えてください。 -->
+<p id="secret">ひみつのメッセージです</p>
+<button id="toggleBtn">非表示にする</button>
+
+<script>
+    const secret = document.getElementById("secret");
+    const toggleBtn = document.getElementById("toggleBtn");
+    toggleBtn.addEventListener("click", () => {
+        if (secret.style.display === "none") {
+            secret.style.display = "block";
+            toggleBtn.textContent = "非表示にする";
+        } else {
+            secret.style.display = "none";
+            toggleBtn.textContent = "表示する";
+        }
+    });
+</script>
+
+
+
+
