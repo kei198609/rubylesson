@@ -117,3 +117,14 @@ document.getElementById("showBtn").addEventListener("click", () => {
 
 
 
+<!-- カウントアップボタン -->
+<p>クリック回数: <span id="count_1">0</span></p>
+<button id="countBtn">カウントアップ</button>
+<script>
+    let count = 0;
+    const countSpan = document.getElementById("count_1");
+    document.getElementById("countBtn").addEventListener("click", () => {
+        count ++;
+        countSpan.textContent = count;
+    });
+</script>
