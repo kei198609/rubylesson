@@ -154,3 +154,29 @@ document.getElementById("showBtn").addEventListener("click", () => {
 
 <!-- sumSpan.textContent = a + b; は何をしているの？ -->
 <!-- HTML の <span id="sum"> の中身を、「a + b の計算結果」に書き換える命令 -->
+
+
+
+<!-- テキストボックスが空のときは送信ボタンを押せないようにしてください。
+何か文字が入っているときだけ押せるようにします。 -->
+<input type="text" id="name" placeholder="名前を入力">
+<button id="submitBtn" disabled>送信</button>
+<script>
+    const nameInput = document.getElementById("name");
+    const submitBtn = document.getElementById("submitBtn");
+    nameInput.addEventListener("input", () => {
+        const value = nameInput.value.trim();
+        submitBtn.disabled = value === "";
+    });
+</script>
+
+
+<!-- nameInput.valueは、 -->
+<!-- 入力欄の中の文字列を取得する。 -->
+
+<!-- .trim() -->
+<!-- 前後のスペースを削除するメソッド。 -->
+
+<!-- submitBtn.disabled = value === "" について -->
+<!-- value が空なら true を代入してボタンを無効化 -->
+<!-- value が空でなければ false を代入してボタンを有効化 -->
