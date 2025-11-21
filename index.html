@@ -180,3 +180,21 @@ document.getElementById("showBtn").addEventListener("click", () => {
 <!-- submitBtn.disabled = value === "" について -->
 <!-- value が空なら true を代入してボタンを無効化 -->
 <!-- value が空でなければ false を代入してボタンを有効化 -->
+
+
+
+
+<!-- 四角いボックスにマウスを乗せると背景を青色に、
+マウスが離れたら元の色（グレー）に戻してください。 -->
+<div id="box" style="width:150px;height:150px;background:#ccc;">
+    マウスを乗せてみて
+</div>
+<script>
+    const box = document.getElementById("box");
+    box.addEventListener("mouseover", () => {
+        box.style.backgroundColor = "skyblue";
+    });
+    box.addEventListener("mouseleave", () => {
+        box.style.backgroundColor = "#ccc";
+    });
+</script>
