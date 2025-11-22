@@ -198,3 +198,29 @@ document.getElementById("showBtn").addEventListener("click", () => {
         box.style.backgroundColor = "#ccc";
     });
 </script>
+
+
+
+
+<select id="fruits">
+    <option value="">選択してください</option>
+    <option value="りんご">りんご</option>
+    <option value="バナナ">バナナ</option>
+    <option value="ぶどう">ぶどう</option>
+</select>
+
+<p id="choice">あなたが選んだのは ーー です</p>
+
+<script>
+    const select = document.getElementById("fruits");
+    const choice = document.getElementById("choice");
+
+    select.addEventListener("change", () => {
+        const value = select.value
+        if (value === "") {
+            choice.textContent = "あなたが選んだのは ーー です";
+        } else {
+            choice.textContent = `あなたが選んだのは${value}です`;
+        }
+    });
+</script>
