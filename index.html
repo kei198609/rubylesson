@@ -224,3 +224,27 @@ document.getElementById("showBtn").addEventListener("click", () => {
         }
     });
 </script>
+
+
+
+
+<!-- 名前入力欄が空の状態で「送信」ボタンを押したら、
+下に赤文字で「名前を入力してください」と表示するようにしてください。 -->
+<input type="text" id="name" placeholder="名前">
+<button id="send">送信</button>
+<p id="error" style="color: crimson;"></p>
+
+<script>
+    const nameInput2 = document.getElementById("name");
+    const sendBtn2 = document.getElementById("send");
+    const error = document.getElementById("error");
+
+    sendBtn2.addEventListener("click", () => {
+        const value = nameInput2.value.trim();
+        if (value === "") {
+            error.textContent = "名前を入力してください";
+        } else {
+            error.textContent = "";
+        }
+    });
+</script>
