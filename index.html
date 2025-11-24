@@ -248,3 +248,34 @@ document.getElementById("showBtn").addEventListener("click", () => {
         }
     });
 </script>
+
+
+
+
+<!-- 「全選択」ボタンを押したら全てのチェックボックスにチェックを入れ、
+「全解除」ボタンを押したら全てのチェックを外してください。 -->
+<label><input type="checkbox" class="item"> りんご</label>
+<label><input type="checkbox" class="item"> バナナ</label>
+<label><input type="checkbox" class="item"> オレンジ</label>
+
+<br>
+<button id="checkAll">全選択</button>
+<button id="uncheckAll">全解除</button>
+
+<script>
+    const checkAllBtn = document.getElementById("checkAll")
+    const uncheckAllBtn = document.getElementById("uncheckAll")
+    const items = document.querySelectorAll(".item")
+
+    checkAllBtn.addEventListener("click", () => {
+        items.forEach(chk => {
+            chk.checked = true;
+        });
+    });
+
+    uncheckAllBtn.addEventListener("click", () => {
+        items.forEach(chk => {
+            chk.checked = false;
+        });
+    });
+</script>
