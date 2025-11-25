@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>検索テスト</title>
+</head>
+<body>
+  <textarea id="text" rows="4" cols="40">
+JavaScriptで文字列検索をして、検索ヒット数を数えます。
+JavaScriptの練習です。
+  </textarea>
+  <br>
+  <input type="text" id="keyword" placeholder="検索キーワード">
+  <button id="searchBtn">検索</button>
+  <p>ヒット数: <span id="count">0</span></p>
+
+  <script>
+    const textArea = document.getElementById("text");
+    const keywordInput = document.getElementById("keyword");
+    const searchBtn = document.getElementById("searchBtn");
+    const countSpan_2 = document.getElementById("count");
+
+    searchBtn.addEventListener("click", () => {
+      const text = textArea.value;
+      const keyword = keywordInput.value;
+
+      // キーワード未入力なら0で終了
+      if (!keyword) {
+        countSpan_2.textContent = 0;
+        return;
+      }
+
+      const parts = text.split(keyword);
+      const hits = parts.length - 1;
+      countSpan_2.textContent = hits;
+    });
+  </script>
+</body>
+</html>
