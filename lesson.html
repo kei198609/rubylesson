@@ -21,10 +21,10 @@ JavaScriptの練習です。
     const countSpan_2 = document.getElementById("count");
 
     searchBtn.addEventListener("click", () => {
-      const text = textArea.value;
-      const keyword = keywordInput.value;
+      const text = textArea.value; //テキストエリアの中の文章を text という変数に入れる。
+      const keyword = keywordInput.value; //検索したい文字 を取得して keyword に入れる
 
-      // キーワード未入力なら0で終了
+      // 検索キーワードが空（未入力）だった場合の処理。キーワード未入力なら0で終了
       if (!keyword) {
         countSpan_2.textContent = 0;
         return;
@@ -37,3 +37,22 @@ JavaScriptの練習です。
   </script>
 </body>
 </html>
+
+<!-- split() は 文字列を分割するメソッド。 -->
+<!-- text = "abcXYZdefXYZghi" -->
+<!-- keyword = "XYZ" -->
+<!-- 上の例なら -->
+<!-- text.split("XYZ") は 以下のようになる -->
+<!-- ["abc", "def", "ghi"] -->
+
+<!-- const hits = parts.length - 1; -->
+<!-- 分割してできた配列の要素数（parts.length）から1引いた値がヒット数になる。 -->
+<!-- ["abc", "def", "ghi"] → length = 3 -->
+<!-- hits = 3 - 1 = 2 -->
+
+<!-- countSpan.textContent = hits; -->
+<!-- <span id="count">0</span> -->
+<!-- に検索結果（ヒット数）を書き込む。 -->
+
+
+
