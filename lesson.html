@@ -56,3 +56,40 @@ JavaScriptの練習です。
 
 
 
+
+
+<!-- ある程度スクロールしたら「ページトップへ」ボタンを表示し、 -->
+<!-- クリックしたらページの一番上に戻るようにしてください。 -->
+<style>
+#toTop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: none;
+}
+</style>
+
+<div style="height:1500px;">
+  スクロールしてください
+</div>
+
+<button id="toTop">ページトップへ</button>
+
+<script>
+const toTopBtn = document.getElementById("toTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    toTopBtn.style.display = "block";
+  } else {
+    toTopBtn.style.display = "none";
+  }
+});
+
+toTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
