@@ -80,16 +80,21 @@ const toTopBtn = document.getElementById("toTop");
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 200) {
-    toTopBtn.style.display = "block";
+    toTopBtn.style.display = "block"; //スクロール量が200pxより大きい場合ボタンを表示する。
   } else {
-    toTopBtn.style.display = "none";
+    toTopBtn.style.display = "none"; //スクロール量が200px以下の場合ボタンを隠す。
   }
 });
-
+//ページのスクロール位置を変更する関数。
 toTopBtn.addEventListener("click", () => {
   window.scrollTo({
-    top: 0,
+    top: 0,//ページの一番上へ移動
     behavior: "smooth"
   });
 });
 </script>
+
+
+
+
+
