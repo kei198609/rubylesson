@@ -119,3 +119,44 @@ toTopBtn.addEventListener("click", () => {
     modal.style.display = "none";
   });
 </script>
+
+
+<br>
+<!-- textarea に最大 50文字まで入力可能
+入力するたびに「残り○文字」と表示
+50文字を超えたら、それ以上入力できないようにする -->
+<textarea id="msg" placeholder="メッセージを入力（最大50文字）"></textarea>
+<p>残り文字数:<span id="remain">50</span></p>
+<script>
+  const msg = document.getElementById("msg");
+  const remain = document.getElementById("remain");
+  const maxLen = 50;
+
+  msg.addEventListener("input", () => {
+    let text = msg.value //textarea に入力されている文字列を取得
+    //入力文字数が上限を超えていたら
+    if (text.length > maxLen) {
+      text = text.slice(0, maxLen);
+      msg.value = text;
+    }
+
+    const left = maxLen - text.length; //残り文字数の計算
+    remain.textContent = left;
+
+  });
+</script>
+
+<!-- "ABCDEFG".slice(0, 3) // → "ABC" -->
+
+<!-- text.slice(0, maxLen) -->
+<!-- 最初の50文字だけ残して、それ以降は切り捨てる -->
+
+<!-- msg.value = text; -->
+<!-- textarea の中身を強制的に切り取った内容に書き換える -->
+<!-- これがあるから上限超えて入力しても -->
+<!-- 自動的に文字数が戻る（貼り付け対策にもなる） -->
+
+<!-- remain.textContent = left; -->
+<!-- HTMLの残り文字数表示部分： -->
+<!-- <span id="remain">50</span> -->
+<!-- これを リアルタイムで left（残り文字数）に更新。 -->
