@@ -160,3 +160,40 @@ toTopBtn.addEventListener("click", () => {
 <!-- HTMLの残り文字数表示部分： -->
 <!-- <span id="remain">50</span> -->
 <!-- これを リアルタイムで left（残り文字数）に更新。 -->
+
+
+
+
+<!-- ボタンを押すと背景色がランダムに変わる -->
+<button id="changeColor">色を変える</button>
+<script>
+  const changeBtn = document.getElementById("changeColor");
+  const colors = ["red", "blue", "green", "orange", "pink"];
+
+  changeBtn.addEventListener("click", () => {
+    const index = Math.floor(Math.random() * colors.length);
+    document.body.style.backgroundColor = colors[index];
+  });
+
+</script>
+
+
+<!-- Math.random()
+0以上1未満のランダムな小数を返す。 -->
+
+<!-- colors.length → 5 -->
+
+<!-- Math.random() * colors.length
+例：Math.random() が 0.6 のとき、
+0.6 * 5 = 3.0 -->
+
+<!-- Math.floor(...)
+floor = 小数点以下を切り捨てる。 -->
+
+
+<!-- document.body.style.backgroundColor = colors[index]; -->
+<!-- document.body → 画面全体の <body> -->
+<!-- その背景色 (backgroundColor) をランダムに選んだ色で変更。 -->
+<!-- 例：
+index = 0 → colors[0] = "red"
+index = 3 → colors[3] = "orange" -->
