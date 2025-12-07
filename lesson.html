@@ -197,3 +197,25 @@ floor = 小数点以下を切り捨てる。 -->
 <!-- 例：
 index = 0 → colors[0] = "red"
 index = 3 → colors[3] = "orange" -->
+
+
+<br>
+
+
+<!-- 仕様
+「表示」ボタンを押すとアラートメッセージを表示
+3秒後に自動で非表示になる -->
+<button id="showAlert">表示</button>
+<p id="alert" style="display: none;">
+  アラートメッセージ！
+</p>
+<script>
+  const showBtn = document.getElementById("showAlert");
+  const alertBox = document.getElementById("alert");
+  showBtn.addEventListener("click", () => {
+    alertBox.style.display = "block";
+    setTimeout(() => {
+      alertBox.style.display = "none";
+    }, 3000);
+  });
+</script>
