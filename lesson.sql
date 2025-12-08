@@ -50,3 +50,18 @@ MAX(highest) AS '最高気温',
 MIN(lowest) AS '最低気温'
 FROM temperature_august;
 
+
+
+-- 都道府県の情報が格納されている、 prefectures テーブルのみをもつデータベースが与えられます。
+-- prefectures テーブルに含まれるデータについて、各データの id, name, 人口密度 [人/㎢]の情報を、
+-- 人口密度 [人/㎢]が高い順に表示するクエリを作成してください。
+-- ただし、name カラムの名前は 都道府県名 に変更し、
+-- 人口密度を表すカラムの名前は 人口密度 として表示してください。
+
+SELECT
+id,
+name AS 都道府県名,
+population / area AS 人口密度,
+FROM prefectures
+ORDER BY 人口密度 DESC;
+
