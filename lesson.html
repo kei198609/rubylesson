@@ -219,3 +219,26 @@ index = 3 → colors[3] = "orange" -->
     }, 3000);
   });
 </script>
+
+<br>
+
+<!-- メールアドレス形式でなければエラーメッセージを表示
+正しい形式ならエラーを消す
+チェックは「入力のたびに」行う -->
+<input type="text" id="email" placeholder="メールアドレス">
+<p id="err" style="color:red;"></p>
+
+<script>
+const email = document.getElementById("email");
+const err = document.getElementById("err");
+email.addEventListener("input", () => {
+  const value = email.value;
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!pattern.test(value)) {
+    err.textContent = "正しいメール形式を入力してください";
+  } else {
+    err.textContent = "";
+  }
+});
+</script>
