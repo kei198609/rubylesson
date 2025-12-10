@@ -242,3 +242,31 @@ email.addEventListener("input", () => {
   }
 });
 </script>
+
+
+<br>
+
+<!-- モーダルの背景（黒い部分）をクリックすると閉じる
+モーダル内の内容をクリックしても閉じない -->
+<button id="open">開く</button>
+<div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);">
+  <div id="content" style="background:#fff; margin:100px auto; padding:20px; width:300px;">
+    モーダルの内容
+  </div>
+</div>
+
+<script>
+const openBtn = document.getElementById("open");
+const modals = document.getElementById("modal");
+const content = document.getElementById("content");
+openBtn.addEventListener("click", () => {
+  modals.style.display = "block";
+});
+modals.addEventListener("click", () => {
+  modals.style.display = "none";
+});
+// ※ 子要素クリックのイベント伝播を止める
+content.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+</script>
