@@ -249,7 +249,7 @@ email.addEventListener("input", () => {
 <!-- モーダルの背景（黒い部分）をクリックすると閉じる
 モーダル内の内容をクリックしても閉じない -->
 <button id="open">開く</button>
-<div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);">
+<div id="modals" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);">
   <div id="content" style="background:#fff; margin:100px auto; padding:20px; width:300px;">
     モーダルの内容
   </div>
@@ -257,16 +257,27 @@ email.addEventListener("input", () => {
 
 <script>
 const openBtn = document.getElementById("open");
-const modals = document.getElementById("modal");
+const modals = document.getElementById("modals");
 const content = document.getElementById("content");
+
+//ボタンを押すとモーダルを表示
 openBtn.addEventListener("click", () => {
-  modals.style.display = "block";
+  modals.style.display = "block"; //モーダル（背景ごと）を表示
 });
+//背景（黒い半透明背景）をクリックすると、モーダル全体を display: none にして非表示にする。
 modals.addEventListener("click", () => {
   modals.style.display = "none";
 });
-// ※ 子要素クリックのイベント伝播を止める
+// モーダルの中身をクリックしても閉じないようにする
 content.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 </script>
+
+<!-- modal は「黒い半透明の背景」 -->
+<!-- display: none → 最初は非表示（見えていない） -->
+<!-- position: fixed → 画面に固定して全画面を覆う -->
+<!-- inset: 0 → 上下左右ぜんぶ0 → 全画面の大きさ -->
+<!-- background: rgba(0,0,0,0.5) → 黒い半透明背景 -->
+
+<!-- content は中央の白いモーダル本体 -->
