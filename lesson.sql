@@ -65,3 +65,13 @@ population / area AS 人口密度,
 FROM prefectures
 ORDER BY 人口密度 DESC;
 
+
+
+-- 列の値すべてに対して演算を行った結果を取得することができます。
+-- たとえば次の grades テーブルで、score が 200 点満点で計算されているとします。
+-- これを得点率 (%) に換算することができます。
+
+SELECT
+*,
+score / 2.0 AS '得点率'
+FROM grades;
