@@ -281,3 +281,22 @@ content.addEventListener("click", (e) => {
 <!-- background: rgba(0,0,0,0.5) → 黒い半透明背景 -->
 
 <!-- content は中央の白いモーダル本体 -->
+
+<br>
+
+<!-- 仕様
+input に数値を入力
+「2倍にする」ボタンを押すと、結果を <p> に表示 -->
+
+<input type="number" id="num" placeholder="数字を入力">
+<button id="doubleBtn">2倍にする</button>
+<p>結果：<span id="result">0</span></p>
+<script>
+  const num = document.getElementById("num");
+  const doubleBtn = document.getElementById("doubleBtn");
+  const result = document.getElementById("result");
+  doubleBtn.addEventListener("click", () => {
+    const value = Number(num.value);
+    result.textContent = value * 2;
+  });
+</script>
