@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>モーダルテスト</title>
+</head>
+<body>
+  <button id="open">開く</button>
+
+  <div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);">
+    <div id="content" style="background:#fff; margin:100px auto; padding:20px; width:300px;">
+      モーダルの内容（ここをクリックしても閉じないはず）
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById("open");
+    const modals  = document.getElementById("modal");
+    const content = document.getElementById("content");
+
+    // ボタンを押すとモーダルを表示
+    openBtn.addEventListener("click", () => {
+      modals.style.display = "block";
+    });
+
+    // 背景（黒い半透明背景）をクリックすると閉じる
+    modals.addEventListener("click", () => {
+      modals.style.display = "none";
+    });
+
+    // モーダルの中身をクリックしても閉じないようにする
+    content.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  </script>
+</body>
+</html>
+
+<br>
+
+<!-- 仕様
+input に入力した文字列を逆にして表示
+例：abc → cba -->
+<input type="text" id="text" placeholder="文字を入力">
+<button id="reverseBtn">反転</button>
+<p>反転結果: <span id="reversed"></span></p>
+
+<script>
+  const text = document.getElementById("text");
+  const reverseBtn = document.getElementById("reverseBtn");
+  const reversed = document.getElementById("reversed");
+
+  reverseBtn.addEventListener("click", () => {
+    const value = text.value;
+    reversed.textContent = value.split("").reverse().join("");
+  });
+</script>
