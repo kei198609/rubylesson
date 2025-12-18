@@ -55,3 +55,25 @@ input に入力した文字列を逆にして表示
     reversed.textContent = value.split("").reverse().join("");
   });
 </script>
+
+
+
+<!-- 仕様
+セレクトで色を選ぶ
+選んだ色で <p> の文字色を変える -->
+
+<select id="color">
+  <option value="black">黒</option>
+  <option value="red">赤</option>
+  <option value="blue">青</option>
+  <option value="green">緑</option>
+</select>
+<p id="message">文字色を変えてみよう</p>
+
+<script>
+  const color = document.getElementById("color");
+  const message = document.getElementById("message");
+  color.addEventListener("click", () => {
+    message.style.color = color.value;
+  });
+</script>
