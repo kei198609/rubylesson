@@ -77,3 +77,30 @@ input に入力した文字列を逆にして表示
     message.style.color = color.value;
   });
 </script>
+
+
+<!-- リストを追加する
+仕様
+inputに入力した文字を「追加」ボタンで <ul> に追加
+空なら追加しない -->
+
+<input type="text" id="todoInput" placeholder="やること">
+<button id="addBtn">追加</button>
+<ul id="todoList"></ul>
+
+<script>
+  const todoInput = document.getElementById("todoInput");
+  const addBtn = document.getElementById("addBtn");
+
+  addBtn.addEventListener("click", () => {
+    const text = todoInput.value.trim();
+    if (text === "") return;
+
+    const li = document.createElement("li");
+    li.textContent = text;
+    todoList.appendChild(li);
+    todoInput.value = "";
+  });
+
+</script>
+
