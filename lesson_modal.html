@@ -93,13 +93,13 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
   const addBtn = document.getElementById("addBtn");
 
   addBtn.addEventListener("click", () => {
-    const text = todoInput.value.trim();
-    if (text === "") return;
+    const text = todoInput.value.trim(); //<input> にユーザーが入力した文字をtrimで文字の前後の空白を消す
+    if (text === "") return; //空文字なら追加せず終了
 
-    const li = document.createElement("li");
-    li.textContent = text;
-    todoList.appendChild(li);
-    todoInput.value = "";
+    const li = document.createElement("li"); //li（リスト項目）を作成
+    li.textContent = text; //li の中身（テキスト）を設定
+    todoList.appendChild(li); //li を ul に追加。appendChild() は親要素（todoList）の一番最後に子要素（li）を追加する。
+    todoInput.value = ""; //入力欄を空にする(初期化)
   });
 
 </script>
