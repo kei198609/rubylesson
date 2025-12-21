@@ -104,3 +104,24 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
 
 </script>
 
+
+<br>
+
+<!-- ボタンを押すとカウントアップする（連打OK）
+仕様
+ボタンを押すたびに +1
+連打してもずっとカウントされる -->
+
+<button id="countBtn">カウント</button>
+<p>回数:<span id="count">0</span></p>
+
+<script>
+  const countBtn = document.getElementById("countBtn");
+  const countSpan = document.getElementById("count");
+  let count = 0;
+  countBtn.addEventListener("click", () => {
+    count ++;
+    countSpan.textContent = count;
+  });
+
+</script>
