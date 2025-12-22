@@ -125,3 +125,29 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
   });
 
 </script>
+
+
+
+<br>
+
+<label><input type="checkbox" class="item" value="りんご"> りんご</label><br>
+<label><input type="checkbox" class="item" value="バナナ"> バナナ</label><br>
+<label><input type="checkbox" class="item" value="ぶどう"> ぶどう</label><br>
+
+<button id="showBtn">表示</button>
+<p id="output"></p>
+
+<script>
+  const items = document.querySelectorAll(".item");
+  const showBtn = document.getElementById("showBtn");
+  const output = document.getElementById("output");
+  showBtn.addEventListener("click", () => {
+    const selected = [];
+
+    items.forEach(item => {
+      if(item.checked) selected.push(item.value);
+    });
+
+    output.textContent = selected.join("、");
+  });
+</script>
