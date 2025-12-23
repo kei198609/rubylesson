@@ -143,11 +143,16 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
   const output = document.getElementById("output");
   showBtn.addEventListener("click", () => {
     const selected = [];
-
+    //すべてのチェックボックスを1つずつ確認
     items.forEach(item => {
-      if(item.checked) selected.push(item.value);
+      if(item.checked) selected.push(item.value);//チェックされているか判定.チェックされていれば true。されていなければ false
     });
-
+    //配列を文字列にして表示
     output.textContent = selected.join("、");
   });
 </script>
+
+<!-- querySelectorAll とは？
+指定した条件に合う要素を すべて取得
+返り値は NodeList（配列のようなもの） -->
+
