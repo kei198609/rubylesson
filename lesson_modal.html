@@ -156,3 +156,24 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
 指定した条件に合う要素を すべて取得
 返り値は NodeList（配列のようなもの） -->
 
+<br>
+
+<!-- 文字数カウント＋警告表示 -->
+<input id="txt" type="text" placeholder="20文字まで推奨">
+<p>文字数: <span id="len">0</span></p>
+<p id="warn" style="color:crimson;"></p>
+
+<script>
+  const txt = document.getElementById("txt");
+  const len = document.getElementById("len");
+  const warn = document.getElementById("warn");
+  txt.addEventListener("input", () => {
+    const n = txt.value.length;
+    len.textContent = n;
+    if(n > 20) {
+      warn.textContent = "長すぎます";
+    } else {
+      warn.textContent = "";
+    }
+  });
+</script>
