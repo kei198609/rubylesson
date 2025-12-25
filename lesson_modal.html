@@ -177,3 +177,25 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
     }
   });
 </script>
+
+<br>
+<!-- EnterキーでToDo追加 -->
+<input id="todo" type="text" placeholder="Enterで追加">
+<ul id="list"></ul>
+<script>
+  const todo = document.getElementById("todo");
+  const list = document.getElementById("list");
+  todo.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+
+    const text = todo.value.trim();
+    if (!text) return;
+
+    const li = document.createElement("li");
+    li.textContent = text;
+    list.appendChild(li);
+
+    todo.value = "";
+
+  });
+</script>
