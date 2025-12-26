@@ -185,17 +185,18 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
 <script>
   const todo = document.getElementById("todo");
   const list = document.getElementById("list");
+  //e → イベントオブジェクト
   todo.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
+    if (e.key !== "Enter") return; //Enter キー以外は無視する
 
-    const text = todo.value.trim();
-    if (!text) return;
+    const text = todo.value.trim(); //入力された文字を取得
+    if (text === "") return; //空文字なら追加しない
 
-    const li = document.createElement("li");
-    li.textContent = text;
-    list.appendChild(li);
+    const li = document.createElement("li"); //<li> 要素を作成
+    li.textContent = text; //<li> に文字を入れる
+    list.appendChild(li); //リストに追加（ここで画面に表示される）
 
-    todo.value = "";
+    todo.value = ""; //入力欄を空にする
 
   });
 </script>
