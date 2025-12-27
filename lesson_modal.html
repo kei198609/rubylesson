@@ -200,3 +200,23 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
 
   });
 </script>
+
+<br>
+
+<!-- いいね切り替え（ON/OFF） -->
+<style>
+  .liked { background: #ffecb3; }
+</style>
+<button id="likeBtn">いいね</button>
+
+<script>
+  const likeBtn = document.getElementById("likeBtn");
+  let liked = false;
+
+  likeBtn.addEventListener("click", () => {
+    liked = !liked;
+    likeBtn.textContent = liked ? "いいね解除" : "いいね";
+    likeBtn.classList.toggle("liked", liked);
+  });
+
+</script>
