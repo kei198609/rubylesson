@@ -204,19 +204,23 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
 <br>
 
 <!-- いいね切り替え（ON/OFF） -->
+
 <style>
-  .liked { background: #ffecb3; }
+  .liked { background: #ffecb3; }/* ボタンが「いいね状態」のときの見た目を定義 */
 </style>
 <button id="likeBtn">いいね</button>
 
 <script>
   const likeBtn = document.getElementById("likeBtn");
-  let liked = false;
+  let liked = false; //liked は 現在の状態（ON / OFF）を表す変数.false → まだいいねしていない
 
   likeBtn.addEventListener("click", () => {
-    liked = !liked;
-    likeBtn.textContent = liked ? "いいね解除" : "いいね";
-    likeBtn.classList.toggle("liked", liked);
+    liked = !liked; //状態を反転させる !liked → 真偽値を反転
+    likeBtn.textContent = liked ? "いいね解除" : "いいね"; //条件 ? trueのとき : falseのとき
+    likeBtn.classList.toggle("liked", liked); //classList.toggle(クラス名, 条件)。条件が true → クラスを 付ける。条件が false → クラスを 外す
   });
 
 </script>
+
+<!-- classList は「要素についている CSS クラスを操作するための専用API」です。
+ボタン・div・p など HTML要素の class を安全＆簡単に付け外しできます。 -->
