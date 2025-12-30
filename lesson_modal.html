@@ -224,3 +224,33 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
 
 <!-- classList は「要素についている CSS クラスを操作するための専用API」です。
 ボタン・div・p など HTML要素の class を安全＆簡単に付け外しできます。 -->
+
+<br>
+
+<!-- スムーススクロール（ページ内リンク） -->
+<style>
+  section { height: 500px; border:1px solid #ddd; margin:10px 0; padding:10px; }
+  nav a { margin-right: 10px; }
+</style>
+
+<nav>
+  <a href="#s1">Section1</a>
+  <a href="#s2">Section2</a>
+  <a href="#s3">Section3</a>
+</nav>
+
+<section id="s1">Section1</section>
+<section id="s2">Section2</section>
+<section id="s3">Section3</section>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute("href"));
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: "smooth" });
+  });
+});
+</script>
