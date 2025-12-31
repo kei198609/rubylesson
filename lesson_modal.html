@@ -244,13 +244,16 @@ inputに入力した文字を「追加」ボタンで <ul> に追加
 <section id="s3">Section3</section>
 
 <script>
+  // ページ内リンクを全部取得し、それぞれにクリックイベントを設定
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener("click", (e) => {
-    e.preventDefault();
+    e.preventDefault(); //preventDefault() を呼ぶことでブラウザ本来のジャンプ動作を止める
+    // スクロール先の要素を取得
     const target = document.querySelector(a.getAttribute("href"));
-    if (!target) return;
-
-    target.scrollIntoView({ behavior: "smooth" });
+    if (!target) return; //対象がなければ処理終了。安全対策。id が存在しないtypo があるなどの場合にエラーを防ぐ。
+    target.scrollIntoView({ behavior: "smooth" }); //スムーズにスクロールする.scrollIntoView()は指定した要素が画面内に来るようスクロールするメソッド。
   });
 });
 </script>
+
+
