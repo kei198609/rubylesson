@@ -256,4 +256,25 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 </script>
 
+<br>
 
+<!-- 文字数カウント＋上限超過の制御 -->
+<textarea id="msg" type="text"></textarea>
+<p>文字数:<span id="count">0</span></p>
+<p>残り:<span id="remain">50</span></p>
+<script>
+  const msg = document.getElementById("msg");
+  const count_1 = document.getElementById("count");
+  const remain = document.getElementById("remain");
+  const maxLen = 50;
+
+  msg.addEventListener("input", () => {
+    let text = msg.value;
+    if (text.length > maxLen) {
+      text = text.slice(0, maxLen);
+      msg.value = text;
+    }
+    count_1.textContent = text.length;
+    remain.textContent = maxLen - text.length
+  });
+</script>
