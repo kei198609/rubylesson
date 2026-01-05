@@ -269,12 +269,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const maxLen = 50;
 
   msg.addEventListener("input", () => {
-    let text = msg.value;
+    let text = msg.value; //textarea の現在の文字列を取得
     if (text.length > maxLen) {
-      text = text.slice(0, maxLen);
-      msg.value = text;
+      text = text.slice(0, maxLen); //sliceで0文字目から50文字目までを残す
+      msg.value = text; //textarea の中身を 強制的に50文字に戻す
     }
-    count_1.textContent = text.length;
-    remain.textContent = maxLen - text.length
+    count_1.textContent = text.length; //span に現在の文字数を表示
+    remain.textContent = maxLen - text.length //残り文字数を表示
   });
 </script>
