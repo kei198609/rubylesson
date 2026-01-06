@@ -278,3 +278,28 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     remain.textContent = maxLen - text.length //残り文字数を表示
   });
 </script>
+
+<br>
+
+<!-- チェックボックス合計（リアルタイム） -->
+<label><input type="checkbox" class="item" data-price="300">りんご(300)</label><br>
+<label><input type="checkbox" class="item" data-price="150">バナナ(150)</label><br>
+<label><input type="checkbox" class="item" data-price="500">メロン(500)</label><br>
+<p>合計:<span id="total">¥0</span></p>
+
+<script>
+  const items_1 = document.querySelectorAll(".item");
+  const total = document.getElementById("total");
+
+  function updateTotal() {
+    let sum = 0;
+    items_1.forEach(item => {
+      if(item.checked) sum += Number(item.dataset.price);
+    });
+    total.textContent = sum
+  }
+
+  items_1.forEach(item => item.addEventListener("change", updateTotal));
+  updateTotal();
+
+</script>
