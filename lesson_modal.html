@@ -288,18 +288,19 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 <p>合計:<span id="total">¥0</span></p>
 
 <script>
-  const items_1 = document.querySelectorAll(".item");
+  const items_1 = document.querySelectorAll(".item"); //.item クラスを持つ要素をすべて取得
   const total = document.getElementById("total");
 
   function updateTotal() {
     let sum = 0;
     items_1.forEach(item => {
-      if(item.checked) sum += Number(item.dataset.price);
+      if(item.checked) sum += Number(item.dataset.price); //チェック状態を確認しながら加算
     });
     total.textContent = sum
   }
 
-  items_1.forEach(item => item.addEventListener("change", updateTotal));
-  updateTotal();
+  items_1.forEach(item => item.addEventListener("change", updateTotal)); //チェック変更時に再計算
+  updateTotal(); //ページ読み込み直後に合計を正しく表示。初期状態が「¥0」になる
 
 </script>
+<!-- data-price="300"はJavaScriptから item.dataset.price で取得できる -->
