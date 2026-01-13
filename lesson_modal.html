@@ -304,3 +304,34 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 </script>
 <!-- data-price="300"はJavaScriptから item.dataset.price で取得できる -->
+
+<br>
+
+<!-- 仕様
+ラジオボタンで表示切り替え（配送方法）
+配送方法を選ぶと説明文を切り替える
+standard →「通常配送：3〜5日」
+express →「お急ぎ便：1〜2日」
+初期は「通常配送：3〜5日」を表示 -->
+
+<label><input type="radio" name="ship" value="standard" checked>通常</label>
+<label><input type="radio" name="ship" value="express">お急ぎ</label>
+<p id="desc">通常配送：3〜5日</p>
+
+<script>
+  const radios = document.querySelectorAll('input[name="ship"]');
+  const desc = document.getElementById("desc");
+
+  function updateDesc() {
+    const selected = document.querySelector('input[name="ship"]:checked');
+    if (selected.value === "express") {
+      desc.textContent = "お急ぎ便：1〜2日";
+    } else {
+      desc.textContent = "通常配送：3〜5日";
+    }
+  }
+
+  radios.forEach(r => r.addEventListener("change", updateDesc));
+  updateDesc();
+
+</script>
