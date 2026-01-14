@@ -319,19 +319,27 @@ express →「お急ぎ便：1〜2日」
 <p id="desc">通常配送：3〜5日</p>
 
 <script>
-  const radios = document.querySelectorAll('input[name="ship"]');
+  const radios = document.querySelectorAll('input[name="ship"]'); //name="ship" を持つ input をすべて取得
   const desc = document.getElementById("desc");
-
+  //説明文を更新する関数
   function updateDesc() {
-    const selected = document.querySelector('input[name="ship"]:checked');
+    const selected = document.querySelector('input[name="ship"]:checked'); //:checked → 現在チェックされているもの
     if (selected.value === "express") {
       desc.textContent = "お急ぎ便：1〜2日";
     } else {
       desc.textContent = "通常配送：3〜5日";
     }
   }
-
-  radios.forEach(r => r.addEventListener("change", updateDesc));
-  updateDesc();
+  //changeイベントを登録
+  radios.forEach(r => r.addEventListener("change", updateDesc)); //ラジオの選択が変わったら updateDesc() を実行
+  updateDesc(); //初期表示を整える.ページ読み込み直後に1回実行
 
 </script>
+
+
+<!--
+htmlの箇所について
+type="radio" → どれか1つだけ選べる
+name="ship" → 同じグループとして扱われる
+checked → 初期状態で選択されている
+-->
