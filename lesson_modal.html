@@ -336,10 +336,50 @@ express →「お急ぎ便：1〜2日」
 
 </script>
 
-
 <!--
 htmlの箇所について
 type="radio" → どれか1つだけ選べる
 name="ship" → 同じグループとして扱われる
 checked → 初期状態で選択されている
 -->
+
+
+<br>
+
+<!-- 「＋」で1増やす
+「−」で1減らす（ただし0未満にはしない）
+「リセット」で0に戻す -->
+<button id="minus">-</button>
+<span id="num">0</span>
+<button id="plus">+</button>
+<button id="reset">リセット</button>
+
+<script>
+  const minusBtn = document.getElementById("minus");
+  const plusBtn = document.getElementById("plus");
+  const resetBtn = document.getElementById("reset");
+  const numSpan = document.getElementById("num");
+
+  let n = 0;
+
+  function render() {
+    numSpan.textContent = n;
+  }
+
+  plusBtn.addEventListener("click", () => {
+    n++;
+    render();
+  });
+
+  minusBtn.addEventListener("click", () => {
+    n = Math.max(0, n - 1);
+    render();
+  });
+
+  resetBtn.addEventListener("click", () => {
+    n = 0;
+    render();
+  });
+
+  render();
+</script>
